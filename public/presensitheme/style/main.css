@@ -1,0 +1,175 @@
+* {
+  font-family: 'Poppins', sans-serif;
+}
+
+.bg-dashboard {
+  background-color: #E0EAF7;
+  height: 100vh;
+}
+
+.section-content {
+  padding-top: 100px;
+}
+
+.section-content .card-presensi {
+  height: 120px;
+}
+
+.section-content .card-register {
+  height: 550px !important;
+  overflow-y: scroll;
+}
+
+.section-content .card {
+  width: 400px;
+  height: 450px;
+  border-radius: 25px;
+}
+
+.section-content .card .section-title h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  text-align: left;
+  color: #3E79BD !important;
+}
+
+.section-content .card .section-success {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.section-content .card .section-success img {
+  padding-top: 20px;
+  width: 200px;
+}
+
+.section-content .card .section-failed img {
+  padding-top: 20px;
+  width: 200px;
+}
+
+.section-content .card .register {
+  font-weight: bold;
+  font-size: 14px;
+  color: #3E79BD;
+}
+
+.section-content .card .link-login {
+  padding-top: 20px;
+  text-align: center;
+}
+
+.section-content .card .link-login a {
+  color: #000;
+}
+
+.section-content .card .link-login a:hover {
+  opacity: 0.7;
+  text-decoration: none;
+}
+
+.section-content .card .link-login a span {
+  color: #3E79BD;
+}
+
+.section-content .card .section-form {
+  padding-top: 90px;
+}
+
+.section-content .card .section-form p {
+  text-decoration: underline;
+  font-style: normal;
+  font-size: 14px;
+}
+
+.section-content .card .section-form .btn-submit {
+  margin-top: 40px;
+  background-color: #3E79BD;
+  color: #fff;
+  border-radius: 15px;
+}
+
+.section-content .card .section-form .link-login {
+  padding-top: 40px;
+  text-align: center;
+}
+
+.section-content .card .section-form .link-login a {
+  color: #000;
+}
+
+.section-content .card .section-form .link-login a:hover {
+  opacity: 0.7;
+  text-decoration: none;
+}
+
+.section-content .card .section-form .link-login a span {
+  color: #3E79BD;
+}
+
+.presensi .section-title {
+  padding-top: 50px;
+}
+
+.presensi .section-title h1 {
+  font-family: 'Poppins', sans-serif;
+  font-size: 36px;
+  font-style: normal;
+  font-weight: 700;
+  text-align: left;
+  color: #3E79BD;
+}
+
+.presensi .section-form {
+  padding-top: 280px;
+}
+
+.presensi .section-form p {
+  text-decoration: underline;
+  font-style: normal;
+  font-size: 14px;
+}
+
+.presensi .section-form .btn-submit {
+  background-color: #3E79BD;
+  color: #fff;
+  border-radius: 15px;
+}
+
+.presensi .section-form .link-login {
+  padding-top: 40px;
+  text-align: center;
+}
+
+.presensi .section-form .link-login a {
+  color: #000;
+}
+
+.presensi .section-form .link-login a:hover {
+  opacity: 0.7;
+  text-decoration: none;
+}
+
+.presensi .section-form .link-login a span {
+  color: #3E79BD;
+}
+
+.section-success p {
+  text-decoration: underline;
+  font-size: 14px;
+  text-align: center;
+}
+
+.section-success .link-login {
+  text-align: center;
+}
+
+.section-success .link-login a {
+  color: #000;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 400;
+}
+/*# sourceMappingURL=main.css.map */

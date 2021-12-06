@@ -1,0 +1,191 @@
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+.bg-dashboard {
+    background-color: #E0EAF7;
+    height: 100vh;
+}
+
+.section-content {
+    padding-top: 100px;
+
+    .card-presensi {
+        height: 120px;
+    }
+
+    .card-register {
+        height: 550px !important;
+        overflow-y: scroll;
+    }
+
+    .card {
+        width: 400px;
+        height: 450px;
+        border-radius: 25px;
+
+        .section-title {
+            // padding-top: 50px;
+
+            h1 {
+                font-family: 'Poppins', sans-serif;
+                font-size: 36px;
+                font-style: normal;
+                font-weight: 700;
+                text-align: left;
+                color: #3E79BD !important;
+            }
+        }
+
+        .section-success {
+            margin-left: auto;
+            margin-right: auto;
+
+            img {
+                padding-top: 20px;
+                width: 200px;
+            }
+        }
+
+        .section-failed {
+            img {
+                padding-top: 20px;
+                width: 200px;
+            }
+        }
+
+        .register {
+
+            font-weight: bold;
+            font-size: 14px;
+
+            color: #3E79BD;
+
+        }
+
+        .link-login {
+            padding-top: 20px;
+            text-align: center;
+
+            a {
+                color: #000;
+
+                &:hover {
+                    opacity: 0.7;
+                    text-decoration: none;
+                }
+
+                span {
+                    color: #3E79BD;
+                }
+            }
+        }
+
+        .section-form {
+            padding-top: 90px;
+
+            p {
+                text-decoration: underline;
+                font-style: normal;
+                font-size: 14px;
+            }
+
+            .btn-submit {
+                margin-top: 40px;
+                background-color: #3E79BD;
+                color: #fff;
+                border-radius: 15px;
+            }
+
+
+            .link-login {
+                padding-top: 40px;
+                text-align: center;
+
+                a {
+                    color: #000;
+
+                    &:hover {
+                        opacity: 0.7;
+                        text-decoration: none;
+                    }
+
+                    span {
+                        color: #3E79BD;
+                    }
+                }
+            }
+        }
+    }
+}
+
+.presensi {
+
+    
+    .section-title {
+        padding-top: 50px;
+
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 36px;
+            font-style: normal;
+            font-weight: 700;
+            text-align: left;
+            color: #3E79BD;
+        }
+    }
+
+    .section-form {
+        padding-top: 280px;
+
+        p {
+            text-decoration: underline;
+            font-style: normal;
+            font-size: 14px;
+        }
+
+        .btn-submit {
+            background-color: #3E79BD;
+            color: #fff;
+            border-radius: 15px;
+        }
+
+        .link-login {
+            padding-top: 40px;
+            text-align: center;
+
+            a {
+                color: #000;
+
+                &:hover {
+                    opacity: 0.7;
+                    text-decoration: none;
+                }
+
+                span {
+                    color: #3E79BD;
+                }
+            }
+        }
+    }
+}
+
+.section-success {
+
+    p {
+        text-decoration: underline;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .link-login {
+        text-align: center;
+
+        a {
+            color: #000;
+            font-size: 14px;
+            font-style: normal;
+            font-weight: 400;
+        }
+    }
+}

@@ -26,30 +26,16 @@
         <div class="container">
             <div class="card mr-auto ml-auto">
                 <div class="card-body">
-                    <div class="section-title">
-                        <h1>Presensi</h1>
+                    <div class="section-success text-center">
+                        <img src="images/success.svg" alt="">
                     </div>
-                    <p>{{ isset($warga->nik) ? $warga->nik : 'tidak ada' }}</p>
-                    <p>{{ isset($warga->nama) ? $warga->nama : 'tidak ada' }}</p>
-                    <p>Akan menghadiri kegiatan {{$event->nama}} </p>
-                    <div class="section-form">
-                        <form method="POST" action="{{ route('klik.presensi') }}">
-                            @csrf
-                            <input type="hidden" name="warga_id" value="{{ isset($warga->warga_id) ? $warga->warga_id : 'tidak ada' }}">
-                            <input type="hidden" value="{{$event->event_id}}" name="event_id">
-                            @if (  isset( $lastkegiatan->event_id) && $lastwarga->warga_id == TRUE )
-                            <button type="button" class="btn btn-primary btn-block btn-submit w-75 ml-auto mr-auto">Sudah Presensi</button>
-                            @elseif(isset( $lastkegiatan->event_id) && $lastwarga->warga_id == FALSE)
-                            <button type="button" class="btn btn-primary btn-block btn-submit w-75 ml-auto mr-auto">Daftar</button>
-                            @else
-                            <button type="submit" class="btn btn-primary btn-block btn-submit w-75 ml-auto mr-auto">Hadir</button>
-                            @endif
-                            
-
-                            <p class="text-center pt-4">
-                                Klik <strong>Hadir</strong> untuk menghadiri <br> Acara
-                            </p>
-                        </form>
+                    <p class="text-center pt-3">
+                        <strong>Terimakasih ,</strong> <br>
+                        Telah Menghadiri Acara Kami, <br>
+                        Semoga menjadi nilai pahala <br> disisi Allah SWT
+                    </p>
+                    <div class="link-login text-center">
+                        <a href=""><strong>Login</strong> to Account</a>
                     </div>
                 </div>
             </div>

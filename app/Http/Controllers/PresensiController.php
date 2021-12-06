@@ -29,17 +29,21 @@ class PresensiController extends Controller
                 ->first();
             $event = Kegiatan::orderBy('event_id', 'desc')->first();
 
-            $lastwarga = Warga::where('warga_id', $request->warga_id)->first();
-        $lastkegiatan = PresensiKegiatan::where('event_id',$request->event_id)->orderBy('event_id','desc')->first();
+            $lastwarga = Warga::where('warga_id', $warga->warga_id)->first();
+            $lastkegiatan = PresensiKegiatan::where('event_id',$event->event_id)->orderBy('event_id','desc')->first();
+            // dd($lastkegiatan,$lastwarga);
+            return view('presensi.result', compact('warga', 'event','lastwarga','lastkegiatan'));
             if (empty($warga)) {
                 return view('presensi.result-null');
+            }elseif ($lastkegiatan->event_id == 0) {
+                return view('presensi.result-condition', compact('warga', 'event','lastwarga','lastkegiatan'));
             }else{
-                return view('presensi.result', compact('warga', 'event','lastwarga','lastkegiatan'));
+                echo"gagal";
             }
             // dd($event,$warga);
-        } catch (Exception $th) {
+        } catch (Exception $e) {
             //throw $th;
-            echo "gagal";
+            return view('presensi.result-null');
         }
         
     }
@@ -52,9 +56,10 @@ class PresensiController extends Controller
         // ]);
         // return view('presensi.result',['data'=>$request]);
         $warga = Warga::where('warga_id', $request->warga_id)->first();
-        $kegiatan = PresensiKegiatan::where('event_id',$request->event_id)->orderBy('event_id','desc')->first();
+        $kegiatan = Kegiatan::where('event_id',$request->event_id)->orderBy('event_id','desc')->first();
+        $presensikegiatan = PresensiKegiatan::where('event_id',$request->event_id)->orderBy('event_id','desc')->first();
         // dd($warga,$kegiatan);
-        if ($warga && $kegiatan ? $warga && $kegiatan :0) {
+        if ($warga->warga_id && $kegiatan->event_id > 0) {
             $presensi = new PresensiKegiatan();
             $presensi->id = 0;
             $presensi->event_id = $request->event_id;
@@ -62,31 +67,15 @@ class PresensiController extends Controller
             $presensi->admin_id = 1;
             $presensi->channel = 'web';
             $presensi->tgl_insert = Carbon::now();
+            // dd($presensi);
             $presensi->save();
+            return view('presensi.sukses');
         } else {
             echo"gagal";
         }
         
-
-        // try {
-        //     //code...
-        //     $presensi = new PresensiKegiatan();
-        //     $presensi->id = 0;
-        //     $presensi->event_id = $request->event_id;
-        //     $presensi->warga_id = $request->warga_id;
-        //     $presensi->admin_id = 1;
-        //     $presensi->channel = 'web';
-        //     $presensi->tgl_insert = Carbon::now();
-        //     $presensi->save();
-        // } catch (Exception $e) {
-        //     //throw $th;
-        //     return $e;
-        // }
-
-
-
-
-        return redirect()->route('home.presensi');
+        // return view('presensi.sukses');
+        // return redirect()->route('home.presensi');
 
 
 
