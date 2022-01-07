@@ -8,27 +8,21 @@
                 <div class="row">
                     <div class="col-6">
                         <h5 class="dashboard-title">
-                            Kegiatan
+                            Data Element
                         </h5>
                     </div>
                     <div class="col-6 text-right">
-                        <a href="{{route('laporan')}}">
-                            <button class="btn btn-blue"
-                                style="background-color: #0bc8f7;color: white; border-radius: 30px; padding: 10px; font-weight: 500;">
-                                <span> <i class="fa fa-file" aria-hidden="true"></i></span> Laporan</button>
-                        </a>
                         <a href="{{route('kegiatan.create')}}">
                             <button class="btn btn-blue"
                                 style="background-color: #F73A0B;color: white; border-radius: 30px; padding: 10px; font-weight: 500;">
-                                <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span> Kegiatan</button>
+                                <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span> Element</button>
                         </a>
                     </div>
                 </div>
                 <br>
                 <div class="container-fluid table">
-                    <br>
                     <h6>
-                        Data Cabang
+                        Data Element
                     </h6>
                     <br>
                     <div>
@@ -36,31 +30,21 @@
                             <thead class="head-table">
                                 <tr>
                                     <th>No</th>
-                                    <th>Nama Kegiatan</th>
-                                    <th>Waktu Mulai</th>
-                                    <th>Waktu Akhir</th>
-                                    <th>Cabang/Elemen</th>
-                                    <th>Lokasi</th>
-                                    <th>Status</th>
+                                    <th>Nama Element</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody class="body-table">
-                                @foreach ($kegiatan as $item)
+                                @foreach ($element as $item)
 
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->nama }}</td>
-                                        <td>{{ $item->tgl_event_mulai }}</td>
-                                        <td>{{ $item->tgl_event_akhir }}</td>
-                                        <td>element</td>
-                                        <td>lokasi</td>
-                                        <td>status</td>
                                         <td>
-                                            <a href="{{ route('warga.edit', $item->event_id) }}"
+                                            <a href="{{ route('element.edit', $item->id) }}"
                                                 class="btn btn-sm btn-warning"><i class="nav-icon fas fa-user-edit"></i>
                                                 Edit</a>
-                                            <a href="{{ route('warga.destroy', $item->event_id) }}"
+                                            <a href="{{ route('element.destroy', $item->id) }}"
                                                 class="btn btn-sm btn-danger"><i class="nav-icon fas fa-trash-alt"></i>
                                                 Edit</a>
                                         </td>

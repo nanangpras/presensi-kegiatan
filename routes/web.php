@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\ElementController;
 use App\Http\Controllers\Admin\KegiatanController;
+use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\WargaController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +29,8 @@ Route::prefix('admin')
             Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
             Route::resource('warga', WargaController::class);
             Route::resource('kegiatan', KegiatanController::class);
+            Route::resource('user', UserController::class);
+            Route::resource('element', ElementController::class);
             Route::get('laporan/presensi',[KegiatanController::class, 'summary'])->name('laporan');
         });
 

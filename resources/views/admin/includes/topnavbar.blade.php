@@ -6,11 +6,11 @@
             </div>
             <a href="#" class="navbar-brand mt-3">
 
-                <h4 style="font-weight: 700;color: #f93a0b;">Prasensi</h4>
+                <h4 style="font-weight: 700;color: #f93a0b;">Dashboard Warga MTA DIY</h4>
             </a>
             <a href="" class="navbar-toggler" data-toggle="collapse" data-target="#navbarResponsive"
                 style="border: none">
-                <img src="presensi/images/png/img-user.png" alt="" class="rounded-circle mt-3 profile-picture" />
+                <img src="{{url('presensi/images/png/img-user.png')}}" alt="" class="rounded-circle mt-3 profile-picture" />
 
 
             </a>
@@ -33,7 +33,7 @@
                         <a href="" class="nav-link d-inline-block " type="button"
                             class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" data-display="static"
                             aria-haspopup="true" aria-expanded="false">
-                            <img class="rounded-circle mr-2 profile-picture" src="presensi/images/icon/notive.png" alt="" />
+                            <img class="rounded-circle mr-2 profile-picture" src="{{url('presensi/images/icon/notive.png')}}" alt="" />
                         </a>
 
                         <ul class="dropdown-menu" style="width: 450px; margin-left: -250px; margin-top: 15px;">
@@ -50,7 +50,7 @@
                             <li class="notification-item p-3">
                                 <a href="" class="d-flex notive">
                                     <div class="mr-3 mb-auto text-center">
-                                        <img src="images/square_pink.svg" alt=""
+                                        <img src="{{url('images/square_pink.svg')}}" alt=""
                                             style="max-width: 160px;max-height: 65px;">
                                     </div>
                                     <div class="notification-content mb-auto">
@@ -97,8 +97,8 @@
                     <!-- Close Dropdown Notification -->
                     <li class="nav-item">
                         <a href="#" class="nav-link" id="navbarDropdown" role="button" data-toggle="dropdown">
-                            <img src="presensi/images/png/img-user.png" alt=""
-                                class="rounded-circle mr-2 profile-picture" /> Ahmad Ghozali
+                            <img src="{{url('presensi/images/png/img-user.png')}}" alt=""
+                                class="rounded-circle mr-2 profile-picture" /> {{Auth::user()->name}}
                         </a>
                     </li>
                     <li class="nav-item">
@@ -108,7 +108,7 @@
                         <!-- Button trigger modal -->
                         <div type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"
                             style="background-color: white; border-color: white;;">
-                            <img class="rounded-circle mr-2 profile-picture" src="presensi/images/icon/exit.png" alt="" />
+                            <img class="rounded-circle mr-2 profile-picture" src="{{url('presensi/images/icon/exit.png')}}" alt="" />
                         </div>
 
                     </li>
@@ -118,11 +118,11 @@
                 </ul>
                 <ul class="navbar-nav d-block d-lg-none">
                     <li class="nav-item">
-                        <a href="#" class="nav-link"> Notivikasi </a>
+                        <a href="#" class="nav-link"> Notifikasi </a>
 
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link"> Ahmad Ghozali </a>
+                        <a href="#" class="nav-link"> {{Auth::user()->name}} </a>
                     </li>
                     <li class="nav-item " data-toggle="modal" data-target="#exampleModal">
                         <a href="#" class="nav-link d-inlink-block"> Keluar </a>

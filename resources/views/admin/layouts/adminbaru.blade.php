@@ -7,7 +7,7 @@
     <meta name="description" content="data warga mta perwakilan daerah istimewa yogyakarta" />
     <meta name="author" content="poweredby.kodekopi.com" />
 
-    <title>Presensi MTA </title>
+    <title>Dashboard Data Warga MTA DIY </title>
 
     @include('admin.includes.style')
 </head>
@@ -31,8 +31,7 @@
 
         </div>
         <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
+        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-header">
@@ -46,7 +45,14 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
-                        <button type="button" class="btn btn-primary">Ya</button>
+                        <a type="button" class="btn btn-primary" data-dismiss="modal" href="{{ route('logout')}}"
+                                onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
+								        <span>Ya</span>
+                        </a>
+                        <form id="logout-form" action="{{ route('logout')}}" method="POST" class="d-none">
+                            @csrf
+                        </form>
                     </div>
                 </div>
             </div>
