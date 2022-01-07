@@ -1,0 +1,61 @@
+.btn{
+    &.btn-secondary{
+        margin-right: 10px; 
+        color: #3685C8; 
+        background-color: white;
+        border-color:#3685C8 ;
+        text-align: right;
+        
+    }
+    &.btn-tersedia{
+        background: rgba(0, 155, 0, 0.1);
+        border-radius: 100px;
+        color: #009B00;
+    }
+    &.btn-blue{
+        margin-top: 10px; 
+        color: white; 
+        background-color: #3685C8
+    }
+    &.btn-red{
+        margin-top: 10px; 
+        color: #DE2323; 
+        background-color: white;
+        border-color:#DE2323 ;
+        text-align: left;
+        
+    }
+    &.btn-white{
+        margin-top: 10px; 
+        color: #3685C8;   
+        background-color: white;
+        &.data{
+            margin-top: -5px;
+            margin-left: 24px;
+        }
+    }
+    &.btn-disabled{
+        margin-top: 10px; 
+        color: #FFFFFF;
+        background: #F0F0F0;
+    }
+   
+
+
+}
+.btn-status{
+    background: rgba(0, 155, 0, 0.1);
+    border-radius: 20px;
+    text-align: center;
+    color: #009B00;
+    &.banned{
+        background: rgba(222, 35, 35, 0.1);
+        border-radius: 20px;
+        color: #DE2323;
+    }
+    &.draft{
+        background: rgba(79, 143, 203, 0.1);
+        border-radius: 20px;    
+        color: #4F8FCB;
+    }
+}

@@ -1,0 +1,50 @@
+.page-auth {
+  // margin-left: -20;
+  .row-login {
+    // min-height: 70vh;
+  }
+
+  .section-store-auth {
+    img{
+      margin-left: -20px;
+      height: 730px;
+    }
+    h2 {
+      padding-top: 106px;
+      font-weight: 600;
+      font-size: 48px;
+      margin-top: 0;
+      color: #0c0d36;
+      // text-align: center;
+    }
+    p{
+      font-weight: 300;
+      font-size: 18;
+      padding-left: 30;
+      color: #6C6866;
+    }
+
+    .form-control {
+      border-radius: 4px;
+      background: #f3f3f3;
+      height: 56px;
+    }
+    .btn{
+      height: 48px;
+    }
+    .icon{
+      height: 21px;
+      margin-top: 180px;
+    }
+    @media (max-width: 410px) {
+      .icon {
+        margin-top: 100px;
+      }
+    }
+
+    .btn-signup {
+      @include button-variant(#f3f3f3, transparent);
+      color: #bbb;
+    }
+  }
+}

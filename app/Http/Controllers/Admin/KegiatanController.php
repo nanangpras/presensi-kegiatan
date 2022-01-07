@@ -18,7 +18,7 @@ class KegiatanController extends Controller
     public function index()
     {
         $kegiatan = DB::table('d_event')->get();
-        return view('admin.pages.kegiatan.index',compact('kegiatan'));
+        return view('admin.pages.kegiatan.data',compact('kegiatan'));
     }
 
     /**

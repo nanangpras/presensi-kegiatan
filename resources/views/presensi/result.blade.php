@@ -37,12 +37,12 @@
                             @csrf
                             <input type="hidden" name="warga_id" value="{{ isset($warga->warga_id) ? $warga->warga_id : 'tidak ada' }}">
                             <input type="hidden" value="{{$event->event_id}}" name="event_id">
-                            @if (  isset( $lastkegiatan->event_id) && $lastwarga->warga_id == TRUE )
-                            <button type="button" class="btn btn-primary btn-block btn-submit w-75 ml-auto mr-auto">Sudah Presensi</button>
-                            @elseif(isset( $lastkegiatan->event_id) && $lastwarga->warga_id == FALSE)
-                            <button type="button" class="btn btn-primary btn-block btn-submit w-75 ml-auto mr-auto">Daftar</button>
-                            @else
+                            {{-- @if ( isset($lastwarga->warga_id = $lastkegiatan->warga_id ) || $lastkegiatan->event_id = $event->event_id )
+                            <button type="button" class="btn btn-primary btn-block btn-submit w-75 ml-auto mr-auto">Sudah Presensi</button> --}}
+                            @if(isset( $lastkegiatan->event_id) && $lastwarga->warga_id == TRUE)
                             <button type="submit" class="btn btn-primary btn-block btn-submit w-75 ml-auto mr-auto">Hadir</button>
+                            @else
+                            <button type="button" class="btn btn-primary btn-block btn-submit w-75 ml-auto mr-auto">OKE</button>
                             @endif
                             
 

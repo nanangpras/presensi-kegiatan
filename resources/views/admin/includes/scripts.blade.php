@@ -1,43 +1,54 @@
-<!-- jQuery -->
-<script src="{{url('template/plugins/jquery/jquery.min.js')}}"></script>
-<!-- jQuery UI 1.11.4 -->
-<script src="{{url('template/plugins/jquery-ui/jquery-ui.min.js')}}"></script>
-<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
-<script>
-  $.widget.bridge('uibutton', $.ui.button)
-</script>
-<!-- Bootstrap 4 -->
-<script src="{{url('template/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-<!-- ChartJS -->
-<script src="{{url('template/plugins/chart.js/Chart.min.js')}}"></script>
-<!-- Sparkline -->
-<script src="{{url('template/plugins/sparklines/sparkline.js')}}"></script>
-<!-- JQVMap -->
-<script src="{{url('template/plugins/jqvmap/jquery.vmap.min.js')}}"></script>
-<script src="{{url('template/plugins/jqvmap/maps/jquery.vmap.usa.js')}}"></script>
-<!-- jQuery Knob Chart -->
-<script src="{{url('template/plugins/jquery-knob/jquery.knob.min.js')}}"></script>
-<!-- daterangepicker -->
-<script src="{{url('template/plugins/moment/moment.min.js')}}"></script>
-<script src="{{url('template/plugins/daterangepicker/daterangepicker.js')}}"></script>
-<!-- Tempusdominus Bootstrap 4 -->
-<script src="{{url("template/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js")}}"></script>
-<!-- Summernote -->
-<script src="{{url('template/plugins/summernote/summernote-bs4.min.js')}}"></script>
-<!-- overlayScrollbars -->
-<script src="{{url('template/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js')}}"></script>
-<!-- AdminLTE App -->
-<script src="{{url('template/dist/js/adminlte.js')}}"></script>
-<!-- AdminLTE for demo purposes -->
-<script src="{{url('template/dist/js/demo.js')}}"></script>
-<!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="{{url('template/dist/js/pages/dashboard.js')}}"></script>
-<!-- DataTables  & Plugins -->
-<script src="{{url('template/plugins/datatables/jquery.dataTables.min.js')}}"></script>
-<script src="{{url('template/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
-<script src="{{url('template/plugins/datatables-responsive/js/dataTables.responsive.min.js')}}"></script>
-<script src="{{url('template/plugins/datatables-responsive/js/responsive.bootstrap4.min.js')}}"></script>
-<script src="{{url('template/plugins/datatables-buttons/js/dataTables.buttons.min.js')}}"></script>
-<script src="{{url('template/plugins/datatables-buttons/js/buttons.bootstrap4.min.js')}}"></script>
-<!-- dropzonejs -->
-<script src="{{url('template/plugins/dropzone/min/dropzone.min.js')}}"></script>
+<!-- Bootstrap core JavaScript -->
+    <!--Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <!--Boostrap -->
+    <!-- <script src="/vendor/jquery/jquery.slim.min.js "></script> -->
+    <script src="{{url('presensi/vendor/bootstrap/js/bootstrap.bundle.min.js')}} "></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js "></script>
+    <script>
+        AOS.init();
+    </script>
+
+    <script src="{{url('presensi/script/navbar-scroll.js')}}"></script>
+    <script src="{{url('presensi/libraries/uikits/js/uikit.js')}}"></script>
+    <!--Data Table-->
+    <script src="{{url('presensi/vendor/datatables/DataTables-1.10.24/js/jquery.dataTables.min.js')}}"></script>
+    <script src="{{url('presensi/vendor/datatables/DataTables-1.10.24/js/dataTables.bootstrap4.min.js')}}"></script>
+
+    <script src="{{url('presensi/vendor/datatables/Buttons-1.7.0/js/dataTables.buttons.min.js')}}"></script>
+    <script src="{{url('presensi/vendor/datatables/Buttons-1.7.0/js/buttons.bootstrap4.min.js')}}"></script>
+    <script src="{{url('presensi/vendor/datatables/JSZip-2.5.0/jszip.min.js')}}"></script>
+    <script src="{{url('presensi/vendor/datatables/pdfmake-0.1.36/pdfmake.min.js')}}"></script>
+    <script src="{{url('presensi/vendor/datatables/pdfmake-0.1.36/pdfmake.js')}}"></script>
+    <script src="{{url('presensi/vendor/datatables/pdfmake-0.1.36/vfs_fonts.js')}}"></script>
+    <script src="{{url('presensi/vendor/datatables/Buttons-1.7.0/js/buttons.html5.min.js')}}"></script>
+    <script src="{{url('presensi/vendor/datatables/Buttons-1.7.0/js/buttons.print.min.js')}}"></script>
+    <script src="{{url('presensi/vendor/datatables/Buttons-1.7.0/js/buttons.colVis.min.js')}}"></script>
+    <!-- Table -->
+    <script src="{{url('presensi/script/table.js')}}"></script>
+    <!--DateRangePicker -->
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+    <!-- Date and Time -->
+    <script src="{{url('presensi/script/date-picker.js')}}"></script>
+    <script src="{{url('presensi/vendor/datatables/DateTime-1.0.3/js/dataTables.dateTime.min.js')}}"></script>
+    <script>
+        $(document).ready(function () {
+            new DateTime(document.getElementById('test'), {
+                format: 'D MMM YYYY HH:mm'
+            });
+        });
+    </script>
+    <script>
+        $("#menu-toggle ").click(function (e) {
+            e.preventDefault();
+            $("#wrapper ").toggleClass("toggled ");
+        })
+    </script>
+    <script>
+        $(document).ready(function () {
+            $("#check-all").click(function () {
+                $('input:checkbox').not(this).prop('checked', this.checked);
+            });
+        });
+    </script>

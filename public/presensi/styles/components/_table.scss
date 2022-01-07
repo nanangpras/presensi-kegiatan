@@ -1,0 +1,54 @@
+.table{
+    .head-table{
+        font-weight: 400;
+        font-size: 14px;
+        color: #777777;
+        font-family: Poppins;
+        font-style: normal;
+    }
+    .body-table{
+        font-weight: 400;
+        font-size: 14px;
+        color: #23120B;
+        font-family: Poppins;
+        font-style: normal;
+    }
+    .icon-kategori{
+        background: #EDEDED;
+        border-radius: 24px;
+        width: 103px;
+        height: 23px;
+        text-align: center;
+        font-size: 12px;
+        padding-top: 3px;
+        font-family: Poppins;
+    }
+    .icon-active{
+        width: 103px;
+        height: 23px;
+        font-size: 12px;
+        padding-top: 3px;
+        background: rgba(0, 155, 0, 0.1);
+        border-radius: 20px;
+        text-align: center;
+        color: #009B00;
+    }
+    .rounded-circle{
+        height: 35px;
+        width: 35px;
+        
+    }
+    .dropdown-menu{
+    font-weight: 300;
+    font-size: 13px;
+    line-height: 19px;
+    }
+}
+.dataTables_wrapper{
+    text-align: left ; 
+    // background-color: chocolate;
+    .dataTables_filter{
+        // background-color: chocolate;
+        text-align: left !important;
+    }
+}

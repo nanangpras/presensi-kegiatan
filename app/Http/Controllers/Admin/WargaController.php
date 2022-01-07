@@ -21,7 +21,7 @@ class WargaController extends Controller
                     ->join('md_cabang','md_cabang.id_cabang','=','d_warga.id_cabang')
                     ->get();
                     // dd($warga);
-        return view('admin.pages.warga.index',compact('warga'));
+        return view('admin.pages.warga.data',compact('warga'));
     }
 
     /**

@@ -1,4 +1,4 @@
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+{{-- <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
     <a href="index3.html" class="brand-link">
       <img src="{{asset('template/dist/img/AdminLTELogo.png')}}" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
@@ -72,26 +72,48 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a type="button" class="nav-link" data-toggle="modal" data-target="#modalLogOut">
-              <i class="nav-icon fas fa-sign-out-alt"></i>
-              Keluar
-            </a>
-            {{-- <a href="{{route('logout')}}" class="nav-link"
-            onclick="event.preventDefault();
-            document.getElementById('logout-form').submit();">
-                <i class="nav-icon fas fa-sign-out-alt"></i>
-              <p>
-                Keluar
-              </p>
-            </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                @csrf
-            </form> --}}
           </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
     </div>
     <!-- /.sidebar -->
-  </aside>
+  </aside> --}}
+
+  <div id="sidebar-wrapper">
+    <div class="list-group list-group-flush">
+        <span class="right-nav-text">MENU</span>
+        <a href="presensi/dashboard'"
+            class="list-group-item list-group-item-action active {{ Request::is('presensi/dashboard') ? 'active' : '' }}"><span
+                class="icon-dashboard" aria-hidden="true"></span>
+            <img src="{{url('presensi/images/icon/dashboard.svg')}}" style="margin-right: 18px;" alt="">
+            Dashboard </a>
+        <a href="{{route('warga.index')}}"
+            class="list-group-item list-group-item-action {{ Request::is('warga.index') ? 'active' : '' }}"><span
+                class="icon-katalog" aria-hidden="true"></span>
+            <img src="{{url('presensi/images/icon/data-warga.svg')}}" style="margin-right: 18px;" alt="">
+            Data Warga</a>
+        <a href="{{route('kegiatan.index')}}"
+            class="list-group-item list-group-item-action {{ Request::is('kegiatan.*') ? 'active' : '' }}"><span
+                class="icon-katalog" aria-hidden="true"></span>
+            <img src="{{url('presensi/images/icon/kegiatan.svg')}}" style="margin-right: 18px;" alt="">
+            Kegiatan</a>
+        <a href="#"
+            class="list-group-item list-group-item-action {{ Request::is('presensi/catalogs') ? 'active' : '' }}"><span
+                class="icon-katalog" aria-hidden="true"></span>
+            <img src="{{url('presensi/images/icon/media.svg')}}" style="margin-right: 18px;" alt="">
+            Media Dakwah</a>
+        <br>
+        <span class="right-nav-text">AKUN</span>
+        <a href=""
+            class="list-group-item list-group-item-action {{ Request::is('presensi/profile/me') ? 'active' : '' }}"><span
+                class="icon-profile" aria-hidden="true"></span>
+            <img src="{{url('presensi/images/icon/profile.svg')}}" style="margin-right: 18px;" alt="">
+            Profile</a>
+        <a href="presensi/agencies"
+            class="list-group-item list-group-item-action {{ Request::is('presensi/agencies') ? 'active' : '' }}"><span
+                class="icon-setting" aria-hidden="true"></span>
+            <img src="{{url('presensi/images/icon/logout.svg')}}" style="margin-right: 18px;" alt="">
+            Logout</a>
+    </div>
+</div>

@@ -1,0 +1,55 @@
+.berita{
+    .form-check-label{
+        font-weight: 500;
+        font-size: 12px;
+        text-align: center;
+        color: #23120B;
+    }
+    .form-group{
+        &.input{
+            margin-top: 16px;
+            margin-bottom: 16px;
+            border: 1px solid #D2D2D2;
+            box-sizing: border-box;
+            border-radius: 4px;
+            
+        }
+        p{
+            font-size: 12px;
+            line-height: 18px;
+            margin-left: 16px;
+            color: rgba(108, 104, 102, 0.8);
+        }
+    .image{
+        border: 1px solid #D2D2D2;
+        box-sizing: border-box;
+        border-radius: 4px;
+        width: 219px;
+        height: 130px;
+        text-align: center;
+        margin-top: 16px;
+        margin-bottom: 16px;
+        margin-left: 16px;
+        p{
+            margin-top: 5px;
+            font-weight: 300;
+            font-size: 14px;
+            line-height: 21px;
+            text-align: center;
+            color: #6C6866;
+
+        }
+    }
+    }
+    .titile-content{
+        font-weight: 500;
+        font-size: 16px;
+        line-height: 24px;
+        color: #153E90;
+    }
+    .subtitle-content{
+        font-weight: 500;
+        font-size: 14px;
+        color: #23120B;
+    }
+}

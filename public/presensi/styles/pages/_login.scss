@@ -1,0 +1,53 @@
+.bg-dashboard {
+    background-image: url('https://dev.troya-academic.com/instansi/images/ilustrasi.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: left;
+    height: 100vh;
+
+    .icon-poweredby {
+        min-height: 80px;
+        margin-top: 120px;
+    }
+
+    .bg-form-login {
+        background-color: #fff;
+        
+    }
+}
+
+@media (min-width:1440px) {
+    .bg-dashboard {
+        height: 100vh;
+    }
+}
+
+@media (max-width: 991px) {
+    .bg-login-transparent {
+        background-color: #fff;
+        border-radius: 20px;
+    }
+}
+
+@media (max-width:767px) {
+    .icon-poweredby {
+        margin-right: -20px;
+        position: relative;
+        right: -15px;
+    }
+}
+
+@media (max-width: 410px) {
+    .bg-login-transparent {
+        form {
+            .form-group {
+                input {
+                    width: 100% !important;
+                }
+            }
+            .btn-blue {
+                width: 100% !important;
+            }
+        }
+    }
+}

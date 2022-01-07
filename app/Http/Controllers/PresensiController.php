@@ -31,12 +31,14 @@ class PresensiController extends Controller
 
             $lastwarga = Warga::where('warga_id', $warga->warga_id)->first();
             $lastkegiatan = PresensiKegiatan::where('event_id',$event->event_id)->orderBy('event_id','desc')->first();
-            // dd($lastkegiatan,$lastwarga);
+            // dd($lastkegiatan,$lastwarga, $event);
             return view('presensi.result', compact('warga', 'event','lastwarga','lastkegiatan'));
             if (empty($warga)) {
                 return view('presensi.result-null');
             }elseif ($lastkegiatan->event_id == 0) {
                 return view('presensi.result-condition', compact('warga', 'event','lastwarga','lastkegiatan'));
+            }elseif ($lastwarga->warga_id = $lastkegiatan->warga_id && $lastkegiatan->event_id = $event->event_id) {
+                echo"sudah presensi";
             }else{
                 echo"gagal";
             }

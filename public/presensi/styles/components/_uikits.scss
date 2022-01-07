@@ -1,0 +1,40 @@
+// uikits dashboard instansi
+
+.uk-slider-buku-terbaru {
+    .uk-position-center-left {
+        position: relative;
+        left: -25px;
+
+        img {
+            background-color: #fff;
+            border-radius: 24px;
+            padding: 10px 13px;
+        }
+    }
+    .uk-position-center-right {
+        position: relative;
+        right: -25px;
+
+        img {
+            background-color: #fff;
+            border-radius: 24px;
+            padding: 10px 13px;
+        }
+    }
+}
+
+@media (min-width: 1441px) {
+    .uk-slider-buku-terbaru {
+        .uk-child-width-1-4\@m>* {
+            width: 23% !important;
+        }
+    }
+}
+
+@media (max-width: 639px) {
+    .uk-slider-buku-terbaru {
+        .uk-child-width-1-4\@m>* {
+            width: 40% !important;
+        }
+    }
+}
