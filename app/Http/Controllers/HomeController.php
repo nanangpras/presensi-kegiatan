@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Kegiatan;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -23,7 +24,19 @@ class HomeController extends Controller
      */
     public function index()
     {
+        // $distribution = TempDistribute::with('agency')
+        //                                 ->groupBy('distribute_target_id')
+        //                                 ->selectRaw('*,sum(qty) as jumlah')
+        //                                 ->get();
         // return view('home');
+        // $kegiatan=Kegiatan::with('presensi')
+        //                     ->get();
+        // dd($kegiatan);
         return view('admin.pages.das');
+    }
+
+    public function warga()
+    {
+        return view('warga.dashboard');
     }
 }

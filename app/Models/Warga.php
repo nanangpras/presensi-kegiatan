@@ -23,4 +23,9 @@ class Warga extends Model
         'perkawinan',
         'pekerjaan',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class,'warga_id');
+    }
 }

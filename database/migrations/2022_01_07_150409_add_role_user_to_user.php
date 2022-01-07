@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class AddColumnWargaIdUsers extends Migration
+class AddRoleUserToUser extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddColumnWargaIdUsers extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('nik')->after('name');
+            $table->string('role')->after('email');
         });
     }
 
@@ -26,7 +26,7 @@ class AddColumnWargaIdUsers extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn('nik');
+            $table->dropColumn('role');
         });
     }
 }

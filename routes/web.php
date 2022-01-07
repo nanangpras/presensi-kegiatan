@@ -24,7 +24,7 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::prefix('admin')
-        ->middleware('auth')
+        ->middleware(['auth','IsAdmin'])
         ->group(function(){
             Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('dashboard');
             Route::resource('warga', WargaController::class);
@@ -32,6 +32,12 @@ Route::prefix('admin')
             Route::resource('user', UserController::class);
             Route::resource('element', ElementController::class);
             Route::get('laporan/presensi',[KegiatanController::class, 'summary'])->name('laporan');
+        });
+
+Route::prefix('warga')
+        ->middleware(['auth','IsWarga'])
+        ->group(function(){
+            Route::get('/', [App\Http\Controllers\HomeController::class, 'warga'])->name('dashboard.warga');
         });
 
 Route::get('/presensi', [App\Http\Controllers\PresensiController::class, 'index'])->name('home.presensi');

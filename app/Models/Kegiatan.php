@@ -18,4 +18,10 @@ class Kegiatan extends Model
         'tgl_event_mulai',
         'tgl_event_akhir',
     ];
+
+    public function presensi()
+    {
+        $this->belongsTo(PresensiKegiatan::class,'id');
+        
+    }
 }

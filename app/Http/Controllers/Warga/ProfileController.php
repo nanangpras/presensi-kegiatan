@@ -1,13 +1,11 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Warga;
 
 use App\Http\Controllers\Controller;
-use App\Models\Warga;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 
-class UserController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,11 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $data = Auth::user()->nik;
-        $profile = Warga::where('nik',$data)->get();
-        // $profile = Auth::user()->warga_id;
-        // dd($profile);
-        return view('admin.pages.user.data',compact('profile'));
+        //
     }
 
     /**
