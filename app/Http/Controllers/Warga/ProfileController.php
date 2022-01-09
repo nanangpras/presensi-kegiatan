@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Warga;
 use App\Http\Controllers\Controller;
 use App\Models\Cabang;
 use App\Models\Element;
+use App\Models\Maisah;
 use App\Models\Warga;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -21,9 +22,14 @@ class ProfileController extends Controller
     {
         $data = Auth::user()->nik;
         $profile = Warga::where('nik',$data)->get();
+        
+        $id = Warga::where('nik',$data)->first();
+
+        $usaha = Maisah::where('warga_id',$id->warga_id)->get();
+        // dd($usaha);
         // $profile = Auth::user()->warga_id;
         // dd($profile);
-        return view('warga.pages.profile.data',compact('profile'));
+        return view('warga.pages.profile.data',compact('profile','usaha'));
     }
 
     /**
