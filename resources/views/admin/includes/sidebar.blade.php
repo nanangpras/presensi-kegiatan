@@ -71,7 +71,7 @@
           <br>
           
           <span class="right-nav-text">AKUN</span>
-          <a href="{{ route('user.index') }}"
+          <a href="{{ route('profile.index') }}"
               class="list-group-item list-group-item-action {{ Request::is('presensi/profile/me') ? 'active' : '' }}"><span
                   class="icon-profile" aria-hidden="true"></span>
               <img src="{{ url('presensi/images/icon/profile.svg') }}" style="margin-right: 18px;" alt="">

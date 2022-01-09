@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\ElementController;
 use App\Http\Controllers\Admin\KegiatanController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\WargaController;
+use App\Http\Controllers\Warga\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,6 +39,7 @@ Route::prefix('warga')
         ->middleware(['auth','IsWarga'])
         ->group(function(){
             Route::get('/', [App\Http\Controllers\HomeController::class, 'warga'])->name('dashboard.warga');
+            Route::resource('profile', ProfileController::class);
         });
 
 Route::get('/presensi', [App\Http\Controllers\PresensiController::class, 'index'])->name('home.presensi');

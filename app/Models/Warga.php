@@ -28,4 +28,5 @@ class Warga extends Model
     {
         return $this->belongsTo(User::class,'warga_id');
     }
+    
 }

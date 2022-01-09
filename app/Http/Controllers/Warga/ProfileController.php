@@ -3,7 +3,12 @@
 namespace App\Http\Controllers\Warga;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cabang;
+use App\Models\Element;
+use App\Models\Warga;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProfileController extends Controller
 {
@@ -14,7 +19,11 @@ class ProfileController extends Controller
      */
     public function index()
     {
-        //
+        $data = Auth::user()->nik;
+        $profile = Warga::where('nik',$data)->get();
+        // $profile = Auth::user()->warga_id;
+        // dd($profile);
+        return view('warga.pages.profile.data',compact('profile'));
     }
 
     /**
@@ -55,9 +64,17 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($nik)
     {
-        //
+        $data = Auth::user()->nik;
+        $profile = Warga::where('nik',$data)->get();
+        $cabang = Cabang::pluck('nama','id_cabang');
+        $element = Element::pluck('nama','id');
+        // $element = Element::orderBy('nama', 'asc')->get()->toArray();
+        // $golda = 
+        // dd($element);
+        // dd($profile);
+        return view('warga.pages.profile.edit',compact('profile','cabang','element'));
     }
 
     /**
@@ -67,9 +84,15 @@ class ProfileController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $nik)
     {
-        //
+        // dd($request->all());
+        $data = $request->all();
+        $data = request()->except(['_token','_method']);
+        DB::table('d_warga')
+                ->where('nik',$nik)
+                ->update($data);
+        return redirect()->route('profile.index');
     }
 
     /**
