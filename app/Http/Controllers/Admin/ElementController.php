@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Controllers\Controller;
 use App\Models\Element;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Http\Requests\ElementRequest;
 
 class ElementController extends Controller
 {
@@ -35,9 +36,15 @@ class ElementController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(ElementRequest $request)
     {
-        //
+        $data = $request->all();
+
+        Element::create($data);
+
+        return redirect()->route('element.index')->with('success', 'Data Berhasil Ditambah !');
+
+        
     }
 
     /**
@@ -59,7 +66,11 @@ class ElementController extends Controller
      */
     public function edit($id)
     {
-        //
+        $item = Element::findOrFail($id);
+
+        return view('admin.pages.element.edit', [
+            'item' => $item
+        ]);
     }
 
     /**
@@ -69,9 +80,16 @@ class ElementController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(ElementRequest $request, $id)
     {
-        //
+        $data = $request->all();
+
+        $item = Element::findOrFail($id);
+
+        $item->update($data);
+
+        return redirect()->route('element.index')->with('success', 'Data Berhasil Diubah !');
+
     }
 
     /**
@@ -82,6 +100,10 @@ class ElementController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $item = Element::findOrFail($id);
+        $item->delete();
+
+        return redirect()->route('element.index')->with('success','Data berhasil dihapus !');
     }
 }
+
