@@ -6,7 +6,7 @@
             </div>
             <a href="#" class="navbar-brand mt-3">
 
-                <h4 style="font-weight: 700;color: #f93a0b;">Dashboard Warga MTA DIY</h4>
+                <h4 style="font-weight: 700;color: #f93a0b;">Presensi</h4>
             </a>
             <a href="" class="navbar-toggler" data-toggle="collapse" data-target="#navbarResponsive"
                 style="border: none">

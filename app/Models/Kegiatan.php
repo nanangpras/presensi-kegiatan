@@ -21,7 +21,7 @@ class Kegiatan extends Model
 
     public function presensi()
     {
-        $this->belongsTo(PresensiKegiatan::class,'id');
+        return $this->belongsTo(PresensiKegiatan::class,'id');
         
     }
 }

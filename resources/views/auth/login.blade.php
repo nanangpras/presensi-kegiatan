@@ -63,6 +63,10 @@
                                     {{ __('Login') }}
                                 </button>
 
+                                <a href="{{route('home.presensi')}}">
+                                    Hadir
+                                </a>
+
                                 @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('Forgot Your Password?') }}

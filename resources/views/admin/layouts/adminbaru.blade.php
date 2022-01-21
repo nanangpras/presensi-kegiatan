@@ -7,7 +7,7 @@
     <meta name="description" content="data warga mta perwakilan daerah istimewa yogyakarta" />
     <meta name="author" content="poweredby.kodekopi.com" />
 
-    <title>Dashboard Data Warga MTA DIY </title>
+    <title>Dashboard Presensi </title>
 
     @include('admin.includes.style')
 </head>

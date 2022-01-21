@@ -5,11 +5,15 @@ namespace App\Http\Controllers\Warga;
 use App\Http\Controllers\Controller;
 use App\Models\Cabang;
 use App\Models\Element;
+use App\Models\Kegiatan;
 use App\Models\Maisah;
+use App\Models\PresensiKegiatan;
+use App\Models\User;
 use App\Models\Warga;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -26,10 +30,22 @@ class ProfileController extends Controller
         $id = Warga::where('nik',$data)->first();
 
         $usaha = Maisah::where('warga_id',$id->warga_id)->get();
+
+        // $seleksi = User::select('video_galleries.*','users.*')
+        //                         ->join('video_galleries','video_galleries.user_id', '=' ,'users.id')
+        //                         // ->where('users.id','video_galleris.user_id')
+        //                         ->get();
+
+        $saya = User::join('d_warga','d_warga.nik','=','users.nik')
+                    ->join('md_cabang','md_cabang.id_cabang','=','d_warga.id_cabang')
+                    ->select('d_warga.*','users.*','md_cabang.nama as cabang')
+                    ->where('id',Auth::user()->id)
+                    ->first();
+        // dd($saya);
         // dd($usaha);
         // $profile = Auth::user()->warga_id;
         // dd($profile);
-        return view('warga.pages.profile.data',compact('profile','usaha'));
+        return view('warga.pages.profile.data',compact('profile','usaha','saya'));
     }
 
     /**
@@ -110,5 +126,47 @@ class ProfileController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public function presensi()
+    {
+        $data = Auth::user()->nik;
+        $profile = Warga::where('nik',$data)->first();
+        // dd($profile);
+        $presensi = Kegiatan::
+                        where([
+                                ['id_cabang',$profile->id_cabang],
+                                ['element_id',$profile->element_id]
+        ])->get();
+        // dd($presensi);
+
+        return view('warga.pages.presensi.data',compact('presensi'));
+    }
+
+    public function changePassword($id)
+    {
+        $user = User::findOrFail($id);
+        return view('warga.pages.profile.update-password',compact('user'));
+    }
+
+    public function updatePasswordUser(Request $request, User $user)
+    {
+        $request->validate([
+            'password'                => 'required|min:8',
+            'password_baru'           => 'required|min:8|required_with:konfirmasi_password|same:konfirmasi_password',
+            'konfirmasi_password'     => 'required|min:8'
+        ]);
+
+        if (Hash::check($request->password, $user->password)) {
+            if ($request->password == $request->konfirmasi_password) {
+                return redirect()->back()->with('error','Password gagal diperbarui, tidak ada yang berubah pada kata sandi');
+            } else {
+                $user->password = Hash::make($request->konfirmasi_password);
+                $user->save();
+                return redirect()->route('profile.index')->with('success','Password berhasil diperbarui');
+            }
+        } else {
+            return redirect()->back()->with('error','Password tidak cocok dengan kata sandi lama');
+        }
     }
 }

@@ -17,11 +17,10 @@
                                 style="background-color: #0bc8f7;color: white; border-radius: 30px; padding: 10px; font-weight: 500;">
                                 <span> <i class="fa fa-file" aria-hidden="true"></i></span> Laporan</button>
                         </a>
-                        <a href="{{route('kegiatan.create')}}">
-                            <button class="btn btn-blue"
-                                style="background-color: #F73A0B;color: white; border-radius: 30px; padding: 10px; font-weight: 500;">
-                                <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span> Kegiatan</button>
-                        </a>
+                        <button class="btn btn-blue" data-toggle="modal" data-target="#ModalKegiatan"
+                        style="background-color: #F73A0B;color: white; border-radius: 30px; padding: 10px; font-weight: 500;">
+                        <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span> Kegiatan</button>
+                        
                     </div>
                 </div>
                 <br>
@@ -77,5 +76,104 @@
             </div>
         </div>
     </div>
-
+    
 @endsection
+<div class="modal fade" id="ModalKegiatan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Tambah Kegiatan</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                @if(count($errors) > 0)
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+                <form action="{{ route('kegiatan.store') }}" method="POST">
+                    @csrf
+                    <div class="form-group">
+                        <label for="title">Nama Kegiatan</label>
+                        <input type="text" class="form-control @error('nama') is invalid @enderror" name="nama"
+                            placeholder="Masukkan Nama Element" value="{{ old('nama') }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Tanggal Mulai Pelaksanaan</label>
+                        <input type="date" class="form-control @error('tgl_event_mulai') is invalid @enderror" name="tgl_event_mulai"
+                            placeholder="Masukkan Nama Element" value="{{ old('tgl_event_mulai') }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Tanggal Berakhir Pelaksanaan</label>
+                        <input type="date" class="form-control @error('tgl_event_akhir') is invalid @enderror" name="tgl_event_akhir"
+                            placeholder="Masukkan Nama Element" value="{{ old('tgl_event_akhir') }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Peserta Cabang</label>
+                       <select name="id_cabang" id="id_cabang" class="form-control">
+                           <option value="">-</option>
+                           @foreach ($cabang as $id => $nama)
+                               <option value="{{$id}}">{{$nama}}</option>
+                           @endforeach
+                       </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Peserta Element</label>
+                        <select name="element_id" id="element_id" class="form-control">
+                            <option value="">-</option>
+                            @foreach ($element as $id => $nama)
+                                <option value="{{$id}}">{{$nama}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Nama Lokasi</label>
+                        <input type="text" class="form-control @error('lokasi') is invalid @enderror" name="lokasi"
+                            placeholder="Masukkan Nama Lokasi" value="{{ old('lokasi') }}">
+                    </div>
+                    <div class="form-group">
+                        <label for="title">Maps Lokasi</label>
+                        <input type="text" class="form-control @error('maps') is invalid @enderror" name="maps"
+                            placeholder="Masukkan link dari nama lokasi" value="{{ old('maps') }}">
+                    </div>
+                    <button type="submit" class="btn btn-block"
+                        style="background-color: #F73A0B;color: white; border-radius: 30px; padding: 10px; font-weight: 500;">Simpan</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+</div>
+
+@push('after-scripts')
+    <script>
+        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        $('#id_cabang').select2({
+                placeholder: 'Pilih Cabang',
+                ajax:{
+                    url:'/admin/list/cabang',
+                    type: 'post',
+                    dataType:'json',
+                    delay:250,
+                    data: function(params){
+                        return{
+                            _token: CSRF_TOKEN,
+                            search: params.term
+                        };
+                    },
+                    processResults:function(response){
+                        return{
+                            results: response
+                        };
+                    },
+                    cache:true
+                }
+            });
+    </script>
+@endpush

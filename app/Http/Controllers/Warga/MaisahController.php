@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Auth;
 
 class MaisahController extends Controller
 {
+    public function list()
+    {
+        $usaha = Maisah::all();
+        return view('warga.pages.usahawarga.list',compact('usaha'));
+    }
     public function add()
     {
         return view('warga.pages.profile.maisah');

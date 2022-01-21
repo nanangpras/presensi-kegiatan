@@ -9,8 +9,12 @@ use App\Models\Warga;
 use Carbon\Carbon;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Validator;
+
+use function PHPUnit\Framework\isEmpty;
 
 class PresensiController extends Controller
 {
@@ -75,16 +79,31 @@ class PresensiController extends Controller
         } else {
             echo"gagal";
         }
+
+    }
+
+    public function insertPresensi(Request $request)
+    {
+        $data = Auth::user()->nik;
+        $profile = Warga::where('nik',$data)->first();
+        $pres = PresensiKegiatan::where([
+            ['warga_id',$profile->warga_id],
+            ['event_id',$request->event_id],
+        ])->exists();
+        // dd($event);
+        // dd($data);
+        if ($pres) {
+            return Redirect::back()->with('error','Sudah presensi');
+        }else{
+            $data = new PresensiKegiatan();
+            $data->event_id = $request->event_id;
+            $data->warga_id = $profile->warga_id;
+            $data->user_id = Auth::user()->id;
+            $data->keterangan = 'hadir';
+            $data->save();
+            return Redirect::back()->with('success','Berhasil presensi');
+        }
         
-        // return view('presensi.sukses');
-        // return redirect()->route('home.presensi');
-
-
-
-
-
-
-        // dd($presensi);
-
+        
     }
 }

@@ -9,15 +9,14 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class PresensiKegiatan extends Model
 {
     use HasFactory;
-    protected $table = 'd_event_reg';
-    public $timestamps = false;
+    protected $table = 'event_registers';
 
     protected $fillable = [
-        'event_id',
+        // 'id',
         'warga_id',
-        'admin_id',
-        'tgl_insert',
-        'channel',
+        'user_id',
+        'event_id',
+        'keterangan',
     ];
 
     public function kegiatan()

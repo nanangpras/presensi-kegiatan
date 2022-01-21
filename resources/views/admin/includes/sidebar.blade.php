@@ -23,6 +23,11 @@
                   class="icon-katalog" aria-hidden="true"></span>
               <img src="{{ url('presensi/images/icon/media.svg') }}" style="margin-right: 18px;" alt="">
               Media Dakwah</a>
+          <a href="{{route('usaha-warga.list')}}"
+              class="list-group-item list-group-item-action {{ Request::is('presensi/catalogs') ? 'active' : '' }}"><span
+                  class="icon-katalog" aria-hidden="true"></span>
+              <img src="{{ url('presensi/images/icon/media.svg') }}" style="margin-right: 18px;" alt="">
+              Usaha Warga</a>
           <br>
           <span class="right-nav-text">Data</span>
           <a href="{{ route('element.index') }}"
@@ -57,6 +62,12 @@
                   class="icon-dashboard" aria-hidden="true"></span>
               <img src="{{ url('presensi/images/icon/dashboard.svg') }}" style="margin-right: 18px;" alt="">
               Dashboard </a>
+
+          <a href="{{route('presensi.warga')}}"
+              class="list-group-item list-group-item-action {{ Request::is('presensi/dashboard') ? 'active' : '' }}"><span
+                  class="icon-dashboard" aria-hidden="true"></span>
+              <img src="{{ url('presensi/images/icon/kegiatan.svg') }}" style="margin-right: 18px;" alt="">
+              Presensi </a>
           
           <a href="{{ route('kegiatan.index') }}"
               class="list-group-item list-group-item-action {{ Request::is('kegiatan.*') ? 'active' : '' }}"><span
@@ -68,6 +79,11 @@
                   class="icon-katalog" aria-hidden="true"></span>
               <img src="{{ url('presensi/images/icon/media.svg') }}" style="margin-right: 18px;" alt="">
               Media Dakwah</a>
+              <a href="{{route('maisah.list')}}"
+              class="list-group-item list-group-item-action {{ Request::is('presensi/catalogs') ? 'active' : '' }}"><span
+                  class="icon-katalog" aria-hidden="true"></span>
+              <img src="{{ url('presensi/images/icon/media.svg') }}" style="margin-right: 18px;" alt="">
+              Usaha Warga</a>
           <br>
           
           <span class="right-nav-text">AKUN</span>
