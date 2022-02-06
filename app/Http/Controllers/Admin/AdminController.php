@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Cabang;
+use App\Models\Warga;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
@@ -30,5 +32,19 @@ class AdminController extends Controller
         }
 
         return response()->json($response);
+    }
+
+    public function searchNik(Request $request)
+    {
+        $nik = $request->input('nik');
+        $warga = DB::table('d_warga')->where('nik', 'like', $nik)->get();
+        return response()->json($warga);
+        // if ($request->nik) {
+        //     $warga = Warga::where('nik','like',"%".$request->nik."%")->get();
+        // }
+
+        // return response()->json([
+        //     'warga' => $warga
+        //  ]);
     }
 }

@@ -18,6 +18,11 @@
                   class="icon-katalog" aria-hidden="true"></span>
               <img src="{{ url('presensi/images/icon/kegiatan.svg') }}" style="margin-right: 18px;" alt="">
               Kegiatan</a>
+          <a href="{{ route('donor.index') }}"
+              class="list-group-item list-group-item-action {{ Request::is('kegiatan.*') ? 'active' : '' }}"><span
+                  class="icon-katalog" aria-hidden="true"></span>
+              <img src="{{ url('presensi/images/icon/kegiatan.svg') }}" style="margin-right: 18px;" alt="">
+              Donor Darah</a>
           <a href="#"
               class="list-group-item list-group-item-action {{ Request::is('presensi/catalogs') ? 'active' : '' }}"><span
                   class="icon-katalog" aria-hidden="true"></span>

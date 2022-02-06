@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Controllers\Admin\ElementController;
 use App\Http\Controllers\Admin\KegiatanController;
+use App\Http\Controllers\Admin\KegiatanDonorController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\WargaController;
 use App\Http\Controllers\Warga\MaisahController;
@@ -38,10 +39,12 @@ Route::prefix('admin')
             Route::resource('warga', WargaController::class);
             Route::resource('kegiatan', KegiatanController::class);
             Route::resource('user', UserController::class);
+            Route::resource('donor', KegiatanDonorController::class);
             Route::resource('element', ElementController::class);
             Route::get('laporan/presensi',[KegiatanController::class, 'summary'])->name('laporan');
             Route::get('/list/cabang',[AdminController::class, 'getCabang'])->name('cabang.list');
             Route::get('/maisah/list', [MaisahController::class,'list'])->name('usaha-warga.list');
+            Route::get('search-nik',[AdminController::class,'searchNik'])->name('search-nik');
         });
 
 Route::prefix('warga')
