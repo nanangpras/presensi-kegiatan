@@ -8,7 +8,8 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <title>{{ $title ?? config('app.name') }}</title>
+    <!-- <title>{{ $title ?? config('app.name') }}</title> -->
+    <title>Presensi MTA DIY</title>
     <style>
         body {
             background: lightgray;
