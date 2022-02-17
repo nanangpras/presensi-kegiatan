@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Cabang;
+use App\Models\Element;
 use App\Models\Warga;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -21,7 +23,8 @@ class WargaController extends Controller
                     ->join('md_cabang','md_cabang.id_cabang','=','d_warga.id_cabang')
                     ->get();
                     // dd($warga);
-        return view('admin.pages.warga.data',compact('warga'));
+        $cabang = DB::table('md_cabang')->get();
+        return view('admin.pages.warga.data',compact('warga','cabang'));
     }
 
     /**
@@ -31,7 +34,9 @@ class WargaController extends Controller
      */
     public function create()
     {
-        //
+        $cabang = Cabang::pluck('nama','id_cabang');
+        $element = Element::pluck('nama','id');
+        return view('admin.pages.warga.create',compact('cabang','element'));
     }
 
     /**
@@ -42,7 +47,28 @@ class WargaController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $data = $request->all();
+        // dd($data);
+        $data = new Warga();
+        $data->nik = $request->nik;
+        $data->ektp = $request->nik;
+        $data->nama = $request->nama;
+        $data->id_cabang = $request->id_cabang;
+        $data->alamat = $request->alamat;
+        $data->tempat_lahir = $request->tempat_lahir;
+        $data->tgl_lahir = $request->tgl_lahir;
+        $data->jenis_kelamin = $request->jenis_kelamin;
+        $data->gol_darah = $request->gol_darah;
+        $data->telp = $request->telp;
+        $data->agama = $request->agama;
+        $data->perkawinan = $request->perkawinan;
+        $data->status_warga = $request->status_warga;
+        $data->pendidikan = $request->pendidikan;
+        $data->element_id = $request->element_id;
+        $data->pekerjaan = $request->pekerjaan;
+        // dd($data);
+        $data->save();
+        return redirect()->route('warga.index');
     }
 
     /**

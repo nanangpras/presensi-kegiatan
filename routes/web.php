@@ -29,6 +29,7 @@ Route::get('/presensi', [App\Http\Controllers\PresensiController::class, 'index'
 Route::post('/presensi/seacrh', [App\Http\Controllers\PresensiController::class, 'search'])->name('home.presensi.search');
 Route::post('/presensi', [App\Http\Controllers\PresensiController::class, 'presensi'])->name('klik.presensi');
 Route::post('/presensi/hadir', [App\Http\Controllers\PresensiController::class, 'insertPresensi'])->name('presensi.insert');
+Route::post('/presensi/hadir', [App\Http\Controllers\PresensiController::class, 'insertPresensiDonor'])->name('presensi.insert.donor');
 
 Auth::routes();
 

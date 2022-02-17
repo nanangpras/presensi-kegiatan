@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Models\Cabang;
 use App\Models\Element;
 use App\Models\Kegiatan;
+use App\Models\KegiatanDonor;
 use App\Models\Maisah;
 use App\Models\PresensiKegiatan;
+use App\Models\PresensiKegiatanDonor;
 use App\Models\User;
 use App\Models\Warga;
 use Illuminate\Http\Request;
@@ -140,7 +142,10 @@ class ProfileController extends Controller
         ])->get();
         // dd($presensi);
 
-        return view('warga.pages.presensi.data',compact('presensi'));
+        $donor = KegiatanDonor::orderBy('tgl_update','asc')->first();
+        // dd($donor);
+
+        return view('warga.pages.presensi.data',compact('presensi','donor'));
     }
 
     public function changePassword($id)

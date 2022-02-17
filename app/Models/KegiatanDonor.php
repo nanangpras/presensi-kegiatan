@@ -22,7 +22,7 @@ class KegiatanDonor extends Model
 
     public function presensi()
     {
-        return $this->belongsTo(PresensiKegiatanDonor::class,'id');
+        return $this->belongsTo(PresensiKegiatanDonor::class,'event_id');
         
     }
 }

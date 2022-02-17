@@ -59,6 +59,40 @@
                         </form>
                         
                         @endforeach
+                        
+                        {{-- @foreach ($donor as $item) --}}
+                        <form action="{{route('presensi.insert.donor')}}" method="POST">
+                            @csrf
+                            <div class="row">
+                                <div class="col-lg-3 col-12">
+                                    <div class="mb-5"
+                                        style="border-radius: 15px; background-color: white; padding: 20px;filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.09));">
+                                        <h4 style="font-weight: 700; font-size: 30px; "> {{$donor->nama}}</h4>
+                                        <input type="hidden" name="event_id" value="{{$donor->event_id}}">
+                                        <p style="font-size: 14px;">
+                                            {{$donor->nama}}
+                                            <br>
+                                            Waktu mulai: {{$donor->tgl_donor_mulai}} <br>
+                                            dimulai: <b id="time"></b>
+                                        </p>
+                                        <div class="row">
+                                            <div class="col-6">
+    
+                                            </div>
+                                            <div class="col-6 text-right">
+                                                <button type="submit" class="btn btn-dager" data-toggle="modal" data-target="#hadir"
+                                                    style="background-color: #1E87E8; color: white;">
+                                                    Hadir
+                                                </button>
+                                            </div>
+                                        </div>
+    
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                        
+                        {{-- @endforeach --}}
                     </div>
                 </div>
                 <br>

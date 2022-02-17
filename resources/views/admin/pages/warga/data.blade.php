@@ -17,7 +17,7 @@ data-aos-delay="100">
             </h6>
             <br>
             <div>
-                <table class="table table-striped" id="table-inventaris-book1">
+                <table class="table table-striped" id="data-cabang">
                     <thead class="head-table">
                         <tr>
                             <th>No</th>
@@ -27,16 +27,18 @@ data-aos-delay="100">
                         </tr>
                     </thead>
                     <tbody class="body-table">
-                        <tr>
-                            <td>1</td>
-                            <td>Depok</td>
-                            <td>300</td>
-                            <td>
-                                <a href="" style="text-decoration: none; color:#3685C8;">
-                                    lihat
-                                </a>
-                            </td>
-                        </tr>
+                        @foreach ($cabang as $item)    
+                            <tr>
+                                <td>{{$loop->iteration}}</td>
+                                <td>{{$item->nama}}</td>
+                                <td>NULL</td>
+                                <td>
+                                    <a href="" style="text-decoration: none; color:#3685C8;">
+                                        lihat
+                                    </a>
+                                </td>
+                            </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -47,6 +49,11 @@ data-aos-delay="100">
         </div>
     </div>
     <!-- Box-->
+    <div class="row">
+        <div class="col-md-6">
+            <a href="{{route('warga.create')}}" class="btn btn-sm btn-warning"><i class="nav-icon fas fa-user-edit"></i> Tambah Warga</a>
+        </div>
+    </div>
     <div class="dashboard-heading">
         <br>
         <div class="container-fluid table">
@@ -80,7 +87,7 @@ data-aos-delay="100">
                                         <td>{{$item->pekerjaan}}</td>
                                         <td> 
                                             <a href="{{route('warga.edit',$item->warga_id)}}" class="btn btn-sm btn-warning"><i class="nav-icon fas fa-user-edit"></i> Edit</a>
-                                            <a href="{{route('warga.destroy',$item->warga_id)}}" class="btn btn-sm btn-danger"><i class="nav-icon fas fa-trash-alt"></i> Edit</a>
+                                            <a href="{{route('warga.destroy',$item->warga_id)}}" class="btn btn-sm btn-danger"><i class="nav-icon fas fa-trash-alt"></i> Hapus</a>
                                         </td>
                                     </tr>
                                     @endforeach

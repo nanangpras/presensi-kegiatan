@@ -9,6 +9,7 @@ class PresensiKegiatanDonor extends Model
 {
     use HasFactory;
     protected $table = 'donor_event_reg';
+    public $timestamps = false;
 
     protected $fillable = [
         // 'id',
@@ -22,6 +23,6 @@ class PresensiKegiatanDonor extends Model
 
     public function kegiatan()
     {
-        return $this->hasMany(KegiatanDonor::class,'event_id','id');
+        return $this->hasMany(KegiatanDonor::class,'event_id');
     }
 }

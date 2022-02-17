@@ -24,6 +24,32 @@ $(document).ready(function() {
     table.buttons().container()
         .appendTo('#table_wrapper .col-md-5:eq(0)');
 });
+//data cabang
+$(document).ready(function() {
+    var table = $('#data-cabang').DataTable({
+        lengthChange: false,
+        dom:
+        // 'Bfrtip',
+            "<'row'<'col-md-3'f><'col-md-6'><'col-md-3'B>>" +
+            "<'row'<'col-md-12'tr>>" +
+            "<'row'<'col-md-3'i><'col-md-6'><'col-md-3'p>>",
+        buttons: [{
+            extend: 'csvHtml5',
+            text: '<i class="fa  fa-cloud-download">  Export</i>',
+            titleAttr: 'CSV'
+        }, ],
+
+        language: {
+            searchPlaceholder: "Search",
+            search: "",
+
+        },
+
+    });
+
+    table.buttons().container()
+        .appendTo('#table_wrapper .col-md-5:eq(0)');
+});
 // Buku Masuk
 $(document).ready(function() {
     var table = $('#buku-masuk').DataTable({
