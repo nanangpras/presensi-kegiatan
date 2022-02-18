@@ -76,7 +76,7 @@ class WargaController extends Controller
         $user->nik = $data->nik;
         $user->email = $data->nik;
         $user->role = 'warga';
-        $user->password = Hash::make('warga234');
+        $user->password = Hash::make('234234');
         $user->save();
         
         return redirect()->route('warga.index');

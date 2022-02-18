@@ -31,6 +31,7 @@ Route::post('/presensi', [App\Http\Controllers\PresensiController::class, 'prese
 Route::post('/presensi/hadir', [App\Http\Controllers\PresensiController::class, 'insertPresensi'])->name('presensi.insert');
 Route::post('/presensi/hadir', [App\Http\Controllers\PresensiController::class, 'insertPresensiDonor'])->name('presensi.insert.donor');
 Route::post('/presensi/hadir/admin', [App\Http\Controllers\PresensiController::class, 'presensiDariAdmin'])->name('presensi.insert.admin');
+Route::put('/presensi/change/status/{id}', [App\Http\Controllers\PresensiController::class, 'changeStatusDonor'])->name('presensi.change.status');
 
 Auth::routes();
 

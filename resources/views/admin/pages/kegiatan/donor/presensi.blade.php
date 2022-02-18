@@ -83,6 +83,7 @@
                                         <td>{{ $item->kegiatan }}</td>
                                         <td>{{ $item->warga }}</td>
                                         <td>
+                                            <input type="hidden" id="idpres" value="{{$item->id}}">
                                             <select id="status" name="status" class="form-control"
                                             style="border-radius: 30px; padding-right: 10px;">
                                             <option id="klik-belum" value="belum donor" {{ $item->status == 'belum donor' ? 'selected' : '' }}>Belum Donor</option>
@@ -108,6 +109,7 @@
 @push('after-scripts')
     <script>
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+        var idpresensi = $("#idpres").val();
         $(document).ready(function(){
             $('#cari').on('click',function(){
                 // alert('ok');
@@ -166,19 +168,11 @@
 
         $(document).on("change", "#status", function() {
             // alert('ok');
-            var id = $(this).val();
-            // console.log(id);
-            // $.ajax({
-            //     type: "post",
-            //     url: "{{ route('presensi.insert.admin') }}",
-            //     data: {_token:CSRF_TOKEN, event_id:event, warga_id:warga },
-            //     dataType: "json",
-            //     success: function (response) {
-            //         // console.log(response);
-            //         alert(response.status);
-            //         location.reload(true);
-            //     }
-            // });
+            
+            var status = $("#status").val();
+            // console.log(idpresensi);
+            // console.log(status);
+            
         });
 
     </script>

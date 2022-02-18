@@ -48,7 +48,7 @@
                                             <div class="col-6 text-right">
                                                 <button type="submit" class="btn btn-dager" data-toggle="modal" data-target="#hadir"
                                                     style="background-color: #1E87E8; color: white;">
-                                                    Hadir
+                                                    Sudah Hadir
                                                 </button>
                                             </div>
                                         </div>
