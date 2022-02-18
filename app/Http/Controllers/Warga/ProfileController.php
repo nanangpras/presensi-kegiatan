@@ -142,7 +142,7 @@ class ProfileController extends Controller
         ])->get();
         // dd($presensi);
 
-        $donor = KegiatanDonor::orderBy('tgl_update','asc')->first();
+        $donor = KegiatanDonor::orderBy('tgl_update','desc')->first();
         // dd($donor);
 
         return view('warga.pages.presensi.data',compact('presensi','donor'));

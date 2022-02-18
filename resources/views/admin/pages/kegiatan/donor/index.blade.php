@@ -6,6 +6,21 @@
             <!-- Box-->
             <div class="dashboard-heading">
                 <div class="row">
+                    @if($errors->any())
+                        <div class="alert alert-danger" role="alert">
+                            {{$errors->first()}}
+                          </div>
+                        @endif
+                        @if (session('success'))
+                            <div class="alert alert-success">
+                                {{ session('success') }}
+                            </div>
+                        @endif
+                        @if (session('error'))
+                            <div class="alert alert-danger">
+                                {{ session('error') }}
+                            </div>
+                        @endif
                     <div class="col-6">
                         <h5 class="dashboard-title">
                             Kegiatan

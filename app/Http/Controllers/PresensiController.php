@@ -113,34 +113,99 @@ class PresensiController extends Controller
     {
         $user = Auth::user()->nik;
         $profile_warga = Warga::where('nik',$user)->first();
-        // $presensi = PresensiKegiatanDonor::where([
-        //     ['warga_id',$profile_warga->warga_id],
-        //     ['event_id',$profile_warga->event_id],
-        // ])->first();
-        $donor = KegiatanDonor::orderBy('tgl_update','asc')->first();
+        $donor = KegiatanDonor::orderBy('tgl_update','desc')->get();
+
+        $cekpres_kegiatan = PresensiKegiatanDonor::where('warga_id',$profile_warga->warga_id)->get();
+        $cekpres = PresensiKegiatanDonor::where('warga_id',$profile_warga->warga_id)->first();
         
-        $query = PresensiKegiatanDonor::whereHas('kegiatan',function ($q) use ($profile_warga){
-            $q->where('warga_id',$profile_warga->warga_id);
-        })->first();
+        foreach ($donor as $event) {
+            $presensi = PresensiKegiatanDonor::where('event_id',$event->event_id)->where('warga_id',$profile_warga->warga_id)->first();
+            // $cekwarga = PresensiKegiatanDonor::where('warga_id',$profile_warga->warga_id)->get();
+            // $presensi = $event->event_id;
+            // dd($presensi);
+            // dd($cekwarga);
+            if ($presensi == null) {
+                $response = new PresensiKegiatanDonor();
+                $response->event_id = $request->event_id;
+                $response->warga_id = $profile_warga->warga_id;
+                $response->admin_id = 1;
+                $response->keterangan = 'hadir donor';
+                $response->status = 'hadir';
+                $response->channel = 'web';
+                $response->tgl_insert = Carbon::now();
+                $response->save();
+                return Redirect::back()->with('success','Berhasil presensi');
+            }else {
+                return Redirect::back()->with('error','Sudah presensi');
+            }
 
+        }
+
+        
+        
+        // dd($cek);
+        // $query = PresensiKegiatanDonor::whereHas('kegiatan',function ($q) use ($profile_warga){
+        //     $q->where('warga_id',$profile_warga->warga_id);
+        // })->get();
+
+        // $cek = 
         // dd($query);
+        
 
+        // if ($query->warga_id  ) {
 
-        if ($query == null) {
+        //     $data = new PresensiKegiatanDonor();
+        //     $data->event_id = $request->event_id;
+        //     $data->warga_id = $profile_warga->warga_id;
+        //     $data->admin_id = 1;
+        //     $data->keterangan = 'hadir donor';
+        //     $data->status = 'hadir';
+        //     $data->channel = 'web';
+        //     $data->tgl_insert = Carbon::now();
+        //     $data->save();
+        //     return Redirect::back()->with('success','Berhasil presensi');
+        // }else{
+            
+        //     return Redirect::back()->with('error','Sudah presensi');
+        // }
+    }
 
+    public function presensiDariAdmin(Request $request)
+    {
             $data = new PresensiKegiatanDonor();
             $data->event_id = $request->event_id;
-            $data->warga_id = $profile_warga->warga_id;
+            $data->warga_id = $request->warga_id;
             $data->admin_id = 1;
             $data->keterangan = 'hadir donor';
-            $data->status = 'hadir';
+            $data->status = 'belum donor';
             $data->channel = 'web';
             $data->tgl_insert = Carbon::now();
             $data->save();
-            return Redirect::back()->with('success','Berhasil presensi');
-        }else{
-            
-            return Redirect::back()->with('error','Sudah presensi');
+            if ($data==true) {
+                return response()->json([
+                    "status"=>"berhasil presensi"
+                ]);
+            } else {
+                return response()->json([
+                    "status"=>"gagal presensi"
+                ]);
+            }
+    }
+
+    public function changeStatusDonor($id, Request $request)
+    {
+        
+        $change = PresensiKegiatanDonor::findOrFail($id);
+        $change->status = $request->status;;
+        $change->save();
+        if ($change==true) {
+            return response()->json([
+                "status"=>"berhasil update"
+            ]);
+        } else {
+            return response()->json([
+                "status"=>"gagal update"
+            ]);
         }
     }
 }

@@ -28,5 +28,10 @@ class Warga extends Model
     {
         return $this->belongsTo(User::class,'warga_id');
     }
+
+    public function presdonor()
+    {
+        return $this->belongsTo(PresensiKegiatanDonor::class,'id');
+    }
     
 }

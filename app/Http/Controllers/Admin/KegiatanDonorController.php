@@ -6,9 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\Cabang;
 use App\Models\Element;
 use App\Models\KegiatanDonor;
+use App\Models\PresensiKegiatanDonor;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class KegiatanDonorController extends Controller
 {
@@ -64,8 +66,16 @@ class KegiatanDonorController extends Controller
     public function show($event_id)
     {
         $donorpresensi = KegiatanDonor::findOrFail($event_id);
-        // dd($donorpresensi);
-        return view('admin.pages.kegiatan.donor.presensi',compact('donorpresensi'));
+        $presensi = DB::table('donor_event_reg')
+                        ->join('donor_event','donor_event_reg.event_id','=','donor_event.event_id')
+                        ->join('d_warga','donor_event_reg.warga_id','=','d_warga.warga_id')
+                        ->select('donor_event_reg.*','donor_event.nama as kegiatan','d_warga.nama as warga')
+                        ->where('donor_event_reg.event_id',$event_id)
+                        ->orderBy('id','desc')
+                        ->get();
+        // $presensi = PresensiKegiatanDonor::findOrFail($event_id)->with(['warga','kegiatan'])->get();
+        // dd($presensi);
+        return view('admin.pages.kegiatan.donor.presensi',compact('donorpresensi','presensi'));
     }
 
     /**

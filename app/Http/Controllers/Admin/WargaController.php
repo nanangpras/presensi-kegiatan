@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Cabang;
 use App\Models\Element;
+use App\Models\User;
 use App\Models\Warga;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 
 class WargaController extends Controller
 {
@@ -68,6 +70,15 @@ class WargaController extends Controller
         $data->pekerjaan = $request->pekerjaan;
         // dd($data);
         $data->save();
+
+        $user = new User();
+        $user->name = $data->nama;
+        $user->nik = $data->nik;
+        $user->email = $data->nik;
+        $user->role = 'warga';
+        $user->password = Hash::make('warga234');
+        $user->save();
+        
         return redirect()->route('warga.index');
     }
 

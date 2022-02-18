@@ -25,4 +25,9 @@ class PresensiKegiatanDonor extends Model
     {
         return $this->hasMany(KegiatanDonor::class,'event_id');
     }
+
+    public function warga()
+    {
+        return $this->hasMany(Warga::class,'warga_id');
+    }
 }

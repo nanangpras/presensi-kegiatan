@@ -3,7 +3,7 @@
           
       <div class="list-group list-group-flush">
           <span class="right-nav-text">MENU</span>
-          <a href="presensi/dashboard'"
+          <a href="{{url('/admin')}}"
               class="list-group-item list-group-item-action active {{ Request::is('presensi/dashboard') ? 'active' : '' }}"><span
                   class="icon-dashboard" aria-hidden="true"></span>
               <img src="{{ url('presensi/images/icon/dashboard.svg') }}" style="margin-right: 18px;" alt="">
@@ -62,7 +62,7 @@
           
       <div class="list-group list-group-flush">
           <span class="right-nav-text">MENU</span>
-          <a href="presensi/dashboard'"
+          <a href="{{url('/warga')}}"
               class="list-group-item list-group-item-action active {{ Request::is('presensi/dashboard') ? 'active' : '' }}"><span
                   class="icon-dashboard" aria-hidden="true"></span>
               <img src="{{ url('presensi/images/icon/dashboard.svg') }}" style="margin-right: 18px;" alt="">

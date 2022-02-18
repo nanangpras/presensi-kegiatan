@@ -25,4 +25,5 @@ class KegiatanDonor extends Model
         return $this->belongsTo(PresensiKegiatanDonor::class,'event_id');
         
     }
+    
 }

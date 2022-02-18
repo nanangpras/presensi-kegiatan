@@ -37,14 +37,21 @@ class AdminController extends Controller
     public function searchNik(Request $request)
     {
         $nik = $request->input('nik');
-        $warga = DB::table('d_warga')->where('nik', 'like', $nik)->get();
-        return response()->json($warga);
-        // if ($request->nik) {
-        //     $warga = Warga::where('nik','like',"%".$request->nik."%")->get();
-        // }
+        // $seraching = DB::table('d_warga')->where('nik', 'like','%'.$nik.'%')->get();
+        // return response()->json($warga);
+        
+        $seraching = DB::table('d_warga')->where(function ($query) use ($nik){
+            if (!empty($nik)) {
+                $query->where('nik','like','%'.$nik.'%');
+            }
+        })->orderBy('warga_id','asc')->get();
 
-        // return response()->json([
-        //     'warga' => $warga
-        //  ]);
+        // $xcess_milks = Excess_milk::where(function ($query) use ($request){                 
+        //                     if (!empty($request->search_time)){
+        //                     $query->Where('time', 'LIKE', '%' . $request->search_time . '%');
+        //                  }
+        //             })->orderBy('date','asc')->get;
+
+   return Response($seraching);
     }
 }
