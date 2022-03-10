@@ -68,7 +68,7 @@
               <img src="{{ url('presensi/images/icon/dashboard.svg') }}" style="margin-right: 18px;" alt="">
               Dashboard </a>
 
-          <a href="{{route('presensi.warga')}}"
+          {{-- <a href="{{route('presensi.warga')}}"
               class="list-group-item list-group-item-action {{ Request::is('presensi/dashboard') ? 'active' : '' }}"><span
                   class="icon-dashboard" aria-hidden="true"></span>
               <img src="{{ url('presensi/images/icon/kegiatan.svg') }}" style="margin-right: 18px;" alt="">
@@ -78,7 +78,7 @@
               class="list-group-item list-group-item-action {{ Request::is('kegiatan.*') ? 'active' : '' }}"><span
                   class="icon-katalog" aria-hidden="true"></span>
               <img src="{{ url('presensi/images/icon/kegiatan.svg') }}" style="margin-right: 18px;" alt="">
-              Kegiatan</a>
+              Kegiatan</a> --}}
           <a href="#"
               class="list-group-item list-group-item-action {{ Request::is('presensi/catalogs') ? 'active' : '' }}"><span
                   class="icon-katalog" aria-hidden="true"></span>

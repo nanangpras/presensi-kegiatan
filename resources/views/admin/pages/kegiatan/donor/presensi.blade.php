@@ -72,6 +72,7 @@
                                     <th>No</th>
                                     <th>Nama Kegiatan</th>
                                     <th>Nama Warga</th>
+                                    <th>Cabang</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
@@ -82,6 +83,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->kegiatan }}</td>
                                         <td>{{ $item->warga }}</td>
+                                        <td>{{ $item->cabang }}</td>
                                         <td>
                                             <input type="hidden" id="idpres" value="{{$item->id}}">
                                             <select id="status" name="status" class="form-control"

@@ -55,6 +55,7 @@ Route::prefix('warga')
         ->group(function(){
             Route::get('/', [App\Http\Controllers\HomeController::class, 'warga'])->name('dashboard.warga');
             Route::resource('profile', ProfileController::class);
+            Route::resource('kegiatan', KegiatanController::class);
             Route::get('/presensi/warga', [ProfileController::class,'presensi'])->name('presensi.warga');
             Route::get('/maisah', [MaisahController::class,'add'])->name('maisah.add');
             Route::post('/maisah', [MaisahController::class,'insert'])->name('maisah.insert');
