@@ -16,6 +16,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Redirect;
 
 class ProfileController extends Controller
 {
@@ -32,11 +33,6 @@ class ProfileController extends Controller
         $id = Warga::where('nik',$data)->first();
 
         $usaha = Maisah::where('warga_id',$id->warga_id)->get();
-
-        // $seleksi = User::select('video_galleries.*','users.*')
-        //                         ->join('video_galleries','video_galleries.user_id', '=' ,'users.id')
-        //                         // ->where('users.id','video_galleris.user_id')
-        //                         ->get();
 
         $saya = User::join('d_warga','d_warga.nik','=','users.nik')
                     ->join('md_cabang','md_cabang.id_cabang','=','d_warga.id_cabang')
@@ -132,18 +128,40 @@ class ProfileController extends Controller
 
     public function presensi()
     {
+
+        
         $data = Auth::user()->nik;
         $profile = Warga::where('nik',$data)->first();
         // dd($profile);
+        if ($profile == null) {
+            return view('presensi.bukanwarga');
+        }
         $presensi = Kegiatan::
                         where([
                                 ['id_cabang',$profile->id_cabang],
                                 ['element_id',$profile->element_id]
         ])->get();
         // dd($presensi);
-
+        // dd($kegiatan);
         $donor = KegiatanDonor::orderBy('tgl_update','desc')->first();
-        // dd($donor);
+        $kegiatanSemua = Kegiatan::all();
+        foreach ($kegiatanSemua as $key) {
+            if ($key->id_cabang == 0 && $key->element_id == 0) {
+                $kegiatanCabangElement = Kegiatan::where('element_id',0)->where('id_cabang',0)->get();
+                # code...
+                return view('warga.pages.presensi.data',compact('presensi','donor','kegiatanCabangElement'));
+            }
+            elseif($key->id_cabang == $profile->id_cabang && $key->element_id == $profile->element_id){
+                $kegiatanElement = Kegiatan::where([
+                    ['id_cabang',$profile->id_cabang],
+                    ['element_id',$profile->element_id]
+                ])->get();
+                return view('warga.pages.presensi.data',compact('presensi','donor','kegiatanElement'));
+            }
+        }
+
+        
+        // dd($kegiatanSemua);
 
         return view('warga.pages.presensi.data',compact('presensi','donor'));
     }

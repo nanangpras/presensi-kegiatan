@@ -92,8 +92,6 @@ class PresensiController extends Controller
             ['warga_id',$profile->warga_id],
             ['event_id',$request->event_id],
         ])->exists();
-        // dd($event);
-        // dd($data);
         if ($pres) {
             return Redirect::back()->with('error','Sudah presensi');
         }else{
