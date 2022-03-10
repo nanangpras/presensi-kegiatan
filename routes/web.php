@@ -28,7 +28,7 @@ Route::get('/', function () {
 Route::get('/presensi', [App\Http\Controllers\PresensiController::class, 'index'])->name('home.presensi');
 Route::post('/presensi/seacrh', [App\Http\Controllers\PresensiController::class, 'search'])->name('home.presensi.search');
 Route::post('/presensi', [App\Http\Controllers\PresensiController::class, 'presensi'])->name('klik.presensi');
-Route::post('/presensi/hadir', [App\Http\Controllers\PresensiController::class, 'insertPresensi'])->name('presensi.insert');
+Route::post('/presensi/hadir/warga', [App\Http\Controllers\PresensiController::class, 'insertPresensi'])->name('presensi.insert.warga');
 Route::post('/presensi/hadir', [App\Http\Controllers\PresensiController::class, 'insertPresensiDonor'])->name('presensi.insert.donor');
 Route::post('/presensi/hadir/admin', [App\Http\Controllers\PresensiController::class, 'presensiDariAdmin'])->name('presensi.insert.admin');
 Route::put('/presensi/change/status/{id}', [App\Http\Controllers\PresensiController::class, 'changeStatusDonor'])->name('presensi.change.status');
@@ -55,7 +55,7 @@ Route::prefix('warga')
         ->group(function(){
             Route::get('/', [App\Http\Controllers\HomeController::class, 'warga'])->name('dashboard.warga');
             Route::resource('profile', ProfileController::class);
-            Route::resource('kegiatan', KegiatanController::class);
+            // Route::resource('kegiatan', KegiatanController::class);
             Route::get('/presensi/warga', [ProfileController::class,'presensi'])->name('presensi.warga');
             Route::get('/maisah', [MaisahController::class,'add'])->name('maisah.add');
             Route::post('/maisah', [MaisahController::class,'insert'])->name('maisah.insert');

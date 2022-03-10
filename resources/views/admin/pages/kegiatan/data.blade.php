@@ -102,7 +102,7 @@
                     <div class="form-group">
                         <label for="title">Nama Kegiatan</label>
                         <input type="text" class="form-control @error('nama') is invalid @enderror" name="nama"
-                            placeholder="Masukkan Nama Element" value="{{ old('nama') }}">
+                            placeholder="Masukkan Nama Kegiatan" value="{{ old('nama') }}">
                     </div>
                     <div class="form-group">
                         <label for="title">Tanggal Mulai Pelaksanaan</label>
@@ -117,7 +117,8 @@
                     <div class="form-group">
                         <label for="title">Peserta Cabang</label>
                        <select name="id_cabang" id="id_cabang" class="form-control">
-                           <option value="">-</option>
+                           <option value="">Pilih</option>
+                           <option value="0">Semua</option>
                            @foreach ($cabang as $id => $nama)
                                <option value="{{$id}}">{{$nama}}</option>
                            @endforeach
@@ -126,7 +127,8 @@
                     <div class="form-group">
                         <label for="title">Peserta Element</label>
                         <select name="element_id" id="element_id" class="form-control">
-                            <option value="">-</option>
+                            <option value="">Pilih</option>
+                           <option value="0">Semua</option>
                             @foreach ($element as $id => $nama)
                                 <option value="{{$id}}">{{$nama}}</option>
                             @endforeach
