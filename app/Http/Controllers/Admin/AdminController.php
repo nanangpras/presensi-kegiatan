@@ -40,17 +40,12 @@ class AdminController extends Controller
         // $seraching = DB::table('d_warga')->where('nik', 'like','%'.$nik.'%')->get();
         // return response()->json($warga);
         
-        $seraching = DB::table('d_warga')->where(function ($query) use ($nik){
+        $seraching = DB::table('d_warga')->select('d_warga.*','users.id as user_id')->join('users','d_warga.nik', '=','users.nik')->where(function ($query) use ($nik){
             if (!empty($nik)) {
-                $query->where('nik','like','%'.$nik.'%');
+                $query->where('d_warga.nik','like','%'.$nik.'%');
             }
         })->orderBy('warga_id','asc')->get();
 
-        // $xcess_milks = Excess_milk::where(function ($query) use ($request){                 
-        //                     if (!empty($request->search_time)){
-        //                     $query->Where('time', 'LIKE', '%' . $request->search_time . '%');
-        //                  }
-        //             })->orderBy('date','asc')->get;
 
    return Response($seraching);
     }
