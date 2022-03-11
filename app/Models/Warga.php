@@ -24,6 +24,10 @@ class Warga extends Model
         'pekerjaan',
     ];
 
+    protected $casts = [
+        'element_id' => 'array',
+    ];
+
     public function user()
     {
         return $this->belongsTo(User::class,'warga_id');

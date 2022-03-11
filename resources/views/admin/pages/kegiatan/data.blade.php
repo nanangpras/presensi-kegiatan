@@ -56,12 +56,15 @@
                                         <td>lokasi</td>
                                         <td>status</td>
                                         <td>
-                                            <a href="{{ route('warga.edit', $item->event_id) }}"
+                                            <a href="{{ route('kegiatan.edit', $item->event_id) }}"
                                                 class="btn btn-sm btn-warning"><i class="nav-icon fas fa-user-edit"></i>
                                                 Edit</a>
-                                            <a href="{{ route('warga.destroy', $item->event_id) }}"
+                                            <a href="{{ route('kegiatan.destroy', $item->event_id) }}"
                                                 class="btn btn-sm btn-danger"><i class="nav-icon fas fa-trash-alt"></i>
-                                                Edit</a>
+                                                Hapus</a>
+                                            <a href="{{ route('kegiatan.presensi', $item->event_id) }}"
+                                                class="btn btn-sm btn-danger"><i class="nav-icon fas fa-trash-alt"></i>
+                                                Presensi</a>
                                         </td>
                                     </tr>
                                 @endforeach

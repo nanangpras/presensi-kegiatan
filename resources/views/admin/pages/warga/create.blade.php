@@ -105,12 +105,15 @@
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Element</label>
-                                            <select id="element_id" name="element_id" class="form-control">
-                                                <option>-- Pilih Element --</option>
-                                                @foreach ($element as $id => $nama)
-                                                    <option value="{{$id}}">{{$nama}}</option>
+                                            
+                                            @foreach ($element as $id => $nama)
+                                            <div class="form-check">
+                                                    <input class="form-check-input" type="checkbox" value="{{ $id }}" id="element">
+                                                    <label class="form-check-label">
+                                                        {{ $nama }}
+                                                    </label>
+                                                </div>
                                                 @endforeach
-                                            </select>
                                         </div>
                                         <div class="mb-3">
                                             <label class="form-label">Cabang</label>
