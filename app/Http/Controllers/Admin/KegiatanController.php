@@ -135,7 +135,6 @@ class KegiatanController extends Controller
         return view('admin.pages.laporan.kegiatan',compact('laporanpresensi'));
     }
 
-<<<<<<< HEAD
     public function panitia()
     {
         // $panitia = PanitiaKegiatan::with('kegiatan','warga')->get();
@@ -177,11 +176,11 @@ class KegiatanController extends Controller
             return response()->json(["status"=>"sudah menjadi panitia"]);
             
         }
+    }
         
         
         
 
-=======
     public function presensi($event_id)
     {
         $kegiatan = Kegiatan::findOrFail($event_id);
@@ -194,6 +193,5 @@ class KegiatanController extends Controller
                         ->orderBy('id','desc')
                         ->get();
         return view('admin.pages.kegiatan.presensi-kegiatan',compact('kegiatan','presensi'));
->>>>>>> c5bdcd186cac8c7b1477375ca5c6667ad61f521e
     }
 }
