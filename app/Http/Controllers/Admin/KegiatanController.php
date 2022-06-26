@@ -75,15 +75,8 @@ class KegiatanController extends Controller
         $detail_kegiatan= DB::table('d_event')->where('event_id',$event_id)->first();
 
         // kurban
-        $panitia = DB::table('panitia_kegiatan')
-                    ->join('d_event','d_event.event_id','=','panitia_kegiatan.event_id')
-                    ->join('d_warga','panitia_kegiatan.warga_id','=','d_warga.warga_id')
-                    ->join('md_cabang','d_warga.id_cabang','=','md_cabang.id_cabang')
-                    ->where('panitia_kegiatan.type','kurban')
-                    ->where('panitia_kegiatan.event_id',$event_id)
-                    ->select('panitia_kegiatan.*','d_event.nama as nama_kegiatan','d_warga.nama as nama_warga','md_cabang.nama as nama_cabang','d_warga.warga_id')
-                    ->get();
-        return view('admin.pages.kegiatan.presensi',compact('detail_kegiatan','panitia'));
+        
+        return view('admin.pages.kegiatan.presensi',compact('detail_kegiatan'));
     }
 
     /**
@@ -135,9 +128,13 @@ class KegiatanController extends Controller
         return view('admin.pages.laporan.kegiatan',compact('laporanpresensi'));
     }
 
-    public function panitia()
+    public function kurban()
     {
+        $cabang = Cabang::pluck('nama','id_cabang');
+        $element = Element::pluck('nama','id');
+        $datakegiatan = Kegiatan::where('jenis','kurban')->get();
         // $panitia = PanitiaKegiatan::with('kegiatan','warga')->get();
+        // query panitia
         $panitia = DB::table('panitia_kegiatan')
                     ->join('d_event','d_event.event_id','=','panitia_kegiatan.event_id')
                     ->join('d_warga','panitia_kegiatan.warga_id','=','d_warga.warga_id')
@@ -145,13 +142,52 @@ class KegiatanController extends Controller
                     ->select('panitia_kegiatan.*','d_event.nama as nama_kegiatan','d_warga.nama as nama_warga','md_cabang.nama as nama_cabang')
                     ->get();
         // dd($panitia);
-        return view('admin.pages.panitia.data',compact('panitia'));
+        return view('admin.pages.kurban.data',compact('datakegiatan','cabang','element'));
     }
 
-    public function panitia_create()
+    public function panitia_kurban_create($event_id)
     {
+        $kegiatankurban = Kegiatan::findOrFail($event_id);
         $kegiatan = Kegiatan::select('nama','event_id')->where('jenis','kurban')->get();
-        return view('admin.pages.panitia.create',compact('kegiatan'));
+        return view('admin.pages.kurban.panitia-create',compact('kegiatankurban','kegiatan'));
+    }
+
+    public function detail_panitia_kurban(Request $request)
+    {
+        
+        $kegiatankurban = Kegiatan::where('event_id',$request->event)->first();
+        $panitia = DB::table('panitia_kegiatan')
+                    ->join('d_event','d_event.event_id','=','panitia_kegiatan.event_id')
+                    ->join('d_warga','panitia_kegiatan.warga_id','=','d_warga.warga_id')
+                    ->join('md_cabang','d_warga.id_cabang','=','md_cabang.id_cabang')
+                    ->where('panitia_kegiatan.type','kurban')
+                    ->where('panitia_kegiatan.event_id',$request->event)
+                    ->select('panitia_kegiatan.*','d_event.nama as nama_kegiatan','d_warga.nama as nama_warga','md_cabang.nama as nama_cabang','d_warga.warga_id')
+                    ->get();
+                    // dd($panitia);
+        if ($request->key=="presensi_panitia") {
+            return view('admin.pages.kurban.presensi-kurban',compact('panitia','kegiatankurban'));
+        }elseif ($request->key=="detail_panitia") {
+            $panitia_detail = clone $panitia;
+            return view('admin.pages.kurban.data-panitia',compact('panitia_detail','kegiatankurban'));
+            
+        }
+
+        
+    }
+
+    public function presensi_panitia_kurban($event_id)
+    {
+        $presensi_panitia = Kegiatan::findOrFail($event_id);
+        $panitia = DB::table('panitia_kegiatan')
+                    ->join('d_event','d_event.event_id','=','panitia_kegiatan.event_id')
+                    ->join('d_warga','panitia_kegiatan.warga_id','=','d_warga.warga_id')
+                    ->join('md_cabang','d_warga.id_cabang','=','md_cabang.id_cabang')
+                    ->where('panitia_kegiatan.type','kurban')
+                    ->where('panitia_kegiatan.event_id',$event_id)
+                    ->select('panitia_kegiatan.*','d_event.nama as nama_kegiatan','d_warga.nama as nama_warga','md_cabang.nama as nama_cabang','d_warga.warga_id')
+                    ->get();
+        return view('admin.pages.kurban.presensi-kurban',compact('presensi_panitia'));
     }
 
     public function insertPanitia(Request $request)
@@ -165,6 +201,7 @@ class KegiatanController extends Controller
             $panitia_insert->id_cabang = $request->id_cabang;
             $panitia_insert->type = 'kurban';
             $panitia_insert->status = 1;
+            $panitia_insert->bagian = $request->bagian;
             $panitia_insert->save();
             if ($panitia_insert == true) {
                 return response()->json(["status"=>"berhasil ditambahkan"]);
@@ -178,9 +215,6 @@ class KegiatanController extends Controller
         }
     }
         
-        
-        
-
     public function presensi($event_id)
     {
         $kegiatan = Kegiatan::findOrFail($event_id);

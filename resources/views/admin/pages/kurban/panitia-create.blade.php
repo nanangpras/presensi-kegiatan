@@ -20,26 +20,19 @@
                         @endif
                 <div class="col-lg-12 col-12">
                     <div class="dashboard-heading">
+                        <h4> Kegiatan : {{$kegiatankurban->nama}}</h4>
+                        <input type="hidden" name="event_id" id="event_id" value="{{$kegiatankurban->event_id}}">
+                        <br>
                         <h5 class="dashboard-title">
                             Cari Warga 
                         </h5>
-                        <br>
                         <div class="dashboard-content">
                             <div class="row">
-                                <div class="col-lg-3 col-6">
-                                    <div class="mb-5"
-                                        style="border-radius: 15px; background-color: white; padding: 20px;filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.09));">
-                                        <img src="{{asset('presensi/images/png/donordarahya.png')}}"
-                                            alt="" style="border-radius: 5px;">
-                                        <br> <br>
-                                        <p style="font-size: 14px;"> <b> </b> </p>
-                                        <p style="font-size: 10px;"><span><i class="fa fa-map-pin" aria-hidden="true"></i></span></p>
-                                        
-                                    </div>
-                                </div>
                                 <div class="col-lg-7 col-6">
                                     <div class="mb-5" style="border-radius: 15px; background-color: white; padding: 20px;filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.09));">
                                         <input type="text" placeholder="cari warga dengan NIK" class="form-control" id="nik">
+                                        <br>
+                                        <input type="text" placeholder="cari warga dengan nama" class="form-control" id="nama">
                                     </div>
                                     
                                     <div class="mb-5" id="result" style="border-radius: 15px; background-color: white; padding: 20px;filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.09));">
@@ -51,11 +44,40 @@
                                     <div class="mb-5" style="border-radius: 15px; background-color: white; padding: 20px;filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.09));">
                                         <div class="row">
                                             <div class="col-md-9">
-                                                <select name="event_id" id="event_id" class="form-control">
-                                                    <option value="">--pilih kegiatan--</option>
-                                                    @foreach ($kegiatan as $item)
-                                                        <option name="event_id" value="{{$item->event_id}}">{{$item->nama}}</option>
-                                                    @endforeach
+                                                <input type="hidden" value="{{$kegiatankurban->event_id}}" class="form-control" readonly>
+                                                <select name="bagian" id="bagian" class="form-control bagian">
+                                                    <option value="">--Bagian--</option>
+                                                    <option value="angkutan lokal">Angkutan Lokal</option>
+                                                    <option value="bankom">Bankom</option>
+                                                    <option value="daging sohibul">Daging Sohibul</option>
+                                                    <option value="distribusi">Distribusi</option>
+                                                    <option value="dokumentasi">Dokumentasi</option>
+                                                    <option value="driver">Driver</option>
+                                                    <option value="driver angkutan kulit">Driver Angkutan Kulit</option>
+                                                    <option value="jerohan">Jerohan</option>
+                                                    <option value="jerohan potong packing">Jerohan-Pemotongan dan Packing</option>
+                                                    <option value="jerohan penggodogan">Jerohan-Penggodogan</option>
+                                                    <option value="kaki kepala">Kaki Kepala</option>
+                                                    <option value="koorlap">Koordinator Lapangan</option>
+                                                    <option value="p3k">P3K</option>
+                                                    <option value="potong dg kambing">Pemotongan daging kambing</option>
+                                                    <option value="potong dg sapi">Pemotongan daging sapi</option>
+                                                    <option value="potong tulang kambing">Pemotongan tulang Kambing</option>
+                                                    <option value="potong tulang sapi">Pemotongan tulang Sapi</option>
+                                                    <option value="penanganan kulit">Penanganan Kulit</option>
+                                                    <option value="pendataan hewan qurban">Pendataan Hewan Qurban</option>
+                                                    <option value="pengulitan kambing">Pengulitan kambing</option>
+                                                    <option value="penimbangan dg kambing">Penimbangan daging kambing</option>
+                                                    <option value="penimbangan dg sapi">Penimbangan daging Sapi</option>
+                                                    <option value="penyayatan dg kambing">Penyayatan daging kambing</option>
+                                                    <option value="penyayatan dg sapi">Penyayatan daging sapi</option>
+                                                    <option value="sembelih kulit kambing">Penyembelihan dan Pengulitan kambing</option>
+                                                    <option value="sembelih kulit sapi">Penyembelihan dan Pengulitan sapi</option>
+                                                    <option value="penyembelihan kambing">Penyembelihan kambing</option>
+                                                    <option value="penyembelihan sapi">Penyembelihan & pengulitan Sapi</option>
+                                                    <option value="polowijo">Polowijo</option>
+                                                    <option value="qc kambing">Quality Control Kambing</option>
+                                                    <option value="satgas">Satgas</option>
                                                 </select>
 
                                             </div>
@@ -75,55 +97,13 @@
 
                     </div>
                 </div>
-                {{-- <br>
-                <div class="container-fluid table">
-                    <br>
-                    <h6>
-                        Data Cabang
-                    </h6>
-                    <br>
-                    <div>
-                        <table class="table table-striped" id="table-inventaris-book">
-                            <thead class="head-table">
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama Kegiatan</th>
-                                    <th>Nama Warga</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody class="body-table">
-                                @foreach ($presensi as $item)
-
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->kegiatan }}</td>
-                                        <td>{{ $item->warga }}</td>
-                                        <td>
-                                            <input type="hidden" id="idpres" value="{{$item->id}}">
-                                            <select id="status" name="status" class="form-control"
-                                            style="border-radius: 30px; padding-right: 10px;">
-                                            <option id="klik-belum" value="belum donor" {{ $item->status == 'belum donor' ? 'selected' : '' }}>Belum Donor</option>
-                                            <option id="klik-sudah" value="sudah donor" {{ $item->status == 'sudah donor' ? 'selected' : '' }}>Sudah Donor</option>
-                                            
-                                        </select>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <a href="">
-                    </a>
-
-                </div> --}}
             </div>
         </div>
     </div>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 @endsection
 @push('after-scripts')
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
     <script>
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         var idpresensi = $("#idpres").val();
@@ -136,6 +116,7 @@
                     dataType: "json",
                     data: {
                         'nik' : $('#nik').val(),
+                        'nama' : $('#nama').val(),
                     },
                     success: function (response) {
                         console.log(response);
@@ -163,6 +144,8 @@
                 });
             });
 
+            $('.bagian').select2();
+
         
         });
 
@@ -172,8 +155,9 @@
             var event = $('#event_id').val();
             var warga = $('#warga_id').val();
             var cabang = $('#id_cabang').val();
+            var bagian = $('#bagian').val();
 
-            // alert(cabang);
+            // alert(bagian);
             // console.log(event);
             // console.log(warga);
             $.ajax({
@@ -184,6 +168,7 @@
                     event_id:event, 
                     warga_id:warga,
                     id_cabang:cabang,
+                    bagian:bagian,
                 },
                 dataType: "json",
                 success: function (response) {

@@ -16,6 +16,7 @@ class PanitiaKegiatan extends Model
         'id_cabang',
         'type',
         'status',
+        'bagian',
     ];
 
     public function kegiatan()

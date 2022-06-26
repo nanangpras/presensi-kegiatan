@@ -18,11 +18,11 @@
                   class="icon-katalog" aria-hidden="true"></span>
               <img src="{{ url('presensi/images/icon/kegiatan.svg') }}" style="margin-right: 18px;" alt="">
               Kegiatan</a>
-          <a href="{{ route('panitia.kegiatan') }}" style="color:#4CAF50; background-color:#F7ECDE;"
+          <a href="{{ route('kegiatan.kurban') }}" style="color:#4CAF50; background-color:#F7ECDE;"
               class="list-group-item list-group-item-action {{ Request::is('kegiatan.*') ? 'active' : '' }}"><span
                   class="icon-katalog" aria-hidden="true"></span>
               <img src="{{ url('presensi/images/icon/kegiatan.svg') }}" style="margin-right: 18px;" alt="">
-              Panitia Kegiatan Kurban</a>
+            Kegiatan Kurban</a>
           <a href="{{ route('donor.index') }}"
               class="list-group-item list-group-item-action {{ Request::is('kegiatan.*') ? 'active' : '' }}"><span
                   class="icon-katalog" aria-hidden="true"></span>

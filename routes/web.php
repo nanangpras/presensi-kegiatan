@@ -61,8 +61,10 @@ Route::prefix('admin')
             Route::resource('user', UserController::class);
             Route::resource('donor', KegiatanDonorController::class);
             Route::resource('element', ElementController::class);
-            Route::get('panita/kegiatan',[KegiatanController::class, 'panitia'])->name('panitia.kegiatan');
-            Route::get('panita/kegiatan/create',[KegiatanController::class, 'panitia_create'])->name('panitia.kegiatan.create');
+            Route::get('/kegiatan-kurban',[KegiatanController::class, 'kurban'])->name('kegiatan.kurban');
+            Route::get('/kegiatan-kurban/tambah/panitia/{event_id}',[KegiatanController::class, 'panitia_kurban_create'])->name('panitia-kurban.create');
+            Route::get('/kegiatan-kurban/detail/panitia',[KegiatanController::class, 'detail_panitia_kurban'])->name('panitia-kurban.detail');
+            Route::get('/kegiatan-kurban/presensi/panitia/{event_id}',[KegiatanController::class, 'presensi_panitia_kurban'])->name('panitia-kurban.presensi');
             Route::post('panita/kegiatan/presensi',[PresensiController::class, 'presensiPanitiaKurban'])->name('panitia.presensi');
             Route::post('panita/kegiatan',[KegiatanController::class, 'insertPanitia'])->name('panitia.kegiatan.insert');
             Route::get('laporan/presensi',[KegiatanController::class, 'summary'])->name('laporan');

@@ -20,41 +20,11 @@
                         @endif
                 <div class="col-lg-12 col-12">
                     <div class="dashboard-heading">
+                        Presensi Kegiatan:
                         <h5 class="dashboard-title">
-                            Presensi Donor Darah 
+                            {{$kegiatankurban->nama}}
                         </h5>
                         <br>
-                        <div class="dashboard-content">
-                            <div class="row">
-                                <div class="col-lg-3 col-6">
-                                    <div class="mb-5"
-                                        style="border-radius: 15px; background-color: white; padding: 20px;filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.09));">
-                                        <img src="{{asset('presensi/images/png/donordarahya.png')}}"
-                                            alt="" style="border-radius: 5px;">
-                                        <br> <br>
-                                        {{-- <input type="hidden" id="event_id" value="{{$detail_kegiatan->event_id}}"> --}}
-                                        {{-- <p style="font-size: 14px;"> <b>{{$detail_kegiatan->nama}} </b> </p>
-                                        <p style="font-size: 10px;"><span><i class="fa fa-map-pin" aria-hidden="true"></i></span> {{$detail_kegiatan->lokasi}}</p> --}}
-                                        
-                                    </div>
-                                </div>
-                                <div class="col-lg-7 col-6">
-                                    <div class="mb-5" style="border-radius: 15px; background-color: white; padding: 20px;filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.09));">
-                                        <input type="text" placeholder="cari warga dengan NIK" class="form-control" id="nik">
-                                    </div>
-                                    <div class="mb-5" id="result" style="border-radius: 15px; background-color: white; padding: 20px;filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.09));">
-                                        <h5>Hasil pencarian</h5>
-                                        <br>
-                                        <p>..</p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-6">
-                                    <div class="mb-5" style="border-radius: 15px; background-color: white; padding: 20px;filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.09));">
-                                        <button class="btn btn-lg btn-primary" id="cari">Cari</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
 
                     </div>
                 </div>
@@ -78,7 +48,7 @@
                                     <th>No</th>
                                     <th>Nama Warga</th>
                                     <th>Cabang</th>
-                                    <th>Aksi</th>
+                                    <th>Bagian</th>
                                 </tr>
                             </thead>
                             <tbody class="body-table">
@@ -92,15 +62,7 @@
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->nama_warga }}</td>
                                         <td>{{ $item->nama_cabang }}</td>
-                                        <td>
-                                            <input type="hidden" id="idpres" value="{{$item->id}}">
-                                            <select id="status" name="status" class="form-control"
-                                            style="border-radius: 30px; padding-right: 10px;">
-                                            <option id="klik-belum" value="belum donor" {{ $item->status == 'belum donor' ? 'selected' : '' }}>Belum Donor</option>
-                                            <option id="klik-sudah" value="sudah donor" {{ $item->status == 'sudah donor' ? 'selected' : '' }}>Sudah Donor</option>
-                                            
-                                        </select>
-                                        </td>
+                                        <td>{{$item->bagian ?? 'belum memilih'}}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -217,6 +179,9 @@
                 success: function (response) {
                     alert(response.status);
                     console.log(response);
+                    $("#check-all").prop('checked',false);
+                    $("#bulk-presensi").prop('disabled');
+                    $(".select_single").prop('checked', false)
                 }
             });
         }

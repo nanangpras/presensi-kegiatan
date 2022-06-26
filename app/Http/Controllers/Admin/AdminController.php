@@ -37,14 +37,22 @@ class AdminController extends Controller
     public function searchNik(Request $request)
     {
         $nik = $request->input('nik');
+        $nama = $request->input('nama');
         // $seraching = DB::table('d_warga')->where('nik', 'like','%'.$nik.'%')->get();
         // return response()->json($warga);
         
-        $seraching = DB::table('d_warga')->select('d_warga.*','users.id as user_id')->join('users','d_warga.nik', '=','users.nik')->where(function ($query) use ($nik){
+        $seraching = DB::table('d_warga')->select('d_warga.*','users.id as user_id')->join('users','d_warga.nik', '=','users.nik')
+        ->where(function ($query) use ($nik){
             if (!empty($nik)) {
                 $query->where('d_warga.nik','like','%'.$nik.'%');
             }
-        })->orderBy('warga_id','asc')->get();
+        })
+        ->orWhere(function ($query) use ($nama){
+            if (!empty($nama)) {
+                $query->where('d_warga.nama','like','%'.$nama.'%');
+            }
+        })
+        ->orderBy('warga_id','asc')->get();
 
 
    return Response($seraching);
