@@ -92,8 +92,6 @@ class PresensiController extends Controller
             ['warga_id',$profile->warga_id],
             ['event_id',$request->event_id],
         ])->exists();
-        // dd($event);
-        // dd($data);
         if ($pres) {
             return Redirect::back()->with('error','Sudah presensi');
         }else{
@@ -171,7 +169,7 @@ class PresensiController extends Controller
         // }
     }
 
-    public function presensiDariAdmin(Request $request)
+    public function presensiDonorDariAdmin(Request $request)
     {
             $data = new PresensiKegiatanDonor();
             $data->event_id = $request->event_id;
@@ -181,6 +179,26 @@ class PresensiController extends Controller
             $data->status = 'belum donor';
             $data->channel = 'web';
             $data->tgl_insert = Carbon::now();
+            $data->save();
+            if ($data==true) {
+                return response()->json([
+                    "status"=>"berhasil presensi"
+                ]);
+            } else {
+                return response()->json([
+                    "status"=>"gagal presensi"
+                ]);
+            }
+    }
+
+    public function presensiKegiatanDariAdmin(Request $request)
+    {
+            $data = new PresensiKegiatan();
+            $data->event_id = $request->event_id;
+            $data->user_id = $request->user_id;
+            $data->warga_id = $request->warga_id;
+            $data->admin_id = Auth::user()->id;
+            $data->keterangan = 'hadir';
             $data->save();
             if ($data==true) {
                 return response()->json([

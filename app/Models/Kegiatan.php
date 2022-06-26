@@ -10,6 +10,7 @@ class Kegiatan extends Model
     use HasFactory;
     protected $table = 'd_event';
     public $timestamps = false;
+    protected $primaryKey = 'event_id';
 
     protected $fillable = [
         // 'event_id',

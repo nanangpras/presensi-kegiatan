@@ -56,13 +56,18 @@
                                         <td>lokasi</td>
                                         <td>status</td>
                                         <td>
-                                            <a href="{{ route('warga.edit', $item->event_id) }}"
+                                            <a href="{{ route('kegiatan.edit', $item->event_id) }}"
                                                 class="btn btn-sm btn-warning"><i class="nav-icon fas fa-user-edit"></i>
                                                 Edit</a>
-                                            <a href="{{ route('warga.destroy', $item->event_id) }}"
+                                            <a href="{{ route('kegiatan.destroy', $item->event_id) }}"
                                                 class="btn btn-sm btn-danger"><i class="nav-icon fas fa-trash-alt"></i>
+<<<<<<< HEAD
                                                 Edit</a>
                                             <a href="{{ route('kegiatan.show', $item->event_id) }}"
+=======
+                                                Hapus</a>
+                                            <a href="{{ route('kegiatan.presensi', $item->event_id) }}"
+>>>>>>> c5bdcd186cac8c7b1477375ca5c6667ad61f521e
                                                 class="btn btn-sm btn-danger"><i class="nav-icon fas fa-trash-alt"></i>
                                                 Presensi</a>
                                         </td>
@@ -105,7 +110,7 @@
                     <div class="form-group">
                         <label for="title">Nama Kegiatan</label>
                         <input type="text" class="form-control @error('nama') is invalid @enderror" name="nama"
-                            placeholder="Masukkan Nama Element" value="{{ old('nama') }}">
+                            placeholder="Masukkan Nama Kegiatan" value="{{ old('nama') }}">
                     </div>
                     <div class="form-group">
                         <label for="title">Tanggal Mulai Pelaksanaan</label>
@@ -129,7 +134,12 @@
                     <div class="form-group">
                         <label for="title">Peserta Cabang</label>
                        <select name="id_cabang" id="id_cabang" class="form-control">
+<<<<<<< HEAD
                            <option value="0">-</option>
+=======
+                           <option value="">Pilih</option>
+                           <option value="0">Semua</option>
+>>>>>>> c5bdcd186cac8c7b1477375ca5c6667ad61f521e
                            @foreach ($cabang as $id => $nama)
                                <option value="{{$id}}">{{$nama}}</option>
                            @endforeach
@@ -138,7 +148,12 @@
                     <div class="form-group">
                         <label for="title">Peserta Element</label>
                         <select name="element_id" id="element_id" class="form-control">
+<<<<<<< HEAD
                             <option value="0">-</option>
+=======
+                            <option value="">Pilih</option>
+                           <option value="0">Semua</option>
+>>>>>>> c5bdcd186cac8c7b1477375ca5c6667ad61f521e
                             @foreach ($element as $id => $nama)
                                 <option value="{{$id}}">{{$nama}}</option>
                             @endforeach

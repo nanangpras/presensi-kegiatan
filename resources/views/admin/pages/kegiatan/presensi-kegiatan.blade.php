@@ -21,7 +21,7 @@
                 <div class="col-lg-12 col-12">
                     <div class="dashboard-heading">
                         <h5 class="dashboard-title">
-                            Presensi Donor Darah 
+                            Presensi Kegiatan {{ $kegiatan->nama }} 
                         </h5>
                         <br>
                         <div class="dashboard-content">
@@ -29,12 +29,12 @@
                                 <div class="col-lg-3 col-6">
                                     <div class="mb-5"
                                         style="border-radius: 15px; background-color: white; padding: 20px;filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.09));">
-                                        <img src="{{asset('presensi/images/png/donordarahya.png')}}"
+                                        <img src="{{asset('presensi/images/png/kegiatan.png')}}"
                                             alt="" style="border-radius: 5px;">
                                         <br> <br>
-                                        <input type="hidden" id="event_id" value="{{$donorpresensi->event_id}}">
-                                        <p style="font-size: 14px;"> <b>{{$donorpresensi->nama}} </b> </p>
-                                        <p style="font-size: 10px;"><span><i class="fa fa-map-pin" aria-hidden="true"></i></span> {{$donorpresensi->lokasi}}</p>
+                                        <input type="hidden" id="event_id" value="{{$kegiatan->event_id}}">
+                                        <p style="font-size: 14px;"> <b>{{$kegiatan->nama}} </b> </p>
+                                        <p style="font-size: 10px;"><span><i class="fa fa-map-pin" aria-hidden="true"></i></span> {{$kegiatan->lokasi}}</p>
                                         
                                     </div>
                                 </div>
@@ -73,7 +73,7 @@
                                     <th>Nama Kegiatan</th>
                                     <th>Nama Warga</th>
                                     <th>Cabang</th>
-                                    <th>Aksi</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody class="body-table">
@@ -84,15 +84,7 @@
                                         <td>{{ $item->kegiatan }}</td>
                                         <td>{{ $item->warga }}</td>
                                         <td>{{ $item->cabang }}</td>
-                                        <td>
-                                            <input type="hidden" id="idpres" value="{{$item->id}}">
-                                            <select id="status" name="status" class="form-control"
-                                            style="border-radius: 30px; padding-right: 10px;">
-                                            <option id="klik-belum" value="belum donor" {{ $item->status == 'belum donor' ? 'selected' : '' }}>Belum Donor</option>
-                                            <option id="klik-sudah" value="sudah donor" {{ $item->status == 'sudah donor' ? 'selected' : '' }}>Sudah Donor</option>
-                                            
-                                        </select>
-                                        </td>
+                                        
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -132,7 +124,9 @@
                                     '<div class="col-2"> foto </div>' +
                                     '<div class="col-6">' +
                                         '<input type="hidden" id="warga_id" value='+value.warga_id+'>'+
+                                        '<input type="hidden" id="user_id" value='+value.user_id+'>'+
                                         '<p class="m-0 sub-text" id="warga_id">'+ value.warga_id +'</p>' +
+                                        '<p class="m-0 sub-text" id="user_id">'+ value.user_id +'</p>' +
                                         '<a href=""><h6 class="m-0">'+ value.nama +'</h6></a>' +
                                         '<p class="m-0 sub-text">'+ value.alamat +'</p>' +
                                     '</div>' +
@@ -153,12 +147,13 @@
         $(document).on("click", "#klik-hadir", function() {
             var event = $('#event_id').val();
             var warga = $('#warga_id').val();
+            var user = $('#user_id').val();
             // console.log(event);
             // console.log(warga);
             $.ajax({
                 type: "post",
-                url: "{{ route('presensi.insert.admin') }}",
-                data: {_token:CSRF_TOKEN, event_id:event, warga_id:warga },
+                url: "{{ route('presensi.kegiatan.admin') }}",
+                data: {_token:CSRF_TOKEN, event_id:event, warga_id:warga, user_id:user },
                 dataType: "json",
                 success: function (response) {
                     // console.log(response);

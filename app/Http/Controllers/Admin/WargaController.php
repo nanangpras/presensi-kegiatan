@@ -68,6 +68,8 @@ class WargaController extends Controller
         $data->pendidikan = $request->pendidikan;
         $data->element_id = $request->element_id;
         $data->pekerjaan = $request->pekerjaan;
+        $data->pekerjaan = $request->pekerjaan;
+        $data->lanjutan_warga = 1;
         // dd($data);
         $data->save();
 

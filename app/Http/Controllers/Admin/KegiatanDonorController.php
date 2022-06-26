@@ -69,7 +69,8 @@ class KegiatanDonorController extends Controller
         $presensi = DB::table('donor_event_reg')
                         ->join('donor_event','donor_event_reg.event_id','=','donor_event.event_id')
                         ->join('d_warga','donor_event_reg.warga_id','=','d_warga.warga_id')
-                        ->select('donor_event_reg.*','donor_event.nama as kegiatan','d_warga.nama as warga')
+                        ->join('md_cabang','d_warga.id_cabang','=','md_cabang.id_cabang')
+                        ->select('donor_event_reg.*','donor_event.nama as kegiatan','d_warga.nama as warga','md_cabang.nama as cabang')
                         ->where('donor_event_reg.event_id',$event_id)
                         ->orderBy('id','desc')
                         ->get();
