@@ -31,7 +31,11 @@ class Warga extends Model
 
     public function presdonor()
     {
-        return $this->belongsTo(PresensiKegiatanDonor::class,'id');
+        return $this->belongsTo(PresensiKegiatanDonor::class,'id','warga_id');
+    }
+    public function panitia()
+    {
+        return $this->hasMany(PanitiaKegiatan::class,'warga_id');
     }
     
 }

@@ -102,6 +102,7 @@ class PresensiController extends Controller
             $data->warga_id = $profile->warga_id;
             $data->user_id = Auth::user()->id;
             $data->keterangan = 'hadir';
+            $data->type = 'pertemuan';
             $data->save();
             return Redirect::back()->with('success','Berhasil presensi');
         }
@@ -207,5 +208,44 @@ class PresensiController extends Controller
                 "status"=>"gagal update"
             ]);
         }
+    }
+
+    public function presensiPanitiaKurban(Request $request)
+    {
+        // dd($request->all());
+        foreach ($request->data as $i) {
+            $cek = PresensiKegiatan::where('warga_id',$i['warga'])->where('event_id',$i['event'])->count();
+        }
+        if ($cek < 1) {
+            $result = [];
+            foreach ($request->data as $item) {
+                $insert['event_id']     = $item['event'];
+                $insert['warga_id']     = $item['warga'];
+                $insert['type']         = 'kurban';
+                $insert['keterangan']   = 'hadir';
+                $insert['user_id']      = Auth::user()->id;
+                $insert['admin_id']     = Auth::user()->id;
+                $insert['created_at']   = Carbon::now();
+                $insert['updated_at']   = Carbon::now();
+                
+                array_push($result,$insert);
+            }
+            $presensipanitia = PresensiKegiatan::insert($result);
+            if ($presensipanitia==true) {
+                return response()->json([
+                    "status"=>"berhasil presensi"
+                ]);
+            } else {
+                return response()->json([
+                    "status"=>"gagal presensi"
+                ]);
+            }
+        } else {
+            return response()->json([
+                "status"=>"sudah presensi"
+            ]);
+        }
+        
+
     }
 }

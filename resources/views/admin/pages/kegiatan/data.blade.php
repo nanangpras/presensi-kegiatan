@@ -62,6 +62,9 @@
                                             <a href="{{ route('warga.destroy', $item->event_id) }}"
                                                 class="btn btn-sm btn-danger"><i class="nav-icon fas fa-trash-alt"></i>
                                                 Edit</a>
+                                            <a href="{{ route('kegiatan.show', $item->event_id) }}"
+                                                class="btn btn-sm btn-danger"><i class="nav-icon fas fa-trash-alt"></i>
+                                                Presensi</a>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -115,9 +118,18 @@
                             placeholder="Masukkan Nama Element" value="{{ old('tgl_event_akhir') }}">
                     </div>
                     <div class="form-group">
+                        <label for="title">Jenis Kegiatan</label>
+                       <select name="jenis" id="jenis" class="form-control">
+                           <option value="">-</option>
+                           <option value="kurban">Kurban</option>
+                           <option value="pertemuan">Pertemuan</option>
+                           <option value="kajian">Kajian</option>
+                       </select>
+                    </div>
+                    <div class="form-group">
                         <label for="title">Peserta Cabang</label>
                        <select name="id_cabang" id="id_cabang" class="form-control">
-                           <option value="">-</option>
+                           <option value="0">-</option>
                            @foreach ($cabang as $id => $nama)
                                <option value="{{$id}}">{{$nama}}</option>
                            @endforeach
@@ -126,7 +138,7 @@
                     <div class="form-group">
                         <label for="title">Peserta Element</label>
                         <select name="element_id" id="element_id" class="form-control">
-                            <option value="">-</option>
+                            <option value="0">-</option>
                             @foreach ($element as $id => $nama)
                                 <option value="{{$id}}">{{$nama}}</option>
                             @endforeach

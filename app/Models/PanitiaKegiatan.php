@@ -6,22 +6,25 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class PresensiKegiatan extends Model
+class PanitiaKegiatan extends Model
 {
     use HasFactory;
-    protected $table = 'event_registers';
-
+    protected $table = 'panitia_kegiatan';
     protected $fillable = [
-        // 'id',
-        'warga_id',
-        'user_id',
         'event_id',
+        'warga_id',
+        'id_cabang',
         'type',
-        'keterangan',
+        'status',
     ];
 
     public function kegiatan()
     {
-        return $this->hasMany(Kegiatan::class,'event_id','id');
+        return $this->belongsTo(Kegiatan::class,'id','event_id');
     }
+    public function warga()
+    {
+        return $this->belongsTo(Warga::class,'id','warga_id');
+    }
+
 }

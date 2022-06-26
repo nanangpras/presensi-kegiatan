@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Kegiatan;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -29,8 +30,6 @@ class HomeController extends Controller
         //                                 ->selectRaw('*,sum(qty) as jumlah')
         //                                 ->get();
         // return view('home');
-        // $kegiatan=Kegiatan::with('presensi')
-        //                     ->get();
         // dd($kegiatan);
         return view('admin.pages.das');
     }

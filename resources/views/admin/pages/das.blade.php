@@ -36,7 +36,7 @@ data-aos-delay="100">
                                         <img src="presensi/images/assets/chart2.png" alt="">
                                     </div>
                                     <div class="col-8">
-                                        <h4 style="font-weight: 700; font-size: 30px; "> 45</h4>
+                                        <h4 style="font-weight: 700; font-size: 30px; "> 5</h4>
                                         <p style="font-size: 14px;"> Total Kegiatan</p>
 
                                     </div>

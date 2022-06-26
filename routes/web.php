@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\KegiatanController;
 use App\Http\Controllers\Admin\KegiatanDonorController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\WargaController;
+use App\Http\Controllers\PresensiController;
 use App\Http\Controllers\Warga\MaisahController;
 use App\Http\Controllers\Warga\ProfileController;
 use Illuminate\Support\Facades\Route;
@@ -44,6 +45,10 @@ Route::prefix('admin')
             Route::resource('user', UserController::class);
             Route::resource('donor', KegiatanDonorController::class);
             Route::resource('element', ElementController::class);
+            Route::get('panita/kegiatan',[KegiatanController::class, 'panitia'])->name('panitia.kegiatan');
+            Route::get('panita/kegiatan/create',[KegiatanController::class, 'panitia_create'])->name('panitia.kegiatan.create');
+            Route::post('panita/kegiatan/presensi',[PresensiController::class, 'presensiPanitiaKurban'])->name('panitia.presensi');
+            Route::post('panita/kegiatan',[KegiatanController::class, 'insertPanitia'])->name('panitia.kegiatan.insert');
             Route::get('laporan/presensi',[KegiatanController::class, 'summary'])->name('laporan');
             Route::get('/list/cabang',[AdminController::class, 'getCabang'])->name('cabang.list');
             Route::get('/maisah/list', [MaisahController::class,'list'])->name('usaha-warga.list');
