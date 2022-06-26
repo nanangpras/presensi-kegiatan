@@ -13,7 +13,7 @@ class Warga extends Model
 
     protected $fillable = [
         'id_cabang',
-        'nik',
+        // 'nik',
         'nama',
         'tempat_lahir',
         'tgl_lahir',
