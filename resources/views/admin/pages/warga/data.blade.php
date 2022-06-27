@@ -3,12 +3,19 @@
 <div class="section-content section-dashboard-home aos-init aos-animate" data-aos="fade-up"
 data-aos-delay="100">
 <div class="container-fluid">
+    
     <br>
     <!-- Box-->
     <div class="dashboard-heading">
         <h5 class="dashboard-title">
             Data Warga
         </h5>
+        <br>
+        <div class="row">
+            <div class="col-md-6">
+                <a href="{{route('warga.create')}}" class="btn btn-sm btn-warning"><i class="nav-icon fas fa-user-edit"></i> Tambah Warga</a>
+            </div>
+        </div>
         <br>
         <div class="container-fluid table">
             <br>
@@ -49,11 +56,7 @@ data-aos-delay="100">
         </div>
     </div>
     <!-- Box-->
-    <div class="row">
-        <div class="col-md-6">
-            <a href="{{route('warga.create')}}" class="btn btn-sm btn-warning"><i class="nav-icon fas fa-user-edit"></i> Tambah Warga</a>
-        </div>
-    </div>
+    
     <div class="dashboard-heading">
         <br>
         <div class="container-fluid table">

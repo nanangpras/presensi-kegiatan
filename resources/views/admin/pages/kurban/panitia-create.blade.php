@@ -78,6 +78,7 @@
                                                     <option value="polowijo">Polowijo</option>
                                                     <option value="qc kambing">Quality Control Kambing</option>
                                                     <option value="satgas">Satgas</option>
+                                                    <option value="peralatan dan tempat">Peralatan dan Tempat</option>
                                                 </select>
 
                                             </div>
@@ -94,8 +95,61 @@
                                 </div>
                             </div>
                         </div>
-
+                        
                     </div>
+                    <br>
+                <div class="container-fluid table">
+                    <div class="card">
+                        <div class="card-header">
+                            <h6>
+                                Data Cabang
+                            </h6>
+                            <button type="button" class="btn btn-danger" disabled id="bulk-presensi" onclick="presensikurban()" style="float: left;">presensikan</button>
+                            <br>
+                        </div>
+                        <div class="card-body">
+
+                    <div>
+                        <table class="table table-striped tablePanitia" id="table-inventaris-book">
+                            <thead class="head-table">
+                                <tr>
+                                    <th><input id="check-all" type="checkbox" class="select-all checkbox" value="select-all" /></th>
+                                    <th>No</th>
+                                    <th>Nama Warga</th>
+                                    <th>Cabang</th>
+                                    <th>Bagian</th>
+                                    <th>#</th>
+                                </tr>
+                            </thead>
+                            <tbody class="body-table">
+                                @foreach ($panitia as $item)
+
+                                    <tr>
+                                        <td>
+                                            <input type="checkbox" name="select_process[{{$item->id}}]" class="select_single" value="{{$item->id}}">
+                                            <input type="hidden" name="warga_id" id="wargaId" class="select_single" value="{{$item->warga_id}}">
+                                        </td>
+                                        <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $item->nama_warga }}</td>
+                                        <td>{{ $item->nama_cabang }}</td>
+                                        <td>{{ $item->bagian }}</td>
+                                        <td>
+                                            <a href="#" class="btn btn-primary btn-sm">Hapus</a>
+                                        </td>
+                                    </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                        </div>
+                    </div>
+                    <br>
+                    
+
+                    <a href="">
+                    </a>
+
+                </div>
                 </div>
             </div>
         </div>

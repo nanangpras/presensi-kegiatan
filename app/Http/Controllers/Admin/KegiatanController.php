@@ -8,6 +8,7 @@ use App\Models\Cabang;
 use App\Models\Element;
 use App\Models\Kegiatan;
 use App\Models\PanitiaKegiatan;
+use App\Models\PresensiKegiatan;
 use App\Models\ViewPresensi;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -149,12 +150,20 @@ class KegiatanController extends Controller
     {
         $kegiatankurban = Kegiatan::findOrFail($event_id);
         $kegiatan = Kegiatan::select('nama','event_id')->where('jenis','kurban')->get();
-        return view('admin.pages.kurban.panitia-create',compact('kegiatankurban','kegiatan'));
+        $panitia = DB::table('panitia_kegiatan')
+                    ->join('d_event','d_event.event_id','=','panitia_kegiatan.event_id')
+                    ->join('d_warga','panitia_kegiatan.warga_id','=','d_warga.warga_id')
+                    ->join('md_cabang','d_warga.id_cabang','=','md_cabang.id_cabang')
+                    ->where('panitia_kegiatan.type','kurban')
+                    ->where('panitia_kegiatan.event_id',$event_id)
+                    ->select('panitia_kegiatan.*','d_event.nama as nama_kegiatan','d_warga.nama as nama_warga','md_cabang.nama as nama_cabang','d_warga.warga_id')
+                    ->get();
+        return view('admin.pages.kurban.panitia-create',compact('kegiatankurban','kegiatan','panitia'));
     }
 
     public function detail_panitia_kurban(Request $request)
     {
-        
+        $eventId = $request->event;
         $kegiatankurban = Kegiatan::where('event_id',$request->event)->first();
         $panitia = DB::table('panitia_kegiatan')
                     ->join('d_event','d_event.event_id','=','panitia_kegiatan.event_id')
@@ -166,11 +175,25 @@ class KegiatanController extends Controller
                     ->get();
                     // dd($panitia);
         if ($request->key=="presensi_panitia") {
+            // dd($panitahadir);
             return view('admin.pages.kurban.presensi-kurban',compact('panitia','kegiatankurban'));
         }elseif ($request->key=="detail_panitia") {
             $panitia_detail = clone $panitia;
             return view('admin.pages.kurban.data-panitia',compact('panitia_detail','kegiatankurban'));
             
+        }elseif ($request->key=="statistik_presensi") {
+            $totalpanitia = $panitia->count();
+            $panitahadir = PresensiKegiatan::where('type','kurban')->where('keterangan','hadir')->where('event_id',$request->event)->count();
+            return view('admin.pages.kurban.part.statistik-presensi',compact('totalpanitia','panitahadir'));
+        }elseif ($request->key =="cetak_presensi") {
+            $cetak = PresensiKegiatan::select('event_registers.*','d_warga.nama as nama_warga','d_event.nama as nama_kegiatan','md_cabang.nama as nama_cabang','panitia_kegiatan.bagian as bagian_panitia')
+                                        ->join('d_warga','event_registers.warga_id','=','d_warga.warga_id')
+                                        ->join('md_cabang','md_cabang.id_cabang','=','d_warga.id_cabang')
+                                        ->join('panitia_kegiatan','panitia_kegiatan.warga_id','=','d_warga.warga_id')
+                                        ->join('d_event','event_registers.event_id','=','d_event.event_id')
+                                        ->where('event_registers.event_id',$eventId)
+                                        ->get();
+            return view('admin.pages.kurban.part.cetak-presensi',compact('cetak','request','kegiatankurban'));
         }
 
         

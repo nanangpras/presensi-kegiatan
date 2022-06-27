@@ -23,9 +23,13 @@
                         Presensi Kegiatan:
                         <h5 class="dashboard-title">
                             {{$kegiatankurban->nama}}
+                            <input type="hidden" name="event_id" id="event_id" value="{{$kegiatankurban->event_id}}">
                         </h5>
                         <br>
 
+                    </div>
+                    <div class="row" id="statistik-presensi">
+                        
                     </div>
                 </div>
                 <br>
@@ -35,7 +39,8 @@
                             <h6>
                                 Data Cabang
                             </h6>
-                            <button type="button" class="btn btn-danger" disabled id="bulk-presensi" onclick="presensikurban()" style="float: left;">presensikan</button>
+                            <button type="button" style="background-color: #FF9F29; color:white" class="btn btn-danger" disabled id="bulk-presensi" onclick="presensikurban()" style="float: left;">presensikan</button>
+                            <a href="{{route('panitia-kurban.detail',['key'=>'cetak_presensi','event'=> $kegiatankurban->event_id])}}" type="button" style="background-color: #A27B5C; color:white" class="btn btn-danger" style="float: left;">cetak</a>
                             <br>
                         </div>
                         <div class="card-body">
@@ -56,8 +61,8 @@
 
                                     <tr>
                                         <td>
-                                            <input type="checkbox" name="select_process[{{$item->id}}]" class="select_single" value="{{$item->id}}">
-                                            <input type="hidden" name="warga_id" id="wargaId" class="select_single" value="{{$item->warga_id}}">
+                                            <input type="checkbox" name="select_process[{{$item->id}}]" class="select_single" value="{{$item->warga_id}}">
+                                            <input type="hidden" name="warga_id" id="wargaId" value="{{$item->warga_id}}">
                                         </td>
                                         <td>{{ $loop->iteration }}</td>
                                         <td>{{ $item->nama_warga }}</td>
@@ -67,14 +72,10 @@
                                 @endforeach
                             </tbody>
                         </table>
-                    </div>
+                        </div>
                         </div>
                     </div>
                     <br>
-                    
-
-                    <a href="">
-                    </a>
 
                 </div>
             </div>
@@ -121,10 +122,6 @@
                 });
             });
 
-        
-        });
-
-        $(document).ready(function () {
             // cekall
             $("#check-all").on('click', function() {
                 var isChecked = $("#check-all").prop('checked')
@@ -143,27 +140,25 @@
                 let button_terpilih = button_presensi;
                 $("#bulk-presensi").prop('disabled',!button_presensi);
             });
-            
+
+            $("#statistik-presensi").load("{{route('panitia-kurban.detail',['key'=>'statistik_presensi'])}}&event={{$item->event_id}}");
+
+        
         });
 
-        // $(document).on("click",'#bulk-presensi', function () {
-        //     var event = $('#event_id').val();
-        //     var id_warga = $("#wargaId").val();
-        //     alert(event);
-        // });
-
         function presensikurban() {
+             let event    = $('#event_id').val();
             let idwarga    = $("#wargaId").val();
             let cek_select = $("#table-inventaris-book tbody .select_single:checked")
             let semua_id   = [];
             $.each(cek_select, function (index, elm) { 
                  semua_id.push(elm.value)
-                //  console.log(elm.value)
+                 console.log(elm.value)
             });
             let result = [];
             $.each(semua_id, function (index, value) { 
-                 let isi    = $('#wargaId').val();
-                 let arr    = {"event":value,"warga":isi};
+                //  let isi    = $('#wargaId').val();
+                 let arr    = {"event":event,"warga":value};
                  result.push(arr);
             });
             console.log(result);
@@ -182,6 +177,7 @@
                     $("#check-all").prop('checked',false);
                     $("#bulk-presensi").prop('disabled');
                     $(".select_single").prop('checked', false)
+                    $("#statistik-presensi").load("{{route('panitia-kurban.detail',['key'=>'statistik_presensi'])}}&event={{$item->event_id}}");
                 }
             });
         }
