@@ -178,7 +178,7 @@
                         $.each(response, function (key, value) { 
                             // var result = response[key];
                              result +=
-                                '<div class="row" data-id='+ value.warga_id +'>' +
+                                '<div class="row" id="hasil-cari" data-id='+ value.warga_id +'>' +
                                     '<div class="col-2"> foto </div>' +
                                     '<div class="col-6">' +
                                         '<input type="hidden" id="warga_id" value='+value.warga_id+'>'+
@@ -186,11 +186,14 @@
                                         '<p class="m-0 sub-text" id="warga_id">'+ value.warga_id +'</p>' +
                                         '<a href=""><h6 class="m-0">'+ value.nama +'</h6></a>' +
                                         '<p class="m-0 sub-text">'+ value.alamat +'</p>' +
+                                        '<p class="m-0 sub-text">'+ value.telp +'</p>' +
                                     '</div>' +
-                                    // '<div class="col-4 d-flex justify-content-end align-items-center">' +
-                                    //     // '<a href="" class="badge badge-pill badge-light" style="font-size: 14px;">$'+ el.price +'</a>' +
-                                    //     '<a type="button" id="tambah-panitia" class="badge badge-pill badge-light" style="font-size: 14px;">Tambah Panitia</a>' +
-                                    // '</div>' +
+                                    '<div class="col-4 d-flex justify-content-end align-items-center">' +
+                                        '<input class="form-control" type="text" value='+value.warga_id+' id="idwarga">'+
+                                        // '<a href="" class="badge badge-pill badge-light" style="font-size: 14px;">$'+ el.price +'</a>' +
+                                        // '<a type="button" id="tambah-panitia" class="badge badge-pill badge-light" style="font-size: 14px;">Tambah Panitia</a>' +
+                                        '<input class="form-check-input" type="checkbox" value='+value.warga_id+' id="pilihPanitia">'+
+                                    '</div>' +
                                 '</div>';
                         });
                         $('#result').html(result);
@@ -210,27 +213,37 @@
             var warga = $('#warga_id').val();
             var cabang = $('#id_cabang').val();
             var bagian = $('#bagian').val();
-
-            // alert(bagian);
-            // console.log(event);
-            // console.log(warga);
-            $.ajax({
-                type: "post",
-                url: "{{ route('panitia.kegiatan.insert') }}",
-                data: {
-                    _token:CSRF_TOKEN, 
-                    event_id:event, 
-                    warga_id:warga,
-                    id_cabang:cabang,
-                    bagian:bagian,
-                },
-                dataType: "json",
-                success: function (response) {
-                    console.log(response);
-                    alert(response.status);
-                    location.reload(true);
+            var pilihPanitia = $('#pilihPanitia').val();
+            var idWarga = [];
+            $('.form-check-input').each(function(){
+                if ($(this).is(":checked")) {
+                    idWarga.push($(this).val());
                 }
             });
+            idWarga = idWarga.toString();
+            console.log(idWarga);
+            // console.log(event);
+            // console.log(pilihpanitia);
+            if (idWarga) {
+                
+                $.ajax({
+                    type: "post",
+                    url: "{{ route('panitia.kegiatan.insert') }}",
+                    data: {
+                        _token:CSRF_TOKEN, 
+                        event_id:event, 
+                        warga_id:idWarga,
+                        id_cabang:cabang,
+                        bagian:bagian,
+                    },
+                    dataType: "json",
+                    success: function (response) {
+                        console.log(response);
+                        alert(response.status);
+                        location.reload(true);
+                    }
+                });
+            }
         });
 
     </script>

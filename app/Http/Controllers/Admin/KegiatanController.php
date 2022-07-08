@@ -185,6 +185,7 @@ class KegiatanController extends Controller
             $totalpanitia = $panitia->count();
             $panitahadir = PresensiKegiatan::where('type','kurban')->where('keterangan','hadir')->where('event_id',$request->event)->count();
             return view('admin.pages.kurban.part.statistik-presensi',compact('totalpanitia','panitahadir'));
+
         }elseif ($request->key =="cetak_presensi") {
             $cetak = PresensiKegiatan::select('event_registers.*','d_warga.nama as nama_warga','d_event.nama as nama_kegiatan','md_cabang.nama as nama_cabang','panitia_kegiatan.bagian as bagian_panitia')
                                         ->join('d_warga','event_registers.warga_id','=','d_warga.warga_id')
@@ -192,7 +193,9 @@ class KegiatanController extends Controller
                                         ->join('panitia_kegiatan','panitia_kegiatan.warga_id','=','d_warga.warga_id')
                                         ->join('d_event','event_registers.event_id','=','d_event.event_id')
                                         ->where('event_registers.event_id',$eventId)
+                                        ->where('panitia_kegiatan.event_id',$eventId)
                                         ->get();
+                                        // dd($cetak);
             return view('admin.pages.kurban.part.cetak-presensi',compact('cetak','request','kegiatankurban'));
         }
 
@@ -215,7 +218,7 @@ class KegiatanController extends Controller
 
     public function insertPanitia(Request $request)
     {
-        $cek = PanitiaKegiatan::where('warga_id',$request->warga_id)->where('event_id',$request->event_id)->count();
+        $cek = PanitiaKegiatan::where('warga_id',$request->warga_id)->where('event_id',$request->event_id)->count('warga_id');
 
         if ($cek < 1) {
             $panitia_insert = new PanitiaKegiatan();
