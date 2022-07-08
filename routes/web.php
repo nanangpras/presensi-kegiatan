@@ -67,6 +67,7 @@ Route::prefix('admin')
             Route::get('/kegiatan-kurban/presensi/panitia/{event_id}',[KegiatanController::class, 'presensi_panitia_kurban'])->name('panitia-kurban.presensi');
             Route::post('panita/kegiatan/presensi',[PresensiController::class, 'presensiPanitiaKurban'])->name('panitia.presensi');
             Route::post('panita/kegiatan',[KegiatanController::class, 'insertPanitia'])->name('panitia.kegiatan.insert');
+            Route::delete('panita/kegiatan/delete/{id}',[KegiatanController::class, 'delete_panitia_kegiatan'])->name('panitia.kegiatan.delete');
             Route::get('laporan/presensi',[KegiatanController::class, 'summary'])->name('laporan');
             Route::get('/list/cabang',[AdminController::class, 'getCabang'])->name('cabang.list');
             Route::get('/maisah/list', [MaisahController::class,'list'])->name('usaha-warga.list');

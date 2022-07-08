@@ -5,10 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class PanitiaKegiatan extends Model
 {
-    use HasFactory;
+    use HasFactory,SoftDeletes;
     protected $table = 'panitia_kegiatan';
     protected $fillable = [
         'event_id',

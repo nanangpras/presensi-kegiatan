@@ -202,6 +202,13 @@ class KegiatanController extends Controller
         
     }
 
+    public function delete_panitia_kegiatan($id)
+    {
+        $panitia = PanitiaKegiatan::findOrFail($id);
+        $panitia->delete();
+        return redirect()->back()->with('success','Data Panitia Kegiatan Berhasil Dihapus');
+    }
+
     public function presensi_panitia_kurban($event_id)
     {
         $presensi_panitia = Kegiatan::findOrFail($event_id);
