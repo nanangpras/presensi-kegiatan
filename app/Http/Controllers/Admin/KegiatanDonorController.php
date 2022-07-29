@@ -66,17 +66,19 @@ class KegiatanDonorController extends Controller
     public function show($event_id)
     {
         $donorpresensi = KegiatanDonor::findOrFail($event_id);
-        $presensi = DB::table('donor_event_reg')
+        $clone_data = DB::table('donor_event_reg')
                         ->join('donor_event','donor_event_reg.event_id','=','donor_event.event_id')
                         ->join('d_warga','donor_event_reg.warga_id','=','d_warga.warga_id')
                         ->join('md_cabang','d_warga.id_cabang','=','md_cabang.id_cabang')
                         ->select('donor_event_reg.*','donor_event.nama as kegiatan','d_warga.nama as warga','md_cabang.nama as cabang')
                         ->where('donor_event_reg.event_id',$event_id)
-                        ->orderBy('id','desc')
-                        ->get();
+                        ->orderBy('id','desc');
+                        // ->get();
+        $presensi = $clone_data->get();
+        $count_peserta = $clone_data->count();
         // $presensi = PresensiKegiatanDonor::findOrFail($event_id)->with(['warga','kegiatan'])->get();
         // dd($presensi);
-        return view('admin.pages.kegiatan.donor.presensi',compact('donorpresensi','presensi'));
+        return view('admin.pages.kegiatan.donor.presensi',compact('donorpresensi','presensi','count_peserta'));
     }
 
     /**
