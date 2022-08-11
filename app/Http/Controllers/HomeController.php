@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Kegiatan;
+use App\Models\KegiatanDonor;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -25,13 +26,13 @@ class HomeController extends Controller
      */
     public function index()
     {
-        // $distribution = TempDistribute::with('agency')
-        //                                 ->groupBy('distribute_target_id')
-        //                                 ->selectRaw('*,sum(qty) as jumlah')
-        //                                 ->get();
-        // return view('home');
-        // dd($kegiatan);
-        return view('admin.pages.das');
+        $total_warga = DB::table('d_warga')->count();
+        $kegiatan = Kegiatan::count();
+        $donor = KegiatanDonor::count();
+        $total_kegiatan = $kegiatan + $donor;
+        $kegiatan_baru = Kegiatan::orderBy('tgl_update', 'desc')->take(2)->get();
+        // dd($kegiatan_baru);
+        return view('admin.pages.das',compact('total_warga','total_kegiatan','kegiatan_baru'));
     }
 
     public function warga()

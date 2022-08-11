@@ -20,7 +20,7 @@ data-aos-delay="100">
                                         <img src="presensi/images/assets/chart1.png" alt="">
                                     </div>
                                     <div class="col-8">
-                                        <h4 style="font-weight: 700; font-size: 30px; "> 2000</h4>
+                                        <h4 style="font-weight: 700; font-size: 30px; "> {{$total_warga}}</h4>
                                         <p style="font-size: 14px;"> Total Warga</p>
 
                                     </div>
@@ -36,7 +36,7 @@ data-aos-delay="100">
                                         <img src="presensi/images/assets/chart2.png" alt="">
                                     </div>
                                     <div class="col-8">
-                                        <h4 style="font-weight: 700; font-size: 30px; "> 5</h4>
+                                        <h4 style="font-weight: 700; font-size: 30px; "> {{$total_kegiatan}}</h4>
                                         <p style="font-size: 14px;"> Total Kegiatan</p>
 
                                     </div>
@@ -52,7 +52,7 @@ data-aos-delay="100">
                                         <img src="presensi/images/assets/chart3.png" alt="">
                                     </div>
                                     <div class="col-8">
-                                        <h4 style="font-weight: 700; font-size: 30px; "> 400</h4>
+                                        <h4 style="font-weight: 700; font-size: 30px; "> -</h4>
                                         <p style="font-size: 14px;">Warga Baru</p>
 
                                     </div>
@@ -81,21 +81,23 @@ data-aos-delay="100">
                                     <th>Nama Kegiatan</th>
                                     <th>Jumlah Peserta</th>
                                     <th>Waktu</th>
-                                    <th>Aksi</th>
+                                    {{-- <th>Aksi</th> --}}
                                 </tr>
                             </thead>
                             <tbody class="body-table">
-                                <tr>
-                                    <td>1</td>
-                                    <td>Jalan Sehar Se-DIY</td>
-                                    <td>300</td>
-                                    <td>2 Februari 2022</td>
-                                    <td>
-                                        <a href="" style="text-decoration: none; color:#3685C8;">
-                                            lihat
-                                        </a>
-                                    </td>
-                                </tr>
+                                @foreach ($kegiatan_baru as $item)    
+                                    <tr>
+                                        <td>{{$loop->iteration}}</td>
+                                        <td>{{$item->nama}}</td>
+                                        <td>-</td>
+                                        <td>{{$item->tgl_event_mulai}}</td>
+                                        {{-- <td>
+                                            <a href="" style="text-decoration: none; color:#3685C8;">
+                                                lihat
+                                            </a>
+                                        </td> --}}
+                                    </tr>
+                                @endforeach
                             </tbody>
                         </table>
                     </div>
