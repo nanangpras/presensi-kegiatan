@@ -184,6 +184,7 @@
                                         '<input type="hidden" id="warga_id" value='+value.warga_id+'>'+
                                         '<input type="hidden" id="id_cabang" value='+value.id_cabang+'>'+
                                         '<p class="m-0 sub-text" id="warga_id">'+ value.warga_id +'</p>' +
+                                        '<p class="m-0 sub-text" id="warga_id">'+ value.nama_cabang +'</p>' +
                                         '<a href=""><h6 class="m-0">'+ value.nama +'</h6></a>' +
                                         '<p class="m-0 sub-text">'+ value.alamat +'</p>' +
                                         '<p class="m-0 sub-text">'+ value.telp +'</p>' +

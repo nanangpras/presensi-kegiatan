@@ -248,7 +248,7 @@ class KegiatanController extends Controller
         }
     }
         
-    public function presensi($event_id)
+    public function presensi(Request $request, $event_id)
     {
         $kegiatan = Kegiatan::findOrFail($event_id);
         $presensi = DB::table('event_registers')
@@ -259,6 +259,12 @@ class KegiatanController extends Controller
                         ->where('event_registers.event_id',$event_id)
                         ->orderBy('id','desc')
                         ->get();
-        return view('admin.pages.kegiatan.presensi-kegiatan',compact('kegiatan','presensi'));
+        
+        $total_presensi = $presensi->count();
+        // if ($request->key=="statistik") {
+        //     $total_presensi = $presensi->count();
+        //     return view('admin.pages.kegiatan.part.statistik-presensi',compact('total_presensi'));
+        // }
+        return view('admin.pages.kegiatan.presensi-kegiatan',compact('kegiatan','presensi','total_presensi'));
     }
 }

@@ -23,7 +23,13 @@
                         <h5 class="dashboard-title">
                             Presensi Kegiatan {{ $kegiatan->nama }} 
                         </h5>
+                        {{-- <input type="text" value="{{$kegiatan->event_id}}" id="event_id"> --}}
                         <br>
+                        <div class="dashboard-content">
+                            <div id="stat-presensi">
+                                @include('admin.pages.kegiatan.part.statistik-presensi')
+                            </div>
+                        </div>
                         <div class="dashboard-content">
                             <div class="row">
                                 <div class="col-lg-3 col-6">
@@ -41,6 +47,8 @@
                                 <div class="col-lg-7 col-6">
                                     <div class="mb-5" style="border-radius: 15px; background-color: white; padding: 20px;filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.09));">
                                         <input type="text" placeholder="cari warga dengan NIK" class="form-control" id="nik">
+                                        <br>
+                                        <input type="text" placeholder="cari warga dengan nama" class="form-control" id="nama">
                                     </div>
                                     <div class="mb-5" id="result" style="border-radius: 15px; background-color: white; padding: 20px;filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.09));">
                                         <h5>Hasil pencarian</h5>
@@ -73,7 +81,7 @@
                                     <th>Nama Kegiatan</th>
                                     <th>Nama Warga</th>
                                     <th>Cabang</th>
-                                    
+                                    <th>Status</th>
                                 </tr>
                             </thead>
                             <tbody class="body-table">
@@ -84,7 +92,7 @@
                                         <td>{{ $item->kegiatan }}</td>
                                         <td>{{ $item->warga }}</td>
                                         <td>{{ $item->cabang }}</td>
-                                        
+                                        <td><span class="badge badge-success">{{ $item->keterangan}}</span></td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -104,6 +112,7 @@
     <script>
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         var idpresensi = $("#idpres").val();
+        var event_id = $("#event_id").val();
         $(document).ready(function(){
             $('#cari').on('click',function(){
                 // alert('ok');
@@ -113,6 +122,7 @@
                     dataType: "json",
                     data: {
                         'nik' : $('#nik').val(),
+                        'nama' : $('#nama').val(),
                     },
                     success: function (response) {
                         console.log(response);
@@ -126,12 +136,15 @@
                                         '<input type="hidden" id="warga_id" value='+value.warga_id+'>'+
                                         '<input type="hidden" id="user_id" value='+value.user_id+'>'+
                                         '<p class="m-0 sub-text" id="warga_id">'+ value.warga_id +'</p>' +
+                                        '<p class="m-0 sub-text" id="warga_id">'+ value.nama_cabang +'</p>' +
                                         '<p class="m-0 sub-text" id="user_id">'+ value.user_id +'</p>' +
                                         '<a href=""><h6 class="m-0">'+ value.nama +'</h6></a>' +
                                         '<p class="m-0 sub-text">'+ value.alamat +'</p>' +
                                     '</div>' +
-                                    '<div class="col-4 d-flex justify-content-end align-items-center">' +
+                                    '<div class="col-2">' +
+                                        '<input class="form-control" type="hidden" value='+value.warga_id+' id="idwarga">'+
                                         // '<a href="" class="badge badge-pill badge-light" style="font-size: 14px;">$'+ el.price +'</a>' +
+                                        '<input class="form-check-input" type="checkbox" value='+value.warga_id+' id="pilihPeserta">'+
                                         '<a type="button" id="klik-hadir" class="badge badge-pill badge-light" style="font-size: 14px;">hadir</a>' +
                                     '</div>' +
                                 '</div>';
@@ -141,6 +154,9 @@
                 });
             });
 
+            // $("#stat-presensi").load(
+            //     "{{ route('kegiatan.presensi', ['key' => 'statistik','event_id' => "event_id"]) }}"
+            // );
         
         });
 
@@ -148,12 +164,22 @@
             var event = $('#event_id').val();
             var warga = $('#warga_id').val();
             var user = $('#user_id').val();
+            var pilihPeserta = $('#pilihPeserta').val();
+            var idWarga = [];
+            $('.form-check-input').each(function(){
+                if ($(this).is(":checked")) {
+                    idWarga.push($(this).val());
+                }
+            });
+            idWarga = idWarga.toString();
+            console.log(idWarga);
+            // alert(idWarga);
             // console.log(event);
             // console.log(warga);
             $.ajax({
                 type: "post",
                 url: "{{ route('presensi.kegiatan.admin') }}",
-                data: {_token:CSRF_TOKEN, event_id:event, warga_id:warga, user_id:user },
+                data: {_token:CSRF_TOKEN, event_id:event, warga_id:idWarga, user_id:user },
                 dataType: "json",
                 success: function (response) {
                     // console.log(response);

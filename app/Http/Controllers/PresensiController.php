@@ -193,6 +193,12 @@ class PresensiController extends Controller
 
     public function presensiKegiatanDariAdmin(Request $request)
     {
+        $cek = PresensiKegiatan::where('warga_id',$request->warga_id)->where('event_id',$request->event_id)->first();
+        if($cek){
+            return response()->json([
+                "status"=>"sudah presensi"
+            ]);
+        }else {
             $data = new PresensiKegiatan();
             $data->event_id = $request->event_id;
             $data->user_id = $request->user_id;
@@ -201,14 +207,11 @@ class PresensiController extends Controller
             $data->keterangan = 'hadir';
             $data->save();
             if ($data==true) {
-                return response()->json([
-                    "status"=>"berhasil presensi"
-                ]);
-            } else {
-                return response()->json([
-                    "status"=>"gagal presensi"
-                ]);
+                    return response()->json([
+                        "status"=>"berhasil presensi"
+                    ]);
             }
+        }
     }
 
     public function changeStatusDonor($id, Request $request)
