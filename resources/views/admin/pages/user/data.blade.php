@@ -52,7 +52,7 @@
                                 <h6>Tentang Saya</h6>
                                 <br>
                                 <p style="color: #6C6866; font-weight: 300;">
-                                    {{$saya->nik}}
+                                    {{$saya->nik ?? ''}}
                                     <br>
                                     {{$saya->nama}}
                                     golongan darah :    {{$saya->gol_darah}}
