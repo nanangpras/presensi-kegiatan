@@ -1,5 +1,5 @@
 * {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'DM Sans', sans-serif;
 }
 
 .bg-dashboard {
@@ -22,13 +22,13 @@
     .card {
         width: 400px;
         height: 450px;
-        border-radius: 25px;
+        border-radius: 8px;
 
         .section-title {
             // padding-top: 50px;
 
             h1 {
-                font-family: 'Poppins', sans-serif;
+                font-family: 'DM Sans', sans-serif;
                 font-size: 36px;
                 font-style: normal;
                 font-weight: 700;
@@ -94,7 +94,7 @@
                 margin-top: 40px;
                 background-color: #3E79BD;
                 color: #fff;
-                border-radius: 15px;
+                border-radius: 8px;
             }
 
 
@@ -126,7 +126,7 @@
         padding-top: 50px;
 
         h1 {
-            font-family: 'Poppins', sans-serif;
+            font-family: 'DM Sans', sans-serif;
             font-size: 36px;
             font-style: normal;
             font-weight: 700;
@@ -147,7 +147,7 @@
         .btn-submit {
             background-color: #3E79BD;
             color: #fff;
-            border-radius: 15px;
+            border-radius: 8px;
         }
 
         .link-login {

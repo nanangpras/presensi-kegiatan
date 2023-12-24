@@ -17,25 +17,25 @@
                                 <h6>Usaha Anda</h6>
                                 <br>
                                 <div class="form-group" >
-                                    <label for="" style="font-size: 14px;font-family: Poppins;">Nama Usaha</label>
+                                    <label for="" style="font-size: 14px;font-family: DM Sans;">Nama Usaha</label>
                                     <input type="text" name="nama" id="" class="form-control" placeholder="Nama usaha Anda"
-                                        aria-describedby="helpId" style="border-radius: 30px;"><br>
-                                    <label for="" style="font-size: 14px;font-family: Poppins;">Alamat
+                                        aria-describedby="helpId" style="border-radius: 8px;"><br>
+                                    <label for="" style="font-size: 14px;font-family: DM Sans;">Alamat
                                         Anda</label>
                                     <input type="text" name="alamat" id="" class="form-control" placeholder="Masukkan alamat usaha Anda"
-                                        aria-describedby="helpId" style="border-radius: 30px;"><br>
-                                    <label for="" style="font-size: 14px;font-family: Poppins;">Link Alamat di Maps
+                                        aria-describedby="helpId" style="border-radius: 8px;"><br>
+                                    <label for="" style="font-size: 14px;font-family: DM Sans;">Link Alamat di Maps
                                         Anda</label>
                                     <input type="link" name="maps" id="" class="form-control" placeholder="Masukkan link google maps usaha Anda"
-                                        aria-describedby="helpId" style="border-radius: 30px;"><br>
-                                    <label for="" style="font-size: 14px;font-family: Poppins;">Telp
+                                        aria-describedby="helpId" style="border-radius: 8px;"><br>
+                                    <label for="" style="font-size: 14px;font-family: DM Sans;">Telp
                                         Telpon/WA</label>
                                     <input type="tel" name="telp" id="" class="form-control"
                                         placeholder="Masukkan Nomor Telpon Anda" aria-describedby="helpId"
-                                        style="border-radius: 30px;"><br>
-                                    <label for="" style="font-size: 14px;font-family: Poppins;">Pendapatan</label>
+                                        style="border-radius: 8px;"><br>
+                                    <label for="" style="font-size: 14px;font-family: DM Sans;">Pendapatan</label>
                                     <input type="text" name="pendapatan" id="" class="form-control" placeholder="Perkiraan pendapatan dalam 1 bulan"
-                                        aria-describedby="helpId" style="border-radius: 30px;"><br>
+                                        aria-describedby="helpId" style="border-radius: 8px;"><br>
                                     <br>
                                     {{-- <button type="button"
                                         class="btn btn-info fa fa-plus-circle tombol-add">
@@ -61,21 +61,21 @@
                         $(".form-usaha").append(`<h6>Usaha Anda</h6>
                             <br>
                             <div class="form-group" >
-                                <label for="" style="font-size: 14px;font-family: Poppins;">Nama Usaha</label>
+                                <label for="" style="font-size: 14px;font-family: DM Sans;">Nama Usaha</label>
                                 <input type="text" name="" id="" class="form-control" placeholder="Nama usaha Anda"
-                                    aria-describedby="helpId" style="border-radius: 30px;"><br>
-                                <label for="" style="font-size: 14px;font-family: Poppins;">Alamat
+                                    aria-describedby="helpId" style="border-radius: 8px;"><br>
+                                <label for="" style="font-size: 14px;font-family: DM Sans;">Alamat
                                     Anda</label>
                                 <input type="text" name="" id="" class="form-control" placeholder="Masukkan alamat usaha Anda"
-                                    aria-describedby="helpId" style="border-radius: 30px;"><br>
-                                <label for="" style="font-size: 14px;font-family: Poppins;">Telp
+                                    aria-describedby="helpId" style="border-radius: 8px;"><br>
+                                <label for="" style="font-size: 14px;font-family: DM Sans;">Telp
                                     Telpon/WA</label>
                                 <input type="tel" name="" id="" class="form-control"
                                     placeholder="Masukkan Nomor Telpon Anda" aria-describedby="helpId"
-                                    style="border-radius: 30px;"><br>
-                                <label for="" style="font-size: 14px;font-family: Poppins;">Pendapatan</label>
+                                    style="border-radius: 8px;"><br>
+                                <label for="" style="font-size: 14px;font-family: DM Sans;">Pendapatan</label>
                                 <input type="text" name="" id="" class="form-control" placeholder="Perkiraan pendapatan dalam 1 bulan"
-                                    aria-describedby="helpId" style="border-radius: 30px;"><br>
+                                    aria-describedby="helpId" style="border-radius: 8px;"><br>
                                 <br>
                                 <button type="button"
                                     class="btn btn-info fa fa-plus-circle tombol-add">

@@ -33,7 +33,7 @@
 
 
                         {{-- <a class="btn btn-blue" href="{{route('panitia.kegiatan.create')}}"
-                        style="background-color: #F73A0B;color: white; border-radius: 30px; padding: 10px; font-weight: 500;">
+                        style="background-color: #F73A0B;color: white; border-radius: 8px; padding: 10px; font-weight: 500;">
                         <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span> Kegiatan</a> --}}
 
                     </div>

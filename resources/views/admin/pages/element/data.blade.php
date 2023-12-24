@@ -13,7 +13,7 @@
                 </div>
                 <div class="col-6 text-right">
                     <button class="btn btn-blue" data-toggle="modal" data-target="#ModalCreate"
-                        style="background-color: #F73A0B;color: white; border-radius: 30px; padding: 10px; font-weight: 500;">
+                        style="background-color: #F73A0B;color: white; border-radius: 8px; padding: 10px; font-weight: 500;">
                         <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span> Element</button>
                 </div>
             </div>
@@ -119,7 +119,7 @@
                             placeholder="Masukkan Nama Element" value="{{ old('nama') }}">
                     </div>
                     <button type="submit" class="btn btn-block"
-                        style="background-color: #F73A0B;color: white; border-radius: 30px; padding: 10px; font-weight: 500;">Simpan</button>
+                        style="background-color: #F73A0B;color: white; border-radius: 8px; padding: 10px; font-weight: 500;">Simpan</button>
                 </form>
             </div>
         </div>

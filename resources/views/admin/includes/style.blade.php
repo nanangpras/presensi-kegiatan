@@ -18,6 +18,6 @@
 
 
 <!-- Google-Fonts -->
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;300;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=DM Sans:wght@100;300;500;600&display=swap" rel="stylesheet">
 {{-- select2 --}}
 <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />

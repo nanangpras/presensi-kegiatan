@@ -29,11 +29,11 @@
                     <div class="col-6 text-right">
                         <a href="{{route('laporan')}}">
                             <button class="btn btn-blue"
-                                style="background-color: #0bc8f7;color: white; border-radius: 30px; padding: 10px; font-weight: 500;">
+                                style="background-color: #057CE4;color: white; border-radius: 8px; padding: 10px; font-weight: 500;">
                                 <span> <i class="fa fa-file" aria-hidden="true"></i></span> Laporan</button>
                         </a>
                         <button class="btn btn-blue" data-toggle="modal" data-target="#ModalKegiatan"
-                        style="background-color: #F73A0B;color: white; border-radius: 30px; padding: 10px; font-weight: 500;">
+                        style="background-color: #F73A0B;color: white; border-radius: 8px; padding: 10px; font-weight: 500;">
                         <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span> Kegiatan</button>
                         
                     </div>
@@ -134,7 +134,7 @@
                             placeholder="Masukkan link dari nama lokasi" value="{{ old('maps') }}">
                     </div>
                     <button type="submit" class="btn btn-block"
-                        style="background-color: #F73A0B;color: white; border-radius: 30px; padding: 10px; font-weight: 500;">Simpan</button>
+                        style="background-color: #F73A0B;color: white; border-radius: 8px; padding: 10px; font-weight: 500;">Simpan</button>
                 </form>
             </div>
         </div>

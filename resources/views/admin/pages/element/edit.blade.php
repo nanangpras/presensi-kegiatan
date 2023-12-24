@@ -40,7 +40,7 @@
                         <input type="text" class="form-control" name="nama" placeholder="" value="{{ $item->nama }}">
                     </div>
                     <button type="submit" class="btn btn-block"
-                        style="background-color: #F73A0B;color: white; border-radius: 30px; padding: 10px; font-weight: 500;">Ubah</button>
+                        style="background-color: #F73A0B;color: white; border-radius: 8px; padding: 10px; font-weight: 500;">Ubah</button>
                 </form>
             </div>
         </div>

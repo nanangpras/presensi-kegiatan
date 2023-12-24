@@ -36,7 +36,7 @@
                                             <p style="font-size: 14px;">
                                                 {{ $kce->nama }}
                                                 <br>
-                                                <b style="color:#f93a0b ;">Semua Cabang</b> <br>
+                                                <b style="color:#057CE4 ;">Semua Cabang</b> <br>
                                                 Waktu mulai: {{ $kce->tgl_event_mulai }} <br>
                                                 Waktu akhir: {{ $kce->tgl_event_akhir }} <br>
                                                 dimulai: <b id="time"></b>
@@ -74,7 +74,7 @@
                                             <p style="font-size: 14px;">
                                                 {{ $item->nama }}
                                                 <br>
-                                                <b style="color:#f93a0b ;">{{ $item->id_cabang }}</b> <br>
+                                                <b style="color:#057CE4 ;">{{ $item->id_cabang }}</b> <br>
                                                 Waktu mulai: {{ $item->tgl_event_mulai }} <br>
                                                 Waktu akhir: {{ $item->tgl_event_akhir }} <br>
                                                 dimulai: <b id="time"></b>

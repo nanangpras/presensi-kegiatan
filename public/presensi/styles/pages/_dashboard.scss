@@ -1,23 +1,29 @@
 .page-dashboard {
-  font-family: "Poppins";
+  font-family: "DM Sans";
+
   #page-content-wrapper {
     // background: #f5f9ff;
     background: #f8f8f8;
   }
+
   #sidebar-wrapper {
-    margin-top: 150px;
+    margin-top: 100px;
     margin-left: 10px;
     margin-right: 10px;
     border: 0px;
     margin-left: -15rem;
     transition: margin 0.25s ease-out;
+
     .sidebar-heading {
       padding: 0.875rem 1.25rem;
       font-size: 14px;
     }
+
     .list-group {
+      padding: 0px 20px 0px 20px;
       width: 15rem;
     }
+
     .right-nav-text {
       margin-top: 30px;
       font-size: 12px;
@@ -25,7 +31,66 @@
       color: #6f7e8c;
       margin-bottom: 10px;
     }
+
+    .dropdown-btn:hover {
+      color: #f1f1f1;
+    }
+
+
+
+    /* Optional: Style the caret down icon */
+    .dropdown-btn {
+      padding: 6px 8px 6px 16px;
+      text-decoration: none;
+      color: #000000;
+      display: block;
+      border: none;
+      background: none;
+      width: 100%;
+      text-align: left;
+      cursor: pointer;
+      outline: none;
+    }
+
+    /* On mouse-over */
+    .sidenav a:hover,
+    .dropdown-btn:hover {
+      color: #242020;
+    }
+
+    /* Main content */
+    .main {
+      margin-left: 200px;
+      /* Same as the width of the sidenav */
+      font-size: 20px;
+      /* Increased text to enable scrolling */
+      padding: 0px 10px;
+    }
+
+    /* Add an active class to the active dropdown button */
+    .active {
+      background: #000000;
+      border-right: 4px solid #057CE4;
+      color: #057CE4;
+      border-radius: 5px;
+      font-weight: 700;
+      // margin-right: 10px;
+    }
+
+    /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+    .dropdown-container {
+      display: none;
+      padding-left: 8px;
+    }
+
+    /* Optional: Style the caret down icon */
+    .fa-caret-down {
+      float: right;
+      padding-right: 8px;
+    }
+
   }
+
   #wrapper {
     &.toggled {
       #sidebar-wrapper {
@@ -33,9 +98,11 @@
       }
     }
   }
+
   .navbar-store {
     margin-top: 0;
     background-color: #f5f5fb;
+
     // box-shadow: 0px 4px 5px #cacad1;
     @include media-breakpoint-up(md) {
       background: #ffffff;
@@ -43,29 +110,31 @@
       //   box-shadow: 0px 4px 10px rgba(47, 108, 165, 0.05);
     }
   }
+
   .list-group-item {
     border: 0px;
     font-size: 14px;
     color: #6f7e8c;
     margin-right: 10px;
     margin-bottom: 10px;
+
     img {
       height: 20px;
     }
+
     &.active {
-      // background-color: aqua;
-      background: rgba(249, 58, 11, 0.05);
-      border-right: 4px solid #f93a0b;
-      color: #f93a0b;
+      background: #e8f4ff;
+      border-right: 4px solid #057CE4;
+      color: #057CE4;
       border-radius: 5px;
       font-weight: 700;
       margin-right: 10px;
 
       img {
-        // color: solid #f93a0b;
-        filter: invert(29%) sepia(57%) saturate(3286%) hue-rotate(355deg)
-          brightness(96%) contrast(103%);
-        height: 20px;
+        color: solid #057CE4;
+        // filter: invert(29%) sepia(57%) saturate(3286%) hue-rotate(355deg)
+        //   brightness(96%) contrast(103%);
+        // height: 20px;
       }
     }
   }
@@ -81,10 +150,12 @@
       margin-left: 10px;
       margin-top: 93px;
     }
+
     #page-content-wrapper {
       min-width: 0;
       width: 100%;
     }
+
     #wrapper {
       &.toggled {
         #sidebar-wrapper {
@@ -97,13 +168,17 @@
   .section-content {
     // width: 100%;
     margin-top: 130px;
+    margin-left: 20px;
+    margin-right: 20px;
+
     .container-fluid {
-      &.content{
+      &.content {
         padding: 20px;
         background-color: white;
         border-radius: 15px;
         filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.09));
       }
+
       &.table {
         padding-top: 16px;
         padding-bottom: 16px;
@@ -112,6 +187,7 @@
         // box-shadow: 0px 4px 10px 0px #2f6ca50d;
         filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.09));
       }
+
       a {
         text-decoration: none;
         // color: #4885ed;
@@ -119,19 +195,21 @@
         //     background-color: hotpink;
         // }
       }
+
       h5 {
         font-weight: 700;
         font-size: 20px;
         line-height: 30px;
         color: #062b74;
       }
+
       .dashboard-title {
-        font-family: "Poppins";
+        font-family: "DM Sans";
         font-weight: 700;
         font-size: 20px;
         line-height: 30px;
         color: #2a2a2a;
-        
+
         &.bantuan {
           margin-top: 14px;
           font-weight: 400;
@@ -140,6 +218,7 @@
           color: #153e90;
         }
       }
+
       .dashboard-subtitle {
         font-weight: 400;
         font-size: 14px;
@@ -147,14 +226,16 @@
         color: #727272;
         margin-top: -15px;
       }
-      @media (min-width: 991px) and (max-width: 1440px) {
-      }
+
+      @media (min-width: 991px) and (max-width: 1440px) {}
+
       .container {
         padding-top: 16px;
         margin-bottom: 16px;
         background: #ffffff;
         box-shadow: 0px 4px 10px rgba(47, 108, 165, 0.05);
         border-radius: 4px;
+
         .btn-light {
           font-size: 14px;
           line-height: 21px;
@@ -162,15 +243,18 @@
           color: #6c6866;
           align-items: flex-end;
         }
+
         border {
           border-width: 3px;
           border-color: chocolate;
         }
       }
+
       .store-carousel-slider {
         // height: 236px;
         background: #ffffff;
         border-radius: 4px;
+
         p {
           font-weight: 600;
           font-size: 16px;
@@ -178,17 +262,20 @@
           color: #23120b;
           padding: 10px 0px 0px 15px;
         }
+
         .container-slider {
           // height: 300px;
           padding: 0px 15px 30px 15px;
         }
       }
+
       .content-title {
         font-weight: 600;
         font-size: 18px;
         line-height: 30px;
         color: #23120b;
       }
+
       //  rekapitulasi
       .dashboard-content {
         .rekapitulasi-title {
@@ -198,18 +285,22 @@
           color: #6f7e8c;
           margin-bottom: 5px;
         }
+
         .rekapitulasi-subtitle {
           font-weight: 600;
           font-size: 24px;
           line-height: 36px;
           color: #4885ed;
+
           &.orange {
             color: #eb9557;
           }
+
           &.red {
             color: #ef7272;
           }
         }
+
         .tile-stats {
           background-color: white;
           position: relative;
@@ -219,20 +310,24 @@
           overflow: hidden;
           border-radius: 5px;
           box-shadow: 0px 4px 10px 0px #2f6ca50d;
+
           p {
             font-size: 12px;
             font-weight: 400;
             color: #6f7e8c;
           }
+
           h6 {
             font-size: 14px;
             font-weight: 600;
             color: #23120b;
           }
+
           h5 {
             font-size: 24px;
             font-weight: 600;
           }
+
           img {
             height: 50px;
             width: 50px;
@@ -251,6 +346,7 @@
           // margin-right: 19px;
           padding-bottom: 20px;
           overflow: hidden;
+
           h5 {
             font-size: 14px;
             font-weight: 600;
@@ -270,6 +366,7 @@
           }
         }
       }
+
       //   inventaris buku
       &.section-inventaris-buku {
         .dropdown-item {
@@ -284,6 +381,7 @@
         }
       }
     }
+
     .news-down {
       background: #ffffff;
       border-radius: 15px;
@@ -292,22 +390,26 @@
       // height: 100px;
       margin-top: 20px;
       padding-bottom: 20px;
+
       h5 {
         font-size: 16px;
         font-weight: 600;
         color: #062b74;
         margin-bottom: 16px;
       }
+
       h6 {
         font-size: 14px;
         font-weight: 600;
         color: #111111;
       }
+
       p {
         font-size: 12px;
         font-weight: 400;
         color: #6c6866;
       }
+
       img {
         border-radius: 5px;
         width: 32px;
@@ -315,18 +417,22 @@
         object-fit: cover;
       }
     }
+
     .content {
       margin-bottom: 16px;
     }
+
     .carousel-inner-book {
       width: 170px;
       height: 250px;
     }
+
     .btn {
       background-color: #ffffff;
       color: #6c6866;
       border: 1px solid #e4e4e4;
       font-size: 14px;
+
       &.tersedia {
         background-color: #009b00;
         color: #6c6866;
@@ -334,21 +440,25 @@
         font-size: 14px;
       }
     }
+
     .btn-p {
       background-color: #ffffff;
       color: #4885ed;
       border: 1px solid #e4e4e4;
       font-size: 14px;
     }
+
     .form-control {
       background: #ffffff;
       border: 1px solid #e4e4e4;
       border-radius: 4px;
       font-size: 14px;
     }
+
     .span {
       font-size: 14px;
     }
+
     .nav-link {
       background: #ffffff;
       box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.1);
@@ -358,6 +468,7 @@
       font-size: 14px;
       font-weight: 500;
       text-align: center;
+
       // width: 170px;
       // align-content: center;
       &.active {
@@ -372,19 +483,22 @@
         font-weight: 500;
       }
     }
+
     .book-carousel {
       .d-block {
         width: 197px;
         height: 250px;
       }
+
       h2 {
-        font-family: Poppins;
+        font-family: DM Sans;
         font-style: normal;
         font-weight: 600;
         font-size: 20px;
         line-height: 30px;
         color: #23120b;
       }
+
       h3 {
         font-weight: 600;
         font-size: 14px;
@@ -393,6 +507,7 @@
         color: #4885ed;
         text-align: right;
       }
+
       h4 {
         font-weight: 600;
         font-size: 14px;
@@ -408,6 +523,7 @@
         width: 100%;
         white-space: normal;
       }
+
       h5 {
         font-weight: 500;
         font-size: 12px;
@@ -417,6 +533,7 @@
         // margin-left: 12px;
         padding-top: 3px;
       }
+
       p {
         display: block;
         max-width: 100%;
@@ -428,6 +545,7 @@
         color: #888888;
         // margin-top: -12px;
       }
+
       .icon-rekomendasi {
         background: #ededed;
         border-radius: 24px;
@@ -435,6 +553,7 @@
         height: 23px;
         margin-bottom: 20px;
       }
+
       .icon-category {
         background: #ededed;
         border-radius: 24px;
@@ -443,11 +562,13 @@
         // width: 103px;
         // height: 23px;
         margin-bottom: 20px;
-        font-family: "Poppins";
+        font-family: "DM Sans";
         text-align: center;
       }
     }
+
     .carousel {
+
       .carousel-control-prev,
       .carousel-control-next {
         width: 0 !important;

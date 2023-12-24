@@ -19,30 +19,30 @@
                                     <h6>Abaut Me</h6>
                                     <br>
                                     <div class="form-group">
-                                        <label for="" style="font-size: 14px;font-family: Poppins;">NIK</label>
+                                        <label for="" style="font-size: 14px;font-family: DM Sans;">NIK</label>
                                         <input type="number" name="nik" id="nik" class="form-control"
-                                            aria-describedby="helpId" value="{{$item->nik}}" style="border-radius: 30px;" readonly><br>
-                                        <label for="" style="font-size: 14px;font-family: Poppins;">Nama Lengkap
+                                            aria-describedby="helpId" value="{{$item->nik}}" style="border-radius: 8px;" readonly><br>
+                                        <label for="" style="font-size: 14px;font-family: DM Sans;">Nama Lengkap
                                             Anda</label>
                                         <input type="text" name="nama" id="nama" class="form-control" value="{{$item->nama}}" placeholder="Masukkan Nama Anda"
-                                            aria-describedby="helpId" style="border-radius: 30px;"><br>
-                                        <label for="" style="font-size: 14px;font-family: Poppins;">No
+                                            aria-describedby="helpId" style="border-radius: 8px;"><br>
+                                        <label for="" style="font-size: 14px;font-family: DM Sans;">No
                                             Telpon/WA</label>
                                         <input type="tel" name="telp" id="telp" class="form-control"
                                             placeholder="Masukkan Nomor Telpon Anda" aria-describedby="helpId"
-                                            style="border-radius: 30px;" value="{{$item->telp}}"><br>
-                                        <label for="" style="font-size: 14px;font-family: Poppins;">Tempat</label>
+                                            style="border-radius: 8px;" value="{{$item->telp}}"><br>
+                                        <label for="" style="font-size: 14px;font-family: DM Sans;">Tempat</label>
                                         <input type="text" name="tempat_lahir" id="tempat_lahir" class="form-control" value="{{$item->tempat_lahir}}" placeholder="Tempat Lahir"
-                                            aria-describedby="helpId" style="border-radius: 30px;"><br>
-                                        <label for="" style="font-size: 14px;font-family: Poppins;">Tanggal
+                                            aria-describedby="helpId" style="border-radius: 8px;"><br>
+                                        <label for="" style="font-size: 14px;font-family: DM Sans;">Tanggal
                                             Lahir</label>
                                         <input type="date" name="tgl_lahir" id="tgl_lahir" class="form-control" value="{{$item->tgl_lahir}}" placeholder="Tempat Lahir"
-                                            aria-describedby="helpId" style="border-radius: 30px;"><br>
+                                            aria-describedby="helpId" style="border-radius: 8px;"><br>
     
-                                        <label for="darah" style="font-size: 14px;font-family: Poppins;">Golongan
+                                        <label for="darah" style="font-size: 14px;font-family: DM Sans;">Golongan
                                             Darah</label>
                                         <select id="gol_darah" name="gol_darah" class="form-control"
-                                            style="border-radius: 30px; padding-right: 10px;">
+                                            style="border-radius: 8px; padding-right: 10px;">
                                             
                                                 <option value="{{ $item->gol_darah }}" {{ $item->gol_darah == $item->gol_darah ? 'selected':'' }}>{{ $item->gol_darah }}</option>
                                             
@@ -51,16 +51,16 @@
                                             <option value="fiat">A-</option>
                                             <option value="audi">B</option> --}}
                                         </select> <br>
-                                        <label for="darah" style="font-size: 14px;font-family: Poppins;">Status</label>
+                                        <label for="darah" style="font-size: 14px;font-family: DM Sans;">Status</label>
                                         <select id="perkawinan" name="perkawinan" class="form-control"
-                                            style="border-radius: 30px; padding-right: 10px;">
+                                            style="border-radius: 8px; padding-right: 10px;">
                                             <option value="{{ $item->perkawinan }}" {{ $item->perkawinan == $item->perkawinan ? 'selected':'' }}>{{ $item->perkawinan }}</option>
                                            
                                         </select> <br>
-                                        <label for="darah" style="font-size: 14px;font-family: Poppins;">Pendidikan
+                                        <label for="darah" style="font-size: 14px;font-family: DM Sans;">Pendidikan
                                             Terakhir</label>
                                         <select id="pendidikan" name="pendidikan" class="form-control"
-                                            style="border-radius: 30px; padding-right: 10px;">
+                                            style="border-radius: 8px; padding-right: 10px;">
                                             <option value="">-- Pilih --</option>
                                             <option value="0">Tidak/Belum Sekolah</option>
                                             <option value="1">Tidak Tamat SD/Sederajat</option>
@@ -81,10 +81,10 @@
                                     <h6>Kemajelisan</h6>
                                     <br>
                                     <div class="form-group">
-                                        <label for="darah" style="font-size: 14px;font-family: Poppins;">
+                                        <label for="darah" style="font-size: 14px;font-family: DM Sans;">
                                             Cabang</label>
                                         <select id="id_cabang" name="id_cabang" class="form-control"
-                                            style="border-radius: 30px; padding-right: 10px;">
+                                            style="border-radius: 8px; padding-right: 10px;">
                                             @foreach ($cabang as $id => $nama)
                                                 <option value="{{$id}}" {{ $item->id_cabang == $id ? 'selected':'' }}>{{$nama}}</option>
                                             @endforeach
@@ -93,10 +93,10 @@
                                                     @endforeach --}}
                                             
                                         </select> <br>
-                                        <label for="darah" style="font-size: 14px;font-family: Poppins;">Status
+                                        <label for="darah" style="font-size: 14px;font-family: DM Sans;">Status
                                             Kajian</label>
                                         <select id="status_warga" name="status_warga" class="form-control"
-                                            style="border-radius: 30px; padding-right: 10px;">
+                                            style="border-radius: 8px; padding-right: 10px;">
                                             <option value="0"
                                                 {{ $item->status_warga == 0 ? 'selected' : '' }}>Mustamik</option>
                                             <option value="1"
@@ -109,11 +109,11 @@
                                     <h6></h6>
                                     <br>
                                     <div class="form-group">
-                                        <label for="darah" style="font-size: 14px;font-family: Poppins;">
+                                        <label for="darah" style="font-size: 14px;font-family: DM Sans;">
                                             Aktivitas Kemajlisan</label><br>
                                         <div class="row">
                                             <div class="col-6">
-                                                <label for="darah" style="font-size: 14px;font-family: Poppins;">Status
+                                                <label for="darah" style="font-size: 14px;font-family: DM Sans;">Status
                                                     Kajian</label><br>
                                                 <input type="checkbox" id="lanjutan_warga" name="lanjutan_warga" value="pra">
                                                 <label> Pra Khususi</label><br>
@@ -124,7 +124,7 @@
                                             </div>
                                             <div class="col-6">
     
-                                                <label for="darah" style="font-size: 14px;font-family: Poppins;">
+                                                <label for="darah" style="font-size: 14px;font-family: DM Sans;">
                                                     Elemen</label><br>
                                                 @foreach ($element as $idelm => $nama)
                                                     <input name="element_id" type="checkbox" value="{{$idelm}}" {{ $item->element_id == $idelm ? 'checked':'' }}>
@@ -142,7 +142,7 @@
                                 </div>
                                 
                                     <button class="btn btn-blue" type="submit"
-                                        style="background-color: #0bc8f7;color: white; border-radius: 30px; padding: 10px; font-weight: 500;">
+                                        style="background-color: #057CE4;color: white; border-radius: 8px; padding: 10px; font-weight: 500;">
                                         <span> <i class="fa fa-send" aria-hidden="true"></i></span> Update</button>
                             
                             </div>

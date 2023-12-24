@@ -95,7 +95,7 @@
                                         <td>
                                             <input type="hidden" id="idpres" value="{{$item->id}}">
                                             <select id="status" name="status" class="form-control"
-                                            style="border-radius: 30px; padding-right: 10px;">
+                                            style="border-radius: 8px; padding-right: 10px;">
                                             <option id="klik-belum" value="belum donor" {{ $item->status == 'belum donor' ? 'selected' : '' }}>Belum Donor</option>
                                             <option id="klik-sudah" value="sudah donor" {{ $item->status == 'sudah donor' ? 'selected' : '' }}>Sudah Donor</option>
                                             

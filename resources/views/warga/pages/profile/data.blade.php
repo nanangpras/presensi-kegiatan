@@ -36,23 +36,23 @@
                             <div class="col-lg-6 col-12">
                                 <a href="{{route('profile.edit',$saya->nik)}}" class="align-content-center">
                                     <button class="btn btn-blue"
-                                        style="background-color: #F73A0B; color: white; border-radius: 30px; padding: 10px; font-weight: 500;">
+                                        style="background-color: #F73A0B; color: white; border-radius: 8px; padding: 10px; font-weight: 500;">
                                         Update Profile</button>
                                 </a>
                                 <a href="">
                                     <button class="btn btn-blue"
-                                        style="background-color: #49494968; color: white; border-radius: 30px; padding: 10px; font-weight: 500;">
+                                        style="background-color: #49494968; color: white; border-radius: 8px; padding: 10px; font-weight: 500;">
                                         4 Usaha</button>
                                 </a>
                                 <a href="{{route('maisah.add')}}">
                                     <button class="btn btn-blue"
-                                        style="background-color: #FF2A1D; color: white; border-radius: 30px; padding: 10px; font-weight: 500;">
+                                        style="background-color: #FF2A1D; color: white; border-radius: 8px; padding: 10px; font-weight: 500;">
                                         <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span> Tambah
                                         Usaha</button>
                                 </a>
                                 <a href="{{route('change-password',$saya->id)}}">
                                     <button class="btn btn-blue"
-                                        style="background-color: #3bc0f5; color: white; border-radius: 30px; padding: 10px; font-weight: 500;">
+                                        style="background-color: #3bc0f5; color: white; border-radius: 8px; padding: 10px; font-weight: 500;">
                                         <span><i class="fa fa-plus-circle" aria-hidden="true"></i></span> Ganti Password</button>
                                 </a>
                             </div>

@@ -1,61 +1,88 @@
-.btn{
-    &.btn-secondary{
-        margin-right: 10px; 
-        color: #3685C8; 
+.btn {
+    font-family: DM Sans;
+
+    &.btn-secondary {
+        margin-right: 10px;
+        color: #3685C8;
         background-color: white;
-        border-color:#3685C8 ;
+        border-color: #3685C8;
         text-align: right;
-        
+
     }
-    &.btn-tersedia{
+
+    &.btn-tersedia {
         background: rgba(0, 155, 0, 0.1);
         border-radius: 100px;
         color: #009B00;
     }
-    &.btn-blue{
-        margin-top: 10px; 
-        color: white; 
-        background-color: #3685C8
+
+    &.btn-blue {
+        margin-top: 10px;
+        color: white;
+        background-color: #057CE4
     }
-    &.btn-red{
-        margin-top: 10px; 
-        color: #DE2323; 
+
+    &.btn-red {
+        margin-top: 10px;
+        color: #DE2323;
         background-color: white;
-        border-color:#DE2323 ;
+        border-color: #DE2323;
         text-align: left;
-        
+
     }
-    &.btn-white{
-        margin-top: 10px; 
-        color: #3685C8;   
+    &.btn-blue-outline {
+        margin-top: 10px;
+        color: #057CE4;
         background-color: white;
-        &.data{
+        border-color: #057CE4;
+        text-align: left;
+
+    }
+    &.btn-green-outline {
+        margin-top: 10px;
+        color: #075e54;
+        background-color: white;
+        border-color: #075e54;
+        text-align: left;
+
+    }
+
+    &.btn-white {
+        margin-top: 10px;
+        color: #3685C8;
+        background-color: white;
+
+        &.data {
             margin-top: -5px;
             margin-left: 24px;
         }
     }
-    &.btn-disabled{
-        margin-top: 10px; 
+
+    &.btn-disabled {
+        margin-top: 10px;
         color: #FFFFFF;
         background: #F0F0F0;
     }
-   
+
 
 
 }
-.btn-status{
+
+.btn-status {
     background: rgba(0, 155, 0, 0.1);
-    border-radius: 20px;
+    border-radius: 8px;
     text-align: center;
     color: #009B00;
-    &.banned{
+
+    &.banned {
         background: rgba(222, 35, 35, 0.1);
-        border-radius: 20px;
+        border-radius: 8px;
         color: #DE2323;
     }
-    &.draft{
+
+    &.draft {
         background: rgba(79, 143, 203, 0.1);
-        border-radius: 20px;    
+        border-radius: 8px;
         color: #4F8FCB;
     }
 }

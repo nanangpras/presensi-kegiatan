@@ -20,8 +20,8 @@
                                             </div>
                                             <div class="col-8">
                                                 <h4 style="font-weight: 700; font-size: 30px; "> Presensi</h4>
-                                                <p style="font-size: 14px;"> <b style="color: #f93a0b;">3 </b> Kegiatan <b
-                                                        style="color: #f93a0b;"> Baru</b> </p>
+                                                <p style="font-size: 14px;"> <b style="color: #057CE4;">3 </b> Kegiatan <b
+                                                        style="color: #057CE4;"> Baru</b> </p>
 
                                             </div>
                                         </div>
