@@ -4,10 +4,14 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-9">
-                <div class="dashboard-heading">
-                    <h5 class="dashboard-title">
-                        Dashboard
-                    </h5>
+                <div class="dashboard-heading ">
+                    <div class="dashboard-subtitle">
+                        <p>Presensi Admin Panel Kajian MTA Perwakilan DIY
+                        </p>
+                    </div>
+                    <h2 class="dashboard-title">
+                        Assalamualaikum Admin Perwakilan DIY
+                    </h2>
                     <br>
                     <div class="dashboard-content">
                         <div class="row">

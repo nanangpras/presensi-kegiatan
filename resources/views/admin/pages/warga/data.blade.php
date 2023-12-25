@@ -91,12 +91,17 @@
                                 <td>{{$item->cabang}}</td>
                                 <td>TELP</td>
                                 <td>{{$item->pekerjaan}}</td>
-                                <td>
+                                {{-- <td>
                                     <a href="{{route('warga.edit',$item->warga_id)}}" class="btn btn-sm btn-warning"><i
                                             class="nav-icon fas fa-user-edit"></i> Edit</a>
                                     <a href="{{route('warga.destroy',$item->warga_id)}}"
                                         class="btn btn-sm btn-danger"><i class="nav-icon fas fa-trash-alt"></i>
                                         Hapus</a>
+                                </td> --}}
+                                <td> 
+                                    <a href="#"
+                                        class="btn btn-sm btn-danger"><i class="nav-icon fas fa-trash-alt"></i>
+                                        Detail </a>
                                 </td>
                             </tr>
                             @endforeach

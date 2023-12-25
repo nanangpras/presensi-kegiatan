@@ -1,87 +1,85 @@
 @extends('admin.layouts.adminbaru')
 @section('content')
-    <div class="section-content section-dashboard-home aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
-        <div class="container-fluid">
-            <br>
-            <!-- Box-->
-            <div class="dashboard-heading">
-                <div class="row">
-                    <div class="col-6">
-                        <h5 class="dashboard-title">
-                            Kegiatan
-                        </h5>
-                    </div>
-                    <div class="col-6 text-right">
-                        <a href="{{route('laporan')}}">
-                            <button class="btn btn-blue"
-                                style="background-color: #057CE4;color: white; border-radius: 8px; padding: 10px; font-weight: 500;">
-                                <span> <i class="fa fa-file" aria-hidden="true"></i></span> Laporan</button>
-                        </a>
-                        <button class="btn btn-blue" data-toggle="modal" data-target="#ModalKegiatan"
+<div class="section-content section-dashboard-home aos-init aos-animate" data-aos="fade-up" data-aos-delay="100">
+    <div class="container-fluid">
+        <br>
+        <!-- Box-->
+        <div class="dashboard-heading">
+            <div class="row">
+                <div class="col-6">
+                    <h5 class="dashboard-title">
+                        Kegiatan
+                    </h5>
+                </div>
+                <div class="col-6 text-right">
+                    <a href="{{route('laporan')}}">
+                        <button class="btn btn-blue"
+                            style="background-color: #057CE4;color: white; border-radius: 8px; padding: 10px; font-weight: 500;">
+                            <span> <i class="fa fa-file" aria-hidden="true"></i></span> Laporan</button>
+                    </a>
+                    <button class="btn btn-blue" data-toggle="modal" data-target="#ModalKegiatan"
                         style="background-color: #F73A0B;color: white; border-radius: 8px; padding: 10px; font-weight: 500;">
                         <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span> Kegiatan</button>
-                        
-                    </div>
-                </div>
-                <br>
-                <div class="container-fluid table">
-                    <br>
-                    <h6>
-                        Data Cabang
-                    </h6>
-                    <br>
-                    <div>
-                        <table class="table table-striped" id="table-inventaris-book">
-                            <thead class="head-table">
-                                <tr>
-                                    <th>No</th>
-                                    <th>Nama Kegiatan</th>
-                                    <th>Waktu Mulai</th>
-                                    <th>Waktu Akhir</th>
-                                    <th>Cabang/Elemen</th>
-                                    <th>Lokasi</th>
-                                    <th>Status</th>
-                                    <th>Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody class="body-table">
-                                @foreach ($kegiatan as $item)
-
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->nama }}</td>
-                                        <td>{{ $item->tgl_event_mulai }}</td>
-                                        <td>{{ $item->tgl_event_akhir }}</td>
-                                        <td>element</td>
-                                        <td>lokasi</td>
-                                        <td>status</td>
-                                        <td>
-                                            <a href="{{ route('kegiatan.edit', $item->event_id) }}"
-                                                class="btn btn-sm btn-warning"><i class="nav-icon fas fa-user-edit"></i>
-                                                Edit</a>
-                                            <a href="{{ route('kegiatan.destroy', $item->event_id) }}"
-                                                class="btn btn-sm btn-danger"><i class="nav-icon fas fa-trash-alt"></i>
-                                                Edit</a>
-                                            <a href="{{ route('kegiatan.show', $item->event_id) }}"
-                                                Hapus</a>
-                                            <a href="{{ route('kegiatan.presensi', $item->event_id) }}"
-                                                class="btn btn-sm btn-danger"><i class="nav-icon fas fa-trash-alt"></i>
-                                                Presensi</a>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-
-                    <a href="">
-                    </a>
 
                 </div>
             </div>
+            <br>
+            <div class="container-fluid table">
+                <br>
+                <h6>
+                    Data Cabang
+                </h6>
+                <br>
+                <div>
+                    <table class="table table-striped" id="table-inventaris-book">
+                        <thead class="head-table">
+                            <tr>
+                                <th>No</th>
+                                <th>Nama Kegiatan</th>
+                                <th>Waktu Mulai</th>
+                                <th>Waktu Akhir</th>
+                                <th>Cabang/Elemen</th>
+                                <th>Lokasi</th>
+                                <th>Status</th>
+                                <th>Aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody class="body-table">
+                            @foreach ($kegiatan as $item)
+
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $item->nama }}</td>
+                                <td>{{ $item->tgl_event_mulai }}</td>
+                                <td>{{ $item->tgl_event_akhir }}</td>
+                                <td>element</td>
+                                <td>lokasi</td>
+                                <td>status</td>
+                                <td>
+                                    <a href="{{ route('kegiatan.edit', $item->event_id) }}"
+                                        class="btn btn-sm btn-warning"><i class="nav-icon fas fa-user-edit"></i>
+                                        Edit</a>
+                                    <a href="{{ route('kegiatan.destroy', $item->event_id) }}"
+                                        class="btn btn-sm btn-danger"><i class="nav-icon fas fa-trash-alt"></i>
+                                        Hapus</a>
+                                    <a href="{{ route('kegiatan.presensi', $item->event_id) }}"
+                                        class="btn btn-sm btn-danger"><i class="nav-icon fas fa-trash-alt"></i>
+                                        Presensi</a>
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+
+                <a href="">
+                </a>
+
+            </div>
         </div>
     </div>
-    
+</div>
+
 @endsection
 <div class="modal fade" id="ModalKegiatan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -111,40 +109,42 @@
                     </div>
                     <div class="form-group">
                         <label for="title">Tanggal Mulai Pelaksanaan</label>
-                        <input type="date" class="form-control @error('tgl_event_mulai') is invalid @enderror" name="tgl_event_mulai"
-                            placeholder="Masukkan Nama Element" value="{{ old('tgl_event_mulai') }}">
+                        <input type="date" class="form-control @error('tgl_event_mulai') is invalid @enderror"
+                            name="tgl_event_mulai" placeholder="Masukkan Nama Element"
+                            value="{{ old('tgl_event_mulai') }}">
                     </div>
                     <div class="form-group">
                         <label for="title">Tanggal Berakhir Pelaksanaan</label>
-                        <input type="date" class="form-control @error('tgl_event_akhir') is invalid @enderror" name="tgl_event_akhir"
-                            placeholder="Masukkan Nama Element" value="{{ old('tgl_event_akhir') }}">
+                        <input type="date" class="form-control @error('tgl_event_akhir') is invalid @enderror"
+                            name="tgl_event_akhir" placeholder="Masukkan Nama Element"
+                            value="{{ old('tgl_event_akhir') }}">
                     </div>
                     <div class="form-group">
                         <label for="title">Jenis Kegiatan</label>
-                       <select name="jenis" id="jenis" class="form-control">
-                           <option value="">-</option>
-                           <option value="kurban">Kurban</option>
-                           <option value="pertemuan">Pertemuan</option>
-                           <option value="kajian">Kajian</option>
-                       </select>
+                        <select name="jenis" id="jenis" class="form-control">
+                            <option value="">-</option>
+                            <option value="kurban">Kurban</option>
+                            <option value="pertemuan">Pertemuan</option>
+                            <option value="kajian">Kajian</option>
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="title">Peserta Cabang</label>
-                       <select name="id_cabang" id="id_cabang" class="form-control">
-                           <option value="">Pilih</option>
-                           <option value="0">Semua</option>
-                           @foreach ($cabang as $id => $nama)
-                               <option value="{{$id}}">{{$nama}}</option>
-                           @endforeach
-                       </select>
+                        <select name="id_cabang" id="id_cabang" class="form-control">
+                            <option value="">Pilih</option>
+                            <option value="0">Semua</option>
+                            @foreach ($cabang as $id => $nama)
+                            <option value="{{$id}}">{{$nama}}</option>
+                            @endforeach
+                        </select>
                     </div>
                     <div class="form-group">
                         <label for="title">Peserta Element</label>
                         <select name="element_id" id="element_id" class="form-control">
                             <option value="">Pilih</option>
-                           <option value="0">Semua</option>
+                            <option value="0">Semua</option>
                             @foreach ($element as $id => $nama)
-                                <option value="{{$id}}">{{$nama}}</option>
+                            <option value="{{$id}}">{{$nama}}</option>
                             @endforeach
                         </select>
                     </div>
@@ -168,8 +168,8 @@
 </div>
 
 @push('after-scripts')
-    <script>
-        var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
+<script>
+    var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
         $('#id_cabang').select2({
                 placeholder: 'Pilih Cabang',
                 ajax:{
@@ -191,5 +191,5 @@
                     cache:true
                 }
             });
-    </script>
+</script>
 @endpush

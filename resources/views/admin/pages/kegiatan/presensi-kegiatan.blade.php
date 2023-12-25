@@ -145,7 +145,7 @@
                                         '<input class="form-control" type="hidden" value='+value.warga_id+' id="idwarga">'+
                                         // '<a href="" class="badge badge-pill badge-light" style="font-size: 14px;">$'+ el.price +'</a>' +
                                         '<input class="form-check-input" type="checkbox" value='+value.warga_id+' id="pilihPeserta">'+
-                                        '<a type="button" id="klik-hadir" class="badge badge-pill badge-light" style="font-size: 14px;">hadir</a>' +
+                                        '<a type="button" id="klik-hadir" class="badge badge-pill badge-light" style="font-size: 14px; pedding:10px;">hadir</a>' +
                                     '</div>' +
                                 '</div>';
                         });
