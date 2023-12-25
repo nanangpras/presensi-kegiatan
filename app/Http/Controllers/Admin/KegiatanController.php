@@ -9,9 +9,11 @@ use App\Models\Element;
 use App\Models\Kegiatan;
 use App\Models\PanitiaKegiatan;
 use App\Models\PresensiKegiatan;
+use App\Models\User;
 use App\Models\ViewPresensi;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
 class KegiatanController extends Controller
@@ -47,16 +49,30 @@ class KegiatanController extends Controller
      */
     public function store(KegiatanRequest $request)
     {
-        
+
         // $data = $request->all();
         // dd($data);
+        // $check_admin_cabang = explode(',', Auth::user()->access);
+        $check_admin_cabang = Auth::user()->access;
+        $cabang_admin       = User::join('d_warga','d_warga.nik','=','users.nik')
+                            ->select('d_warga.id_cabang as cabang_admin','users.id as id_user')
+                            ->where('id',Auth::user()->id)
+                            ->first();
+
         $data = new Kegiatan();
         $data->nama = $request->nama;
         $data->jenis = $request->jenis;
-        $data->id_cabang = $request->id_cabang;
+        // foreach ($check_admin_cabang as $value) {
+            if ($check_admin_cabang == "cabang" && $request->id_cabang == 0 && $request->jenis == "kajian") {
+                $data->id_cabang = $cabang_admin->cabang_admin;
+            }else{
+                $data->id_cabang = $request->id_cabang;
+            }
+        // }
         $data->element_id = $request->element_id;
         $data->lokasi = $request->lokasi;
         $data->maps = $request->maps;
+        $data->user_id = $cabang_admin->id_user;
         $data->tgl_update = Carbon::now();
         $data->tgl_event_mulai = $request->tgl_event_mulai;
         $data->tgl_event_akhir = $request->tgl_event_akhir;
@@ -76,7 +92,7 @@ class KegiatanController extends Controller
         $detail_kegiatan= DB::table('d_event')->where('event_id',$event_id)->first();
 
         // kurban
-        
+
         return view('admin.pages.kegiatan.presensi',compact('detail_kegiatan'));
     }
 
@@ -180,7 +196,7 @@ class KegiatanController extends Controller
         }elseif ($request->key=="detail_panitia") {
             $panitia_detail = clone $panitia;
             return view('admin.pages.kurban.data-panitia',compact('panitia_detail','kegiatankurban'));
-            
+
         }elseif ($request->key=="statistik_presensi") {
             $totalpanitia = $panitia->count();
             $panitahadir = PresensiKegiatan::where('type','kurban')->where('keterangan','hadir')->where('event_id',$request->event)->count();
@@ -199,7 +215,7 @@ class KegiatanController extends Controller
             return view('admin.pages.kurban.part.cetak-presensi',compact('cetak','request','kegiatankurban'));
         }
 
-        
+
     }
 
     public function delete_panitia_kegiatan($id)
@@ -244,10 +260,10 @@ class KegiatanController extends Controller
             }
         } else {
             return response()->json(["status"=>"sudah menjadi panitia"]);
-            
+
         }
     }
-        
+
     public function presensi(Request $request, $event_id)
     {
         $kegiatan = Kegiatan::findOrFail($event_id);
@@ -259,12 +275,28 @@ class KegiatanController extends Controller
                         ->where('event_registers.event_id',$event_id)
                         ->orderBy('id','desc')
                         ->get();
-        
+        $cabang_admin    = User::join('d_warga','d_warga.nik','=','users.nik')
+                        ->select('d_warga.id_cabang as cabang_admin','users.id as id_user')
+                        ->where('id',Auth::user()->id)
+                        ->first();
+
         $total_presensi = $presensi->count();
+
+        $check_admin_cabang = Auth::user()->access;
+        if ($check_admin_cabang == 'cabang') {
+            $peserta = DB::table('d_warga')
+                        ->join('d_event','d_warga.id_cabang','=','d_event.id_cabang')
+                        ->join('md_cabang','d_warga.id_cabang','=','md_cabang.id_cabang')
+                        ->select('d_event.nama as kegiatan','d_warga.nama as warga','md_cabang.nama as cabang')
+                        ->where('d_event.id_cabang',$cabang_admin->cabang_admin)
+                        ->where('d_event.user_id',Auth::user()->id)
+                        ->get();
+            // dd($peserta);
+        }
         // if ($request->key=="statistik") {
         //     $total_presensi = $presensi->count();
         //     return view('admin.pages.kegiatan.part.statistik-presensi',compact('total_presensi'));
         // }
-        return view('admin.pages.kegiatan.presensi-kegiatan',compact('kegiatan','presensi','total_presensi'));
+        return view('admin.pages.kegiatan.presensi-kegiatan',compact('kegiatan','presensi','total_presensi','peserta','check_admin_cabang'));
     }
 }

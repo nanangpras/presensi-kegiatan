@@ -21,7 +21,7 @@
                 <div class="col-lg-12 col-12">
                     <div class="dashboard-heading">
                         <h5 class="dashboard-title">
-                            Presensi Kegiatan {{ $kegiatan->nama }} 
+                            Presensi Kegiatan {{ $kegiatan->nama }}
                         </h5>
                         {{-- <input type="text" value="{{$kegiatan->event_id}}" id="event_id"> --}}
                         <br>
@@ -41,7 +41,7 @@
                                         <input type="hidden" id="event_id" value="{{$kegiatan->event_id}}">
                                         <p style="font-size: 14px;"> <b>{{$kegiatan->nama}} </b> </p>
                                         <p style="font-size: 10px;"><span><i class="fa fa-map-pin" aria-hidden="true"></i></span> {{$kegiatan->lokasi}}</p>
-                                        
+
                                     </div>
                                 </div>
                                 <div class="col-lg-7 col-6">
@@ -85,16 +85,28 @@
                                 </tr>
                             </thead>
                             <tbody class="body-table">
-                                @foreach ($presensi as $item)
+                                @if ($check_admin_cabang == 'cabang')
+                                    @foreach ($peserta as $item)
+                                        <tr>
+                                            <td>{{$loop->iteration}}</td>
+                                            <td>{{$item->kegiatan}}</td>
+                                            <td>{{$item->warga}}</td>
+                                            <td>{{$item->cabang}}</td>
+                                            <td>Belum Hadir</td>
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    @foreach ($presensi as $item)
 
-                                    <tr>
-                                        <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $item->kegiatan }}</td>
-                                        <td>{{ $item->warga }}</td>
-                                        <td>{{ $item->cabang }}</td>
-                                        <td><span class="badge badge-success">{{ $item->keterangan}}</span></td>
-                                    </tr>
-                                @endforeach
+                                        <tr>
+                                            <td>{{ $loop->iteration }}</td>
+                                            <td>{{ $item->kegiatan }}</td>
+                                            <td>{{ $item->warga }}</td>
+                                            <td>{{ $item->cabang }}</td>
+                                            <td><span class="badge badge-success">{{ $item->keterangan}}</span></td>
+                                        </tr>
+                                    @endforeach
+                                @endif
                             </tbody>
                         </table>
                     </div>
@@ -127,7 +139,7 @@
                     success: function (response) {
                         console.log(response);
                         var result = '';
-                        $.each(response, function (key, value) { 
+                        $.each(response, function (key, value) {
                             // var result = response[key];
                              result +=
                                 '<div class="row" data-id='+ value.warga_id +'>' +
@@ -157,7 +169,7 @@
             // $("#stat-presensi").load(
             //     "{{ route('kegiatan.presensi', ['key' => 'statistik','event_id' => "event_id"]) }}"
             // );
-        
+
         });
 
         $(document).on("click", "#klik-hadir", function() {
@@ -191,11 +203,11 @@
 
         $(document).on("change", "#status", function() {
             // alert('ok');
-            
+
             var status = $("#status").val();
             // console.log(idpresensi);
             // console.log(status);
-            
+
         });
 
     </script>
