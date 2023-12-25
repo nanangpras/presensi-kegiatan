@@ -59,25 +59,62 @@ class KegiatanController extends Controller
                             ->where('id',Auth::user()->id)
                             ->first();
 
-        $data = new Kegiatan();
-        $data->nama = $request->nama;
-        $data->jenis = $request->jenis;
-        // foreach ($check_admin_cabang as $value) {
+        DB::beginTransaction();
+        try {
+            $data = new Kegiatan();
+            $data->nama = $request->nama;
+            $data->jenis = $request->jenis;
             if ($check_admin_cabang == "cabang" && $request->id_cabang == 0 && $request->jenis == "kajian") {
                 $data->id_cabang = $cabang_admin->cabang_admin;
             }else{
                 $data->id_cabang = $request->id_cabang;
             }
-        // }
-        $data->element_id = $request->element_id;
-        $data->lokasi = $request->lokasi;
-        $data->maps = $request->maps;
-        $data->user_id = $cabang_admin->id_user;
-        $data->tgl_update = Carbon::now();
-        $data->tgl_event_mulai = $request->tgl_event_mulai;
-        $data->tgl_event_akhir = $request->tgl_event_akhir;
-        $data->save();
-        return redirect()->route('kegiatan.index');
+            $data->element_id = $request->element_id;
+            $data->lokasi = $request->lokasi;
+            $data->maps = $request->maps;
+            $data->user_id = $cabang_admin->id_user;
+            $data->tgl_update = Carbon::now();
+            $data->tgl_event_mulai = $request->tgl_event_mulai;
+            $data->tgl_event_akhir = $request->tgl_event_akhir;
+            if (!$data->save()) {
+                DB::rollBack();
+                return redirect()->route('kegiatan.index')->with('error','Data Kegiatan Gagal Ditambahkan');
+            }
+
+            $peserta            = DB::table('d_warga')
+                                ->join('d_event','d_warga.id_cabang','=','d_event.id_cabang')
+                                ->join('md_cabang','d_warga.id_cabang','=','md_cabang.id_cabang')
+                                ->join('users','d_warga.nik', '=','users.nik')
+                                ->select('d_event.event_id','users.id as user_id','d_warga.warga_id','md_cabang.nama as cabang')
+                                ->where('d_warga.id_cabang',$cabang_admin->cabang_admin)
+                                ->where('d_event.event_id',$data->event_id)
+                                // ->limit(5)
+                                ->get();
+                                // dd($peserta);
+
+            if ($check_admin_cabang == "cabang" && $request->id_cabang == 0 && $request->jenis == "kajian") {
+                foreach ($peserta as $new) {
+                    $insert_new_peserta           = new PresensiKegiatan();
+                    $insert_new_peserta->warga_id = $new->warga_id;
+                    $insert_new_peserta->user_id  = $new->user_id;
+                    $insert_new_peserta->admin_id = $cabang_admin->id_user;
+                    $insert_new_peserta->event_id = $new->event_id;
+                    $insert_new_peserta->keterangan = "belum hadir";
+                    $insert_new_peserta->type     = $request->jenis;
+                    $insert_new_peserta->save();
+                    if (!$insert_new_peserta->save()) {
+                        DB::rollBack();
+                        return redirect()->route('kegiatan.index')->with('error','Peserta Cabang Gagal Ditambahkan');
+                    }
+                }
+            }
+            DB::commit() ;
+            return redirect()->route('kegiatan.index')->with('success','Data Kegiatan Berhasil Ditambahkan');
+        } catch (\Throwable $th) {
+            DB::rollBack();
+            return redirect()->route('kegiatan.index')->with('error','Proses Gagal');
+        }
+
     }
 
     /**
@@ -280,23 +317,36 @@ class KegiatanController extends Controller
                         ->where('id',Auth::user()->id)
                         ->first();
 
-        $total_presensi = $presensi->count();
+        $total_presensi = DB::table('event_registers')->where('keterangan','hadir')->where('event_registers.event_id',$event_id)->count();
 
         $check_admin_cabang = Auth::user()->access;
         if ($check_admin_cabang == 'cabang') {
-            $peserta = DB::table('d_warga')
-                        ->join('d_event','d_warga.id_cabang','=','d_event.id_cabang')
-                        ->join('md_cabang','d_warga.id_cabang','=','md_cabang.id_cabang')
-                        ->select('d_event.nama as kegiatan','d_warga.nama as warga','md_cabang.nama as cabang')
-                        ->where('d_event.id_cabang',$cabang_admin->cabang_admin)
-                        ->where('d_event.user_id',Auth::user()->id)
-                        ->get();
-            // dd($peserta);
+            $peserta = DB::table('event_registers')
+                    ->join('d_event','event_registers.event_id','=','d_event.event_id')
+                    ->join('d_warga','event_registers.warga_id','=','d_warga.warga_id')
+                    ->join('md_cabang','d_warga.id_cabang','=','md_cabang.id_cabang')
+                    ->select('event_registers.*','d_event.nama as kegiatan','d_warga.nama as warga','md_cabang.nama as cabang')
+                    ->where('event_registers.event_id',$event_id)
+                    ->orderBy('id','desc')
+                    ->get();
         }
         // if ($request->key=="statistik") {
         //     $total_presensi = $presensi->count();
         //     return view('admin.pages.kegiatan.part.statistik-presensi',compact('total_presensi'));
         // }
         return view('admin.pages.kegiatan.presensi-kegiatan',compact('kegiatan','presensi','total_presensi','peserta','check_admin_cabang'));
+    }
+
+    public function updatePresensi(Request $request,$id)
+    {
+        $presensi = PresensiKegiatan::findOrFail($id);
+        $presensi->keterangan = $request->keterangan;
+        $presensi->save();
+        if ($presensi == true) {
+            return response()->json(["status"=>"berhasil diubah"]);
+        } else {
+            return response()->json(["status"=>"gagal diubah"]);
+            # code...
+        }
     }
 }

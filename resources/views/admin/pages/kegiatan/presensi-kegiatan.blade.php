@@ -4,20 +4,20 @@
         <div class="container-fluid">
             <div class="row">
                 @if($errors->any())
-                        <div class="alert alert-danger" role="alert">
-                            {{$errors->first()}}
-                          </div>
-                        @endif
-                        @if (session('success'))
-                            <div class="alert alert-success">
-                                {{ session('success') }}
-                            </div>
-                        @endif
-                        @if (session('error'))
-                            <div class="alert alert-danger">
-                                {{ session('error') }}
-                            </div>
-                        @endif
+                <div class="alert alert-danger" role="alert">
+                    {{$errors->first()}}
+                    </div>
+                @endif
+                @if (session('success'))
+                    <div class="alert alert-success">
+                        {{ session('success') }}
+                    </div>
+                @endif
+                @if (session('error'))
+                    <div class="alert alert-danger">
+                        {{ session('error') }}
+                    </div>
+                @endif
                 <div class="col-lg-12 col-12">
                     <div class="dashboard-heading">
                         <h5 class="dashboard-title">
@@ -82,6 +82,7 @@
                                     <th>Nama Warga</th>
                                     <th>Cabang</th>
                                     <th>Status</th>
+                                    <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody class="body-table">
@@ -92,7 +93,14 @@
                                             <td>{{$item->kegiatan}}</td>
                                             <td>{{$item->warga}}</td>
                                             <td>{{$item->cabang}}</td>
-                                            <td>Belum Hadir</td>
+                                            <td>{{$item->keterangan}}</td>
+                                            <td>
+                                                @if ($item->keterangan == "belum hadir")
+                                                    <button class="btn btn-primary" id="btn_status" data-keterangan="hadir" data-id="{{$item->id}}">Hadir</button>
+                                                    <button class="btn btn-primary" id="btn_status" data-keterangan="sakit" data-id="{{$item->id}}">Sakit</button>
+                                                    <button class="btn btn-primary" id="btn_status" data-keterangan="izin" data-id="{{$item->id}}">Izin</button>
+                                                @endif
+                                            </td>
                                         </tr>
                                     @endforeach
                                 @else
@@ -104,6 +112,7 @@
                                             <td>{{ $item->warga }}</td>
                                             <td>{{ $item->cabang }}</td>
                                             <td><span class="badge badge-success">{{ $item->keterangan}}</span></td>
+                                            <td></td>
                                         </tr>
                                     @endforeach
                                 @endif
@@ -208,6 +217,25 @@
             // console.log(idpresensi);
             // console.log(status);
 
+        });
+
+        $(document).on("click", "#btn_status", function(){
+            let id = $(this).attr("data-id");
+            let keterangan = $(this).attr("data-keterangan");
+            // alert(id);
+            // alert(keterangan);
+            $.ajax({
+                type: "PATCH",
+                url: "/admin/update/presensi/"+id,
+                data: {
+                    _token:CSRF_TOKEN,
+                    keterangan:keterangan
+                },
+                success: function (response) {
+                    alert(response.status);
+                    location.reload(true);
+                }
+            });
         });
 
     </script>
