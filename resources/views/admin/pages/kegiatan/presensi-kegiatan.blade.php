@@ -30,7 +30,7 @@
                                 @include('admin.pages.kegiatan.part.statistik-presensi')
                             </div>
                         </div>
-                        @if (!$check_admin_cabang == 'cabang')
+                        @if (!$check_admin_cabang == 'cabang' || !$kegiatan->jenis == "umum")
                             <div class="dashboard-content">
                                 <div class="row">
                                     <div class="col-lg-3 col-6">
@@ -72,7 +72,7 @@
                 <div class="container-fluid table">
                     <br>
                     <h6>
-                        Data Cabang
+                        Data Presensi
                     </h6>
                     <br>
                     <div>
@@ -89,7 +89,7 @@
                             </thead>
                             <tbody class="body-table">
                                 @if ($check_admin_cabang == 'cabang')
-                                    @foreach ($peserta as $item)
+                                    @foreach ($presensi as $item)
                                         <tr>
                                             <td>{{$loop->iteration}}</td>
                                             <td>{{$item->kegiatan}}</td>
@@ -114,6 +114,15 @@
                                             <td>{{ $item->warga }}</td>
                                             <td>{{ $item->cabang }}</td>
                                             <td><span class="badge badge-success">{{ $item->keterangan}}</span></td>
+                                            @if ($kegiatan->jenis == "umum")
+                                                @if ($item->keterangan == "belum hadir")
+                                                    <td>
+                                                        <button class="btn btn-primary" id="btn_status" data-keterangan="hadir" data-id="{{$item->id}}">Hadir</button>
+                                                        <button class="btn btn-primary" id="btn_status" data-keterangan="sakit" data-id="{{$item->id}}">Sakit</button>
+                                                        <button class="btn btn-primary" id="btn_status" data-keterangan="izin" data-id="{{$item->id}}">Izin</button>
+                                                    </td>
+                                                @endif
+                                            @endif
                                             <td></td>
                                         </tr>
                                     @endforeach
@@ -202,7 +211,7 @@
             $.ajax({
                 type: "post",
                 url: "{{ route('presensi.kegiatan.admin') }}",
-                data: {_token:CSRF_TOKEN, event_id:event, warga_id:idWarga, user_id:user },
+                data: {_token:CSRF_TOKEN, event_id:event, warga_id:idWarga, user_id:user,keterangan:'hadir' },
                 dataType: "json",
                 success: function (response) {
                     // console.log(response);

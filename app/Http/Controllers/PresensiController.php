@@ -53,7 +53,7 @@ class PresensiController extends Controller
             //throw $th;
             return view('presensi.result-null');
         }
-        
+
     }
 
     public function presensi(Request $request)
@@ -104,8 +104,8 @@ class PresensiController extends Controller
             $data->save();
             return Redirect::back()->with('success','Berhasil presensi');
         }
-        
-        
+
+
     }
 
     public function insertPresensiDonor(Request $request)
@@ -116,7 +116,7 @@ class PresensiController extends Controller
 
         $cekpres_kegiatan = PresensiKegiatanDonor::where('warga_id',$profile_warga->warga_id)->get();
         $cekpres = PresensiKegiatanDonor::where('warga_id',$profile_warga->warga_id)->first();
-        
+
         foreach ($donor as $event) {
             $presensi = PresensiKegiatanDonor::where('event_id',$event->event_id)->where('warga_id',$profile_warga->warga_id)->first();
             // $cekwarga = PresensiKegiatanDonor::where('warga_id',$profile_warga->warga_id)->get();
@@ -140,16 +140,16 @@ class PresensiController extends Controller
 
         }
 
-        
-        
+
+
         // dd($cek);
         // $query = PresensiKegiatanDonor::whereHas('kegiatan',function ($q) use ($profile_warga){
         //     $q->where('warga_id',$profile_warga->warga_id);
         // })->get();
 
-        // $cek = 
+        // $cek =
         // dd($query);
-        
+
 
         // if ($query->warga_id  ) {
 
@@ -164,7 +164,7 @@ class PresensiController extends Controller
         //     $data->save();
         //     return Redirect::back()->with('success','Berhasil presensi');
         // }else{
-            
+
         //     return Redirect::back()->with('error','Sudah presensi');
         // }
     }
@@ -204,7 +204,8 @@ class PresensiController extends Controller
             $data->user_id = $request->user_id;
             $data->warga_id = $request->warga_id;
             $data->admin_id = Auth::user()->id;
-            $data->keterangan = 'hadir';
+            $data->keterangan = $request->keterangan;
+            $data->type = $request->type;
             $data->save();
             if ($data==true) {
                     return response()->json([
@@ -216,7 +217,7 @@ class PresensiController extends Controller
 
     public function changeStatusDonor($id, Request $request)
     {
-        
+
         $change = PresensiKegiatanDonor::findOrFail($id);
         $change->status = $request->status;;
         $change->save();
@@ -248,7 +249,7 @@ class PresensiController extends Controller
                 $insert['admin_id']     = Auth::user()->id;
                 $insert['created_at']   = Carbon::now();
                 $insert['updated_at']   = Carbon::now();
-                
+
                 array_push($result,$insert);
             }
             $presensipanitia = PresensiKegiatan::insert($result);
@@ -266,7 +267,7 @@ class PresensiController extends Controller
                 "status"=>"sudah presensi"
             ]);
         }
-        
+
 
     }
 }

@@ -74,6 +74,8 @@ Route::prefix('admin')
             Route::get('search-nik',[AdminController::class,'searchNik'])->name('search-nik');
             Route::get('kegiatan/presensi/{event_id}',[KegiatanController::class,'presensi'])->name('kegiatan.presensi');
             Route::patch('update/presensi/{id}',[KegiatanController::class,'updatePresensi'])->name('update.presensi');
+            Route::get('kegiatan-umum/create-peserta/{event_id}',[KegiatanController::class,'createPesertaUmum'])->name('kegiatan-umum.create-peserta');
+            Route::get('kegiatan-umum/insert-peserta',[KegiatanController::class,'insertPesertaUmum'])->name('kegiatan-umum.insert-peserta');
         });
 
 Route::prefix('warga')

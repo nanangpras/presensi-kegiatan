@@ -37,7 +37,7 @@
             <div class="container-fluid table">
                 <br>
                 <h6>
-                    Data Cabang
+                    Data Semua Kegiatan
                 </h6>
                 <br>
                 <div>
@@ -50,7 +50,7 @@
                                 <th>Waktu Akhir</th>
                                 <th>Cabang/Elemen</th>
                                 <th>Lokasi</th>
-                                <th>Status</th>
+                                <th>Jenis</th>
                                 <th>Aksi</th>
                             </tr>
                         </thead>
@@ -70,7 +70,7 @@
                                     @endif
                                 </td>
                                 <td>{{$item->lokasi}}</td>
-                                <td>status</td>
+                                <td>{{$item->jenis}}</td>
                                 <td>
                                     <a href="{{ route('kegiatan.edit', $item->event_id) }}"
                                         class="btn btn-sm btn-warning"><i class="nav-icon fas fa-user-edit"></i>
@@ -81,6 +81,15 @@
                                     <a href="{{ route('kegiatan.presensi', $item->event_id) }}"
                                         class="btn btn-sm btn-danger"><i class="nav-icon fas fa-trash-alt"></i>
                                         Presensi</a>
+                                    @if ($item->jenis == 'umum')
+                                        @if (!$check_admin_cabang->access == 'cabang')
+                                            <a href="{{route('kegiatan-umum.create-peserta',$item->event_id)}}"
+                                                style="background-color: #057CE4; color:white" class="btn btn-sm btn-danger"
+                                                role="button"><i class="nav-icon fa fa-trash-alt"></i>
+                                                Tambah Peserta
+                                            </a>
+                                        @endif
+                                    @endif
                                 </td>
                             </tr>
                             @endforeach
@@ -148,6 +157,7 @@
                                 <option value="kurban">Kurban</option>
                                 <option value="pertemuan">Pertemuan</option>
                                 <option value="kajian">Kajian</option>
+                                <option value="umum">Umum</option>
                             </select>
                         @endif
                     </div>

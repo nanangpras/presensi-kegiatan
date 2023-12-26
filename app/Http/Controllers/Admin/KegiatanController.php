@@ -38,7 +38,7 @@ class KegiatanController extends Controller
         }else{
             $kegiatan = DB::table('d_event')->orderByDesc('event_id')->get();
         }
-        return view('admin.pages.kegiatan.data',compact('kegiatan','cabang','element'));
+        return view('admin.pages.kegiatan.data',compact('kegiatan','cabang','element','check_admin_cabang'));
 
     }
 
@@ -334,7 +334,7 @@ class KegiatanController extends Controller
 
         $check_admin_cabang = Auth::user()->access;
         if ($check_admin_cabang == 'cabang') {
-            $peserta = DB::table('event_registers')
+            $presensi = DB::table('event_registers')
                     ->join('d_event','event_registers.event_id','=','d_event.event_id')
                     ->join('d_warga','event_registers.warga_id','=','d_warga.warga_id')
                     ->join('md_cabang','d_warga.id_cabang','=','md_cabang.id_cabang')
@@ -347,7 +347,7 @@ class KegiatanController extends Controller
         //     $total_presensi = $presensi->count();
         //     return view('admin.pages.kegiatan.part.statistik-presensi',compact('total_presensi'));
         // }
-        return view('admin.pages.kegiatan.presensi-kegiatan',compact('kegiatan','presensi','total_presensi','peserta','check_admin_cabang','total_sakit','total_izin'));
+        return view('admin.pages.kegiatan.presensi-kegiatan',compact('kegiatan','presensi','total_presensi','check_admin_cabang','total_sakit','total_izin'));
     }
 
     public function updatePresensi(Request $request,$id)
@@ -362,4 +362,19 @@ class KegiatanController extends Controller
             # code...
         }
     }
+
+    public function createPesertaUmum($event_id)
+    {
+        $kegiatan = Kegiatan::findOrFail($event_id);
+        $peserta  = DB::table('event_registers')
+                    ->join('d_event','event_registers.event_id','=','d_event.event_id')
+                    ->join('d_warga','event_registers.warga_id','=','d_warga.warga_id')
+                    ->join('md_cabang','d_warga.id_cabang','=','md_cabang.id_cabang')
+                    ->select('event_registers.*','d_event.nama as kegiatan','d_warga.nama as warga','md_cabang.nama as cabang')
+                    ->where('event_registers.event_id',$event_id)
+                    ->orderBy('id','desc')
+                    ->get();
+        return view('admin.pages.kegiatan.umum.create-peserta',compact('kegiatan','peserta'));
+    }
+
 }
