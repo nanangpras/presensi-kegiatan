@@ -1,5 +1,5 @@
 <div id="sidebar-wrapper">
-    @if (Auth::user()->role == 'admin')
+    @if (Auth::user()->role == 'admin' && Auth::user()->access == null || Auth::user()->access == 'perwakilan')
 
     <div class="list-group list-group-flush">
         <span class="right-nav-text">MENU</span>
@@ -77,28 +77,27 @@
             Logout</a>
     </div>
     @endif
-    @if (Auth::user()->role == 'warga')
-
+    @if (Auth::user()->role == 'admin' && Auth::user()->access == 'cabang')
     <div class="list-group list-group-flush">
         <span class="right-nav-text">MENU</span>
-        <a href="{{url('/warga')}}"
+        <a href="{{url('/admin')}}"
             class="list-group-item list-group-item-action active {{ Request::is('presensi/dashboard') ? 'active' : '' }}"><span
                 class="icon-dashboard" aria-hidden="true"></span>
             <img src="{{ url('presensi/images/icon/dashboard.svg') }}" style="margin-right: 18px;" alt="">
             Dashboard </a>
 
-        <a href="{{route('presensi.warga')}}"
+        <a href="{{route('kegiatan.index')}}"
             class="list-group-item list-group-item-action {{ Request::is('presensi/warga') ? 'active' : '' }}"><span
                 class="icon-dashboard" aria-hidden="true"></span>
             <img src="{{ url('presensi/images/icon/kegiatan.svg') }}" style="margin-right: 18px;" alt="">
-            Presensi </a>
+            Presensi Kajian</a>
 
-        {{-- <a href="{{ route('kegiatan.index') }}"
-            class="list-group-item list-group-item-action {{ Request::is('kegiatan.*') ? 'active' : '' }}"><span
-                class="icon-katalog" aria-hidden="true"></span>
-            <img src="{{ url('presensi/images/icon/kegiatan.svg') }}" style="margin-right: 18px;" alt="">
-            Kegiatan</a> --}}
-        <a href="#"
+        <a href="{{ route('warga.index') }}"
+            class="list-group-item list-group-item-action {{ Request::is('presensi/profile/me') ? 'active' : '' }}"><span
+            class="icon-profile" aria-hidden="true"></span>
+        <img src="{{ url('presensi/images/icon/akun.svg') }}" style="margin-right: 18px;" alt="">Data Warga</a>
+
+        {{-- <a href="#"
             class="list-group-item list-group-item-action {{ Request::is('presensi/catalogs') ? 'active' : '' }}"><span
                 class="icon-katalog" aria-hidden="true"></span>
             <img src="{{ url('presensi/images/icon/media.svg') }}" style="margin-right: 18px;" alt="">
@@ -107,8 +106,7 @@
             class="list-group-item list-group-item-action {{ Request::is('presensi/catalogs') ? 'active' : '' }}"><span
                 class="icon-katalog" aria-hidden="true"></span>
             <img src="{{ url('presensi/images/icon/media.svg') }}" style="margin-right: 18px;" alt="">
-            Usaha Warga</a>
-        <br>
+            Usaha Warga</a> --}}
 
         <span class="right-nav-text">AKUN</span>
         <a href="{{ route('profile.index') }}"

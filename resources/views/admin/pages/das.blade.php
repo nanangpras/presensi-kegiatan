@@ -10,8 +10,11 @@
                         </p>
                     </div>
                     <h2 class="dashboard-title">
-                        Assalamualaikum Admin Perwakilan DIY
+                        Assalamualaikum {{$check_admin_cabang->name}}
                     </h2>
+                    <div class="dashboard-subtitle">
+                        <p>Anda sebagai {{$check_admin_cabang->role}} {{$check_admin_cabang->access}} {{$cabang_admin->nama_cabang}}</p>
+                    </div>
                     <br>
                     <div class="dashboard-content">
                         <div class="row">

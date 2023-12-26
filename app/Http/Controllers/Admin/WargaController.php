@@ -8,6 +8,7 @@ use App\Models\Element;
 use App\Models\User;
 use App\Models\Warga;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
@@ -20,13 +21,25 @@ class WargaController extends Controller
      */
     public function index()
     {
-        $warga = DB::table('d_warga')
+        $check_admin_cabang     = User::join('d_warga','d_warga.nik','=','users.nik')
+                                ->select('d_warga.id_cabang','users.id as id_user','users.role','users.access')
+                                ->where('id',Auth::user()->id)
+                                ->first();
+        if ($check_admin_cabang->access == "cabang" && $check_admin_cabang->role == 'admin') {
+            $warga = DB::table('d_warga')
                     ->select('d_warga.*','md_cabang.nama as cabang')
                     ->join('md_cabang','md_cabang.id_cabang','=','d_warga.id_cabang')
+                    ->where('d_warga.id_cabang',$check_admin_cabang->id_cabang)
                     ->get();
+        }else{
+            $warga = DB::table('d_warga')
+                        ->select('d_warga.*','md_cabang.nama as cabang')
+                        ->join('md_cabang','md_cabang.id_cabang','=','d_warga.id_cabang')
+                        ->get();
+        }
                     // dd($warga);
         $cabang = DB::table('md_cabang')->get();
-        return view('admin.pages.warga.data',compact('warga','cabang'));
+        return view('admin.pages.warga.data',compact('warga','cabang','check_admin_cabang'));
     }
 
     /**

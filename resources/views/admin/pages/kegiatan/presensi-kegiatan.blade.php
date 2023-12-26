@@ -30,39 +30,41 @@
                                 @include('admin.pages.kegiatan.part.statistik-presensi')
                             </div>
                         </div>
-                        <div class="dashboard-content">
-                            <div class="row">
-                                <div class="col-lg-3 col-6">
-                                    <div class="mb-5"
-                                        style="border-radius: 15px; background-color: white; padding: 20px;filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.09));">
-                                        <img src="{{asset('presensi/images/png/kegiatan.png')}}"
-                                            alt="" style="border-radius: 5px;">
-                                        <br> <br>
-                                        <input type="hidden" id="event_id" value="{{$kegiatan->event_id}}">
-                                        <p style="font-size: 14px;"> <b>{{$kegiatan->nama}} </b> </p>
-                                        <p style="font-size: 10px;"><span><i class="fa fa-map-pin" aria-hidden="true"></i></span> {{$kegiatan->lokasi}}</p>
+                        @if (!$check_admin_cabang == 'cabang')
+                            <div class="dashboard-content">
+                                <div class="row">
+                                    <div class="col-lg-3 col-6">
+                                        <div class="mb-5"
+                                            style="border-radius: 15px; background-color: white; padding: 20px;filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.09));">
+                                            <img src="{{asset('presensi/images/png/kegiatan.png')}}"
+                                                alt="" style="border-radius: 5px;">
+                                            <br> <br>
+                                            <input type="hidden" id="event_id" value="{{$kegiatan->event_id}}">
+                                            <p style="font-size: 14px;"> <b>{{$kegiatan->nama}} </b> </p>
+                                            <p style="font-size: 10px;"><span><i class="fa fa-map-pin" aria-hidden="true"></i></span> {{$kegiatan->lokasi}}</p>
 
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-7 col-6">
-                                    <div class="mb-5" style="border-radius: 15px; background-color: white; padding: 20px;filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.09));">
-                                        <input type="text" placeholder="cari warga dengan NIK" class="form-control" id="nik">
-                                        <br>
-                                        <input type="text" placeholder="cari warga dengan nama" class="form-control" id="nama">
+                                    <div class="col-lg-7 col-6">
+                                        <div class="mb-5" style="border-radius: 15px; background-color: white; padding: 20px;filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.09));">
+                                            <input type="text" placeholder="cari warga dengan NIK" class="form-control" id="nik">
+                                            <br>
+                                            <input type="text" placeholder="cari warga dengan nama" class="form-control" id="nama">
+                                        </div>
+                                        <div class="mb-5" id="result" style="border-radius: 15px; background-color: white; padding: 20px;filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.09));">
+                                            <h5>Hasil pencarian</h5>
+                                            <br>
+                                            <p>..</p>
+                                        </div>
                                     </div>
-                                    <div class="mb-5" id="result" style="border-radius: 15px; background-color: white; padding: 20px;filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.09));">
-                                        <h5>Hasil pencarian</h5>
-                                        <br>
-                                        <p>..</p>
-                                    </div>
-                                </div>
-                                <div class="col-lg-2 col-6">
-                                    <div class="mb-5" style="border-radius: 15px; background-color: white; padding: 20px;filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.09));">
-                                        <button class="btn btn-lg btn-primary" id="cari">Cari</button>
+                                    <div class="col-lg-2 col-6">
+                                        <div class="mb-5" style="border-radius: 15px; background-color: white; padding: 20px;filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.09));">
+                                            <button class="btn btn-lg btn-primary" id="cari">Cari</button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        @endif
 
                     </div>
                 </div>

@@ -25,10 +25,21 @@ class KegiatanController extends Controller
      */
     public function index()
     {
+        $check_admin_cabang = Auth::user();
         $cabang = Cabang::pluck('nama','id_cabang');
         $element = Element::pluck('nama','id');
-        $kegiatan = DB::table('d_event')->orderByDesc('event_id')->get();
+        if ($check_admin_cabang->access == "cabang" && $check_admin_cabang->role == 'admin') {
+
+            $cabang_admin       = User::join('d_warga','d_warga.nik','=','users.nik')
+                                ->select('d_warga.id_cabang as cabang_admin','users.id as id_user')
+                                ->where('id',Auth::user()->id)
+                                ->first();
+            $kegiatan = DB::table('d_event')->where('id_cabang',$cabang_admin->cabang_admin)->where('user_id',$cabang_admin->id_user)->orderByDesc('event_id')->get();
+        }else{
+            $kegiatan = DB::table('d_event')->orderByDesc('event_id')->get();
+        }
         return view('admin.pages.kegiatan.data',compact('kegiatan','cabang','element'));
+
     }
 
     /**
@@ -318,6 +329,8 @@ class KegiatanController extends Controller
                         ->first();
 
         $total_presensi = DB::table('event_registers')->where('keterangan','hadir')->where('event_registers.event_id',$event_id)->count();
+        $total_sakit    = DB::table('event_registers')->where('keterangan','sakit')->where('event_registers.event_id',$event_id)->count();
+        $total_izin     = DB::table('event_registers')->where('keterangan','izin')->where('event_registers.event_id',$event_id)->count();
 
         $check_admin_cabang = Auth::user()->access;
         if ($check_admin_cabang == 'cabang') {
@@ -334,7 +347,7 @@ class KegiatanController extends Controller
         //     $total_presensi = $presensi->count();
         //     return view('admin.pages.kegiatan.part.statistik-presensi',compact('total_presensi'));
         // }
-        return view('admin.pages.kegiatan.presensi-kegiatan',compact('kegiatan','presensi','total_presensi','peserta','check_admin_cabang'));
+        return view('admin.pages.kegiatan.presensi-kegiatan',compact('kegiatan','presensi','total_presensi','peserta','check_admin_cabang','total_sakit','total_izin'));
     }
 
     public function updatePresensi(Request $request,$id)

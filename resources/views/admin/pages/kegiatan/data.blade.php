@@ -62,8 +62,14 @@
                                 <td>{{ $item->nama }}</td>
                                 <td>{{ $item->tgl_event_mulai }}</td>
                                 <td>{{ $item->tgl_event_akhir }}</td>
-                                <td>element</td>
-                                <td>lokasi</td>
+                                <td>
+                                    @if ($item->element_id == 0)
+                                        Semua
+                                    @else
+                                        element
+                                    @endif
+                                </td>
+                                <td>{{$item->lokasi}}</td>
                                 <td>status</td>
                                 <td>
                                     <a href="{{ route('kegiatan.edit', $item->event_id) }}"
@@ -131,32 +137,53 @@
                     </div>
                     <div class="form-group">
                         <label for="title">Jenis Kegiatan</label>
-                        <select name="jenis" id="jenis" class="form-control">
-                            <option value="">-</option>
-                            <option value="kurban">Kurban</option>
-                            <option value="pertemuan">Pertemuan</option>
-                            <option value="kajian">Kajian</option>
-                        </select>
+                        @if (Auth::user()->role == 'admin' && Auth::user()->access == 'cabang')
+                            <select name="jenis" id="jenis" class="form-control">
+                                <option selected="true" disabled="disabled"> Pilih Jenis Kegiatan</option>
+                                <option value="kajian">Kajian</option>
+                            </select>
+                        @else
+                            <select name="jenis" id="jenis" class="form-control">
+                                <option selected="true" disabled="disabled"> Pilih Jenis Kegiatan</option>
+                                <option value="kurban">Kurban</option>
+                                <option value="pertemuan">Pertemuan</option>
+                                <option value="kajian">Kajian</option>
+                            </select>
+                        @endif
                     </div>
                     <div class="form-group">
                         <label for="title">Peserta Cabang</label>
-                        <select name="id_cabang" id="id_cabang" class="form-control">
-                            <option value="">Pilih</option>
-                            <option value="0">Semua</option>
-                            @foreach ($cabang as $id => $nama)
-                            <option value="{{$id}}">{{$nama}}</option>
-                            @endforeach
-                        </select>
+                        @if (Auth::user()->role == 'admin' && Auth::user()->access == 'cabang')
+                            <select name="id_cabang" id="id_cabang" class="form-control">
+                                <option selected="true" disabled="disabled"> Pilih Peserta Kegiatan</option>
+                                <option value="0">Semua</option>
+                            </select>
+                        @else
+                            <select name="id_cabang" id="id_cabang" class="form-control">
+                                <option selected="true" disabled="disabled"> Pilih Peserta Kegiatan</option>
+                                <option value="0">Semua</option>
+                                @foreach ($cabang as $id => $nama)
+                                <option value="{{$id}}">{{$nama}}</option>
+                                @endforeach
+                            </select>
+                        @endif
                     </div>
                     <div class="form-group">
                         <label for="title">Peserta Element</label>
-                        <select name="element_id" id="element_id" class="form-control">
-                            <option value="">Pilih</option>
-                            <option value="0">Semua</option>
-                            @foreach ($element as $id => $nama)
-                            <option value="{{$id}}">{{$nama}}</option>
-                            @endforeach
-                        </select>
+                        @if (Auth::user()->role == 'admin' && Auth::user()->access == 'cabang')
+                            <select name="element_id" id="element_id" class="form-control">
+                                <option selected="true" disabled="disabled"> Pilih Peserta Kegiatan</option>
+                                <option value="0">Semua</option>
+                            </select>
+                        @else
+                            <select name="element_id" id="element_id" class="form-control">
+                                <option selected="true" disabled="disabled"> Pilih Peserta Kegiatan</option>
+                                <option value="0">Semua</option>
+                                @foreach ($element as $id => $nama)
+                                <option value="{{$id}}">{{$nama}}</option>
+                                @endforeach
+                            </select>
+                        @endif
                     </div>
                     <div class="form-group">
                         <label for="title">Nama Lokasi</label>

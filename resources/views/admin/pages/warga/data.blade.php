@@ -19,44 +19,46 @@
                     </a>
                 </div>
             </div>
-            <br>
-            <div class="container-fluid table">
+            @if (!$check_admin_cabang->role == 'admin' && !$check_admin_cabang->access == 'cabang')
                 <br>
-                <h6>
-                    Data Cabang
-                </h6>
-                <br>
-                <div>
-                    <table class="table table-striped" id="data-cabang">
-                        <thead class="head-table">
-                            <tr>
-                                <th>No</th>
-                                <th>Nama Cabang</th>
-                                <th>Jumlah Warga</th>
-                                <th>Aksi</th>
-                            </tr>
-                        </thead>
-                        <tbody class="body-table">
-                            @foreach ($cabang as $item)
-                            <tr>
-                                <td>{{$loop->iteration}}</td>
-                                <td>{{$item->nama}}</td>
-                                <td>NULL</td>
-                                <td>
-                                    <a href="" style="text-decoration: none; color:#3685C8;">
-                                        lihat
-                                    </a>
-                                </td>
-                            </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
+                <div class="container-fluid table">
+                    <br>
+                    <h6>
+                        Data Cabang
+                    </h6>
+                    <br>
+                    <div>
+                        <table class="table table-striped" id="data-cabang">
+                            <thead class="head-table">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Cabang</th>
+                                    <th>Jumlah Warga</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody class="body-table">
+                                @foreach ($cabang as $item)
+                                <tr>
+                                    <td>{{$loop->iteration}}</td>
+                                    <td>{{$item->nama}}</td>
+                                    <td>NULL</td>
+                                    <td>
+                                        <a href="" style="text-decoration: none; color:#3685C8;">
+                                            lihat
+                                        </a>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <a href="">
+                    </a>
+
                 </div>
-
-                <a href="">
-                </a>
-
-            </div>
+            @endif
         </div>
         <!-- Box-->
 
