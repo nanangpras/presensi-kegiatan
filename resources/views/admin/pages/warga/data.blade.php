@@ -98,8 +98,8 @@
                                         class="btn btn-sm btn-danger"><i class="nav-icon fas fa-trash-alt"></i>
                                         Hapus</a>
                                 </td> --}}
-                                <td> 
-                                    <a href="#"
+                                <td>
+                                    <a href="{{route('warga.show',$item->warga_id)}}"
                                         class="btn btn-sm btn-danger"><i class="nav-icon fas fa-trash-alt"></i>
                                         Detail </a>
                                 </td>

@@ -80,7 +80,7 @@ class WargaController extends Controller
         $user->role = 'warga';
         $user->password = Hash::make('234234');
         $user->save();
-        
+
         return redirect()->route('warga.index');
     }
 
@@ -92,7 +92,14 @@ class WargaController extends Controller
      */
     public function show($id)
     {
-        //
+        $detailWarga = Warga::join('md_cabang','md_cabang.id_cabang','=','d_warga.id_cabang')
+                            ->join('users','users.nik','=','d_warga.nik')
+                            ->select('d_warga.*','md_cabang.nama as nama_cabang','users.access')
+                            ->where('warga_id',$id)->first();
+        if ($detailWarga) {
+            $user = User::where('nik',$detailWarga->nik)->first();
+        }
+        return view('admin.pages.warga.detail',compact('detailWarga','user'));
     }
 
     /**
@@ -115,7 +122,12 @@ class WargaController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        if ($request->key == 'updateAkses') {
+            $updateAkses = User::where('nik',$id)->first();
+            $updateAkses->access = $request->access;
+            $updateAkses->save();
+            return redirect()->back()->with('success','Akses berhasil diupdate');
+        }
     }
 
     /**

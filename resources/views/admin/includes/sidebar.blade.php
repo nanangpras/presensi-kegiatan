@@ -54,6 +54,11 @@
                 class="icon-profile" aria-hidden="true"></span>
             <img src="{{ url('presensi/images/icon/tugas.svg') }}" style="margin-right: 18px;" alt="">
             Elements</a>
+        <a href="{{ route('user.index') }}"
+            class="list-group-item list-group-item-action {{ Request::is('presensi/profile/me') ? 'active' : '' }}"><span
+                class="icon-profile" aria-hidden="true"></span>
+            <img src="{{ url('presensi/images/icon/tugas.svg') }}" style="margin-right: 18px;" alt="">
+            Users</a>
         {{-- <a href="#"
             class="list-group-item list-group-item-action {{ Request::is('presensi/agencies') ? 'active' : '' }}"><span
                 class="icon-setting" aria-hidden="true"></span>
