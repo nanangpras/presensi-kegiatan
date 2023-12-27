@@ -19,7 +19,7 @@
                     </a>
                 </div>
             </div>
-            @if (!$check_admin_cabang->role == 'admin' && !$check_admin_cabang->access == 'cabang')
+            @if ($check_admin_cabang->role == 'admin' && $check_admin_cabang->access == null || $check_admin_cabang->access == 'admin')
                 <br>
                 <div class="container-fluid table">
                     <br>
