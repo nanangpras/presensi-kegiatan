@@ -55,9 +55,12 @@
                                             <tr>
                                                 <td>Akses
                                                     @if (!$detailWarga->access)
-                                                        <br><button class="btn btn-blue btn-sm" data-toggle="modal" data-target="#modalAccess"
-                                                        style="background-color: #F73A0B;color: white;">
-                                                        <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span> </button>
+                                                        @if (Auth::user()->access == 'superadmin' || Auth::user()->access == 'admin' || Auth::user()->access == null)
+
+                                                            <br><button class="btn btn-blue btn-sm" data-toggle="modal" data-target="#modalAccess"
+                                                            style="background-color: #F73A0B;color: white;">
+                                                            <span> <i class="fa fa-plus-circle" aria-hidden="true"></i></span> </button>
+                                                        @endif
                                                     @endif
                                                 </td>
                                                 <td>
