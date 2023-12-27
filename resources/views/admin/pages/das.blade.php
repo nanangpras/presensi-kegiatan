@@ -88,7 +88,10 @@
                                     <tr>
                                         <th>No</th>
                                         <th>Nama Kegiatan</th>
-                                        <th>Jumlah Peserta</th>
+                                        {{-- <th>Jumlah Peserta</th> --}}
+                                        <th>Hadir</th>
+                                        <th>Izin</th>
+                                        <th>Tidak Hadir</th>
                                         <th>Waktu</th>
                                         {{-- <th>Aksi</th> --}}
                                     </tr>
@@ -98,7 +101,10 @@
                                     <tr>
                                         <td>{{$loop->iteration}}</td>
                                         <td>{{$item->nama}}</td>
-                                        <td>-</td>
+                                        {{-- <td>{{$item->$item->jumlah_hadir + $item->jumlah_izin + $item->jumlah_sakit}}</td> --}}
+                                        <td>{{$item->jumlah_hadir}}</td>
+                                        <td>{{$item->jumlah_izin}}</td>
+                                        <td>{{$item->jumlah_sakit}}</td>
                                         <td>{{$item->tgl_event_mulai}}</td>
                                         {{-- <td>
                                             <a href="" style="text-decoration: none; color:#3685C8;">
