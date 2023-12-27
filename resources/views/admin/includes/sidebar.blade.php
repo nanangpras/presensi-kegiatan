@@ -121,6 +121,50 @@
             Logout</a>
     </div>
     @endif
+    @if (Auth::user()->role == 'admin' && Auth::user()->access == 'umum')
+    <div class="list-group list-group-flush">
+        <span class="right-nav-text">MENU</span>
+        <a href="{{url('/admin')}}"
+            class="list-group-item list-group-item-action active {{ Request::is('presensi/dashboard') ? 'active' : '' }}"><span
+                class="icon-dashboard" aria-hidden="true"></span>
+            <img src="{{ url('presensi/images/icon/dashboard.svg') }}" style="margin-right: 18px;" alt="">
+            Dashboard </a>
+
+        <a href="{{route('kegiatan.index')}}"
+            class="list-group-item list-group-item-action {{ Request::is('presensi/warga') ? 'active' : '' }}"><span
+                class="icon-dashboard" aria-hidden="true"></span>
+            <img src="{{ url('presensi/images/icon/kegiatan.svg') }}" style="margin-right: 18px;" alt="">
+            Presensi Kegiatan</a>
+
+        <a href="{{ route('warga.index') }}"
+            class="list-group-item list-group-item-action {{ Request::is('presensi/profile/me') ? 'active' : '' }}"><span
+            class="icon-profile" aria-hidden="true"></span>
+        <img src="{{ url('presensi/images/icon/akun.svg') }}" style="margin-right: 18px;" alt="">Data Warga</a>
+
+        {{-- <a href="#"
+            class="list-group-item list-group-item-action {{ Request::is('presensi/catalogs') ? 'active' : '' }}"><span
+                class="icon-katalog" aria-hidden="true"></span>
+            <img src="{{ url('presensi/images/icon/media.svg') }}" style="margin-right: 18px;" alt="">
+            Media Dakwah</a>
+        <a href="{{route('maisah.list')}}"
+            class="list-group-item list-group-item-action {{ Request::is('presensi/catalogs') ? 'active' : '' }}"><span
+                class="icon-katalog" aria-hidden="true"></span>
+            <img src="{{ url('presensi/images/icon/media.svg') }}" style="margin-right: 18px;" alt="">
+            Usaha Warga</a> --}}
+
+        <span class="right-nav-text">AKUN</span>
+        <a href="{{ route('profile.index') }}"
+            class="list-group-item list-group-item-action {{ Request::is('presensi/profile/me') ? 'active' : '' }}"><span
+                class="icon-profile" aria-hidden="true"></span>
+            <img src="{{ url('presensi/images/icon/akun.svg') }}" style="margin-right: 18px;" alt="">
+            Profile</a>
+        <a href="#"
+            class="list-group-item list-group-item-action {{ Request::is('presensi/agencies') ? 'active' : '' }}"><span
+                class="icon-setting" aria-hidden="true"></span>
+            <img src="{{ url('presensi/images/icon/logout.svg') }}" style="margin-right: 18px;" alt="">
+            Logout</a>
+    </div>
+    @endif
 
     <script>
         var dropdown = document.getElementsByClassName("dropdown-btn");

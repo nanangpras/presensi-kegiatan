@@ -120,6 +120,7 @@
                             <option value="perwakilan">Admin Perwakilan</option>
                             <option value="donor">Admin Donor</option>
                             <option value="kurban">Admin Kurban</option>
+                            <option value="umum">Admin Umum</option>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-block"

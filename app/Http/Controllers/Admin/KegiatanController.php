@@ -35,6 +35,8 @@ class KegiatanController extends Controller
                                 ->where('id',Auth::user()->id)
                                 ->first();
             $kegiatan = DB::table('d_event')->where('id_cabang',$cabang_admin->cabang_admin)->where('user_id',$cabang_admin->id_user)->orderByDesc('event_id')->get();
+        }else if($check_admin_cabang->access == "umum" && $check_admin_cabang->role == 'admin'){
+            $kegiatan = DB::table('d_event')->where('jenis','umum')->orderByDesc('event_id')->get();
         }else{
             $kegiatan = DB::table('d_event')->orderByDesc('event_id')->get();
         }
