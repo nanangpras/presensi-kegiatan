@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\WargaRequest;
 use App\Models\Cabang;
 use App\Models\Element;
 use App\Models\User;
@@ -11,6 +12,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Validator;
 
 class WargaController extends Controller
 {
@@ -60,7 +62,7 @@ class WargaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(WargaRequest $request)
     {
         // $data = $request->all();
         // dd($data);
@@ -79,8 +81,8 @@ class WargaController extends Controller
         $data->perkawinan = $request->perkawinan;
         $data->status_warga = $request->status_warga;
         $data->pendidikan = $request->pendidikan;
-        $data->element_id = $request->element_id;
-        $data->pekerjaan = $request->pekerjaan;
+        // $data->element_id = explode(',', $request->element ?? '7');
+        $data->element_id = implode(',',$request->element)  ?? 7;
         $data->pekerjaan = $request->pekerjaan;
         $data->lanjutan_warga = 1;
         // dd($data);
@@ -89,9 +91,9 @@ class WargaController extends Controller
         $user = new User();
         $user->name = $data->nama;
         $user->nik = $data->nik;
-        $user->email = $data->nik;
+        $user->email = $request->email;
         $user->role = 'warga';
-        $user->password = Hash::make('234234');
+        $user->password = Hash::make('234234234');
         $user->save();
 
         return redirect()->route('warga.index');
