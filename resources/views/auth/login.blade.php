@@ -5,7 +5,7 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=DM+Sans:300,400&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="{{ url('themes-login/fonts/icomoon/style.css') }}">
 
@@ -25,21 +25,22 @@
     <div class="content">
         <div class="container">
             <div class="row">
-                <div class="col-md-6 order-md-2">
+                {{-- <div class="col-md-6 order-md-2">
                     <img src="{{ url('themes-login/images/undraw_file_sync_ot38.svg') }}" alt="Image"
                         class="img-fluid">
-                </div>
+                </div> --}}
                 <div class="col-md-6 contents">
                     <div class="row justify-content-center">
                         <div class="col-md-8">
                             <div class="mb-4">
-                                <h3>Masuk<strong> Dashboard Presensi</strong></h3>
+                                <img src="{{url('presensi/images/png/logo.png')}}">
+                                <h3>Masuk Dashboard Presensi</h3>
                                 <p class="mb-4">Input email anda atau nik beserta password</p>
                             </div>
                             <form action="{{ route('login') }}" method="post">
                                 @csrf
                                 <div class="form-group first">
-                                    <label for="username">Username / NIK</label>
+                                    <label for="username">Masukkan email</label>
                                     <input type="text"
                                         class="form-control{{ $errors->has('nik') || $errors->has('email') ? ' is-invalid' : '' }}"
                                         id="username" name="login" value="{{ old('nik') ?: old('email') }}">
@@ -73,16 +74,16 @@
                                     </label>
                                     @if (Route::has('password.request'))
                                         <span class="ml-auto">
-                                            <a href="{{ route('password.request') }}" class="forgot-pass">Forgot Password</a>
+                                            {{-- <a href="{{ route('password.request') }}" class="forgot-pass">Forgot Password</a> --}}
                                         </span>
                                     @endif
                                 </div>
 
                                 <input type="submit" value="Log In" class="btn text-white btn-block btn-primary">
 
-                                <span class="d-block text-left my-4 text-muted"> or sign in with</span>
+                                {{-- <span class="d-block text-left my-4 text-muted"> or sign in with</span> --}}
 
-                                <div class="social-login">
+                                {{-- <div class="social-login">
                                     <a href="#" class="facebook">
                                         <span class="icon-facebook mr-3"></span>
                                     </a>
@@ -92,7 +93,7 @@
                                     <a href="#" class="google">
                                         <span class="icon-google mr-3"></span>
                                     </a>
-                                </div>
+                                </div> --}}
                             </form>
                         </div>
                     </div>
