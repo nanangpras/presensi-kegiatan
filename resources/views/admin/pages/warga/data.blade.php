@@ -42,7 +42,7 @@
                                 <tr>
                                     <td>{{$loop->iteration}}</td>
                                     <td>{{$item->nama}}</td>
-                                    <td>NULL</td>
+                                    <td>{{$item->jumlah_warga}}</td>
                                     <td>
                                         <a href="" style="text-decoration: none; color:#3685C8;">
                                             lihat

@@ -100,7 +100,7 @@
                                                 @if ($item->keterangan == "belum hadir")
                                                     <button class="btn btn-primary" id="btn_status" data-keterangan="hadir" data-id="{{$item->id}}">Hadir</button>
                                                     <button class="btn btn-primary" id="btn_status" data-keterangan="sakit" data-id="{{$item->id}}">Sakit</button>
-                                                    <button class="btn btn-primary" id="btn_status" data-keterangan="izin" data-id="{{$item->id}}">Izin</button>
+                                                    <button class="btn btn-primary" id="btn_status_izin" data-id="{{$item->id}}">Izin</button>
                                                 @endif
                                             </td>
                                         </tr>
@@ -119,7 +119,7 @@
                                                     <td>
                                                         <button class="btn btn-primary" id="btn_status" data-keterangan="hadir" data-id="{{$item->id}}">Hadir</button>
                                                         <button class="btn btn-primary" id="btn_status" data-keterangan="sakit" data-id="{{$item->id}}">Sakit</button>
-                                                        <button class="btn btn-primary" id="btn_status" data-keterangan="izin" data-id="{{$item->id}}">Izin</button>
+                                                        <button class="btn btn-primary" id="btn_status_izin" data-id="{{$item->id}}">Izin</button>
                                                     </td>
                                                 @endif
                                             @endif
@@ -140,6 +140,35 @@
     </div>
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 @endsection
+<div class="modal fade" id="modalIzin" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-body">
+                @if(count($errors) > 0)
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+                {{-- form patch --}}
+                {{-- <form action="{{ route('update.presensi') }}" method="POST"> --}}
+                    {{-- @csrf
+                    @method('PATCH') --}}
+                    <div class="form-group">
+                        <label for="title">Keterangan izin</label>
+                        <textarea name="keterangan" class="form-control" id="keterangan" cols="20" rows="10"></textarea>
+                    </div>
+                    <button type="button" id="btn_submit_izin" class="btn btn-block"
+                        style="background-color: #F73A0B;color: white; border-radius: 8px; padding: 10px; font-weight: 500;">Simpan</button>
+                {{-- </form> --}}
+            </div>
+        </div>
+    </div>
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
+</div>
 @push('after-scripts')
     <script>
         var CSRF_TOKEN = $('meta[name="csrf-token"]').attr('content');
@@ -228,6 +257,37 @@
             // console.log(idpresensi);
             // console.log(status);
 
+        });
+
+        // click btn_status_izin
+        $(document).on("click", "#btn_status_izin", function(){
+            let id = $(this).attr("data-id");
+            let keterangan = $(this).attr("data-keterangan");
+            // Open the modal
+            $('#modalIzin').modal('show');
+
+            // Set the modal content dynamically
+            // $('#modalIzin .modal-body').html('Are you sure you want to update the status?');
+
+            // Handle the modal confirm button click
+            $('#modalIzin #btn_submit_izin').on('click', function() {
+                let keterangan = $("#keterangan").val();;
+                $.ajax({
+                    type: "PATCH",
+                    url: "/admin/update/presensi/"+id,
+                    data: {
+                        _token: CSRF_TOKEN,
+                        keterangan: keterangan
+                    },
+                    success: function (response) {
+                        alert(response.status);
+                        location.reload(true);
+                    }
+                });
+
+                // Close the modal
+                $('#myModal').modal('hide');
+            });
         });
 
         $(document).on("click", "#btn_status", function(){

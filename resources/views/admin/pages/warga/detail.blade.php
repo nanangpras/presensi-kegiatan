@@ -115,6 +115,7 @@
                     @csrf
                     @method('PUT')
                     <input type="hidden" name="key" value="updateAkses">
+                    <input type="hidden" name="warga_id" value="{{$detailWarga->warga_id}}">
                     <div class="form-group">
                         <label for="title">Jenis Akses</label>
                         <select name="access" id="access" class="form-control">
@@ -126,6 +127,15 @@
                             <option value="umum">Admin Umum</option>
                         </select>
                     </div>
+                    @foreach ($element as $id => $nama)
+                        <div class="form-check">
+                            <input class="form-check-input" name="element[]" type="checkbox" value="{{ $id }}" id="element_{{ $id }}"
+                                id="element" @if(in_array($id, explode(',', $detailWarga->element_id))) checked @endif @if(old('element') && in_array($id, old('element'))) checked @endif>
+                            <label class="form-check-label">
+                                {{ $nama }}
+                            </label>
+                        </div>
+                    @endforeach
                     <button type="submit" class="btn btn-block"
                         style="background-color: #F73A0B;color: white; border-radius: 8px; padding: 10px; font-weight: 500;">Simpan</button>
                 </form>
